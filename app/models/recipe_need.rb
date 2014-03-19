@@ -12,6 +12,8 @@
 #
 
 class RecipeNeed < ActiveRecord::Base
+  validates :amount, :amount_type, :presence => true
+
   belongs_to :recipe
   belongs_to :ingredient
 
