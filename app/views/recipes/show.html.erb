@@ -1,0 +1,9 @@
+
+<h2><%= @recipe.name %><h2>
+
+<div>Ingredients List</div>
+<ul>
+<% @needs.each do |need| %>
+  <li><%= need.formatted_amount %> <%= need.ingredient.name %></li>
+<% end %>
+</ul>
