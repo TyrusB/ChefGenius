@@ -14,4 +14,12 @@
 //= require jquery_ujs
 //= require lodash.underscore
 //= require turbolinks
+
+//= require backbone
+//= require chef_genius
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
 //= require_tree .
