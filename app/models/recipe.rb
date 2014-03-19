@@ -9,8 +9,10 @@
 #
 
 class Recipe < ActiveRecord::Base
-  validates :title, presence: true, :uniqueness => true
+  validates :name, presence: true, :uniqueness => true
 
   has_many :recipe_needs, :dependent => :destroy
   has_many :ingredients, :through => :recipe_needs
+  has_many :steps
+
 end

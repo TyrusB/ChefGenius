@@ -7,3 +7,10 @@
   <li><%= need.formatted_amount %> <%= need.ingredient.name %></li>
 <% end %>
 </ul>
+
+<div>Steps</div>
+<ol>
+<% @steps.each do |step| %>
+  <li><%= step.description %></li>
+<% end %>
+</ol>
