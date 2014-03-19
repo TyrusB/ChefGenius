@@ -20,7 +20,7 @@ development:
   database: ChefGenius_development
   pool: 5
   host: localhost
-  username: AppAcademy
+  username: appacademy
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -49,7 +49,7 @@ test:
   encoding: unicode
   database: ChefGenius_test
   pool: 5
-  username: ChefGenius
+  username: appacademy
   password:
 
 production:
