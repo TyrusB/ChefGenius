@@ -1,4 +1,4 @@
-class RecipesController < ApplicationController
+class API::RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
