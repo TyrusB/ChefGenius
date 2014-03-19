@@ -34,13 +34,11 @@ ActiveRecord::Schema.define(version: 20140319172100) do
   end
 
   create_table "recipes", force: true do |t|
-    t.string   "name",         null: false
-    t.integer  "submitter_id", null: false
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "recipes", ["name"], name: "index_recipes_on_name", unique: true, using: :btree
-  add_index "recipes", ["submitter_id"], name: "index_recipes_on_submitter_id", using: :btree
 
 end
