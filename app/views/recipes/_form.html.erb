@@ -1,0 +1,139 @@
+<!-- Needed: recipe, needs, steps -->
+<!-- pass in 3.times { RecipeNeed.new() to add some recipe needs to this recipe } -->
+
+<form>
+  <label for='recipe-name'>Recipe Name</label>
+    <input
+      type='text'
+      id='recipe-name'
+      name='recipe[name]'
+      value='<%= recipe.name %>'
+    />
+
+  <div class='ingredients-container'>
+    <div>Recipe Ingredients</div>
+    <% needs.each_with_index do |need, index| %>
+      <input
+        type=text
+        name='recipe[recipe_needs][<%= index %>][amount]'
+        value='<%= need.amount %>'
+      />
+
+      <input
+        type=text
+        name='recipe[recipe_needs][<%= index %>][amount_type]'
+        value='<%= need.amount_type %>'
+      />
+
+      <input
+        type=text
+        name='recipe[recipe_needs][<%= index %>][ingredient]'
+        value='<%= need.ingredient.name if need.ingredient %>'
+      />
+
+      <br>
+
+    <% end %>
+  </div>
+
+  <button class='more-ingredients'>Add an Ingredient</button>
+
+  <div class='steps-container'>
+    <div>Directions</div>
+    <ol class='steps-list'>
+      <% steps.each_with_index do |step, index| %>
+        <li><textarea id='recipe[steps][index]'>
+          <%= step.description %>
+        </textarea></li>
+        <br>
+      <% end %>
+    </ol>
+
+  </div>
+  <button class='more-steps'>Add a step</button>
+  <br>
+
+  <div class='info-container'>
+    <label for='prep-time'>Prep Time:</label>
+    <input
+      type='text'
+      id='prep-time'
+      name='recipe[prep_time]'
+      value='<%= recipe.prep_time %>'
+    />
+    <label for='cook-time'>Cook Time:</label>
+    <input
+      type='text'
+      id='cook-time'
+      name='recipe[cook_time]'
+      value='<%= recipe.cook_time %>'
+    />
+    <br>
+    <label for='recipe-notes'>Notes:</label>
+    <textarea name='recipe[notes]' id='recipe-notes'>
+      <%= recipe.notes %>
+    </textarea>
+  </div>
+  <input type='submit'>
+
+</form>
+
+
+
+<script>
+
+  var numForms = <%= needs.length %>;
+
+  $(function() {
+    $('.more-ingredients').click(function(event) {
+      event.preventDefault();
+
+      var newIngredientTemplate = _.template($('#new-ingredient-template').html());
+      var newIngredientHTML = newIngredientTemplate({
+        formNum: numForms
+      });
+      $('.ingredients-container').append(newIngredientHTML);
+      numForms++;
+    })
+
+    $('.more-steps').click(function(event) {
+      event.preventDefault();
+
+      var newStepHTML = $('#new-step-template').html();
+      $('.steps-list').append(newStepHTML);
+    })
+
+  })
+
+</script>
+
+<script type='text/template' id='new-ingredient-template'>
+  <input
+    type=text
+    name='recipe[recipe_needs][<%%= formNum %>][amount]'
+    value=''
+  />
+
+  <input
+    type=text
+    name='recipe[recipe_needs][<%%= formNum %>][amount_type]'
+    value=''
+  />
+
+  <input
+    type=text
+    name='recipe[recipe_needs][<%%= formNum %>][ingredient]'
+    value=''
+  />
+
+  <br>
+
+</script>
+
+<script type='text/template' id='new-step-template'>
+  <li>
+    <textarea id='recipe[steps][]'></textarea>
+  </li>
+  <br>
+</script>
+
