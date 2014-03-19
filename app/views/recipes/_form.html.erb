@@ -1,7 +1,9 @@
 <!-- Needed: recipe, needs, steps -->
 <!-- pass in 3.times { RecipeNeed.new() to add some recipe needs to this recipe } -->
 
-<form>
+<!-- NEEDS TO BE MODIFIED FOR MULTI-USE UPDATE AND NEW -->
+<form action='<%= recipe_url(recipe) %>' method='post'>
+  <input type='hidden' name='_method' value='patch'>
   <label for='recipe-name'>Recipe Name</label>
     <input
       type='text'
@@ -42,7 +44,7 @@
     <div>Directions</div>
     <ol class='steps-list'>
       <% steps.each_with_index do |step, index| %>
-        <li><textarea id='recipe[steps][index]'>
+        <li><textarea name='recipe[steps][]'>
           <%= step.description %>
         </textarea></li>
         <br>
