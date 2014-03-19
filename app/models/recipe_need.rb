@@ -28,7 +28,7 @@ class RecipeNeed < ActiveRecord::Base
       type = self.amount_type
     end
 
-    "#{unit} #{amount_type}"
+    "#{unit} #{type}"
   end
 
 end
