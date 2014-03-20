@@ -1,16 +1,85 @@
 
-<h2><%= recipe.escape("name") %><h2>
+<div class='recipe-container'>
 
-<div>Ingredients List</div>
-<ul>
-<% recipe.needs().each( function(need) { %>
-  <li><%= need.escape('formattedText') %></li>
-<% }); %>
-</ul>
+  <div class='info-container elements-container'>
+    <h2 class='recipe-name'><%= recipe.escape("name") %><h2>
+  </div>
 
-<div>Steps</div>
-<ol>
-<% recipe.steps().each ( function(step) { %>
-  <li><%= step.escape("description") %></li>
-<% }) %>
-</ol>
+  <div class='elements-container'>
+    <div class='elements-header'>Ingredients List</div>
+    <ul>
+    <% recipe.needs().each( function(need) { %>
+      <li class='editable ingredient' data-id='<%= need.id %>'>
+        <%= need.escape('formattedText') %>
+      </li>
+    <% }); %>
+    </ul>
+  </div>
+
+  <div class='elements-container'>
+    <div class='elements-header'>Steps</div>
+    <ol>
+    <% recipe.steps().each ( function(step) { %>
+      <li class='editable step' data-id='<%= step.id %>'>
+        <%= step.escape("description") %>
+      </li>
+    <% }) %>
+    </ol>
+  </div>
+</div>
+
+<button id='edit-recipe'>EDIT TEST</button>
+<br>
+<a href='#/recipes/<%= recipe.id %>/edit'>Edit Recipe</a>
+<a href='#/'>Back</a>
+
+<style>
+  .info-container {
+    position: relative;
+  }
+
+  .recipe-name {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .ingredient {
+    margin: 10px;
+  }
+
+  .step {
+    margin: 10px;
+  }
+
+  .elements-container {
+    width: 600px;
+    min-height: 100px;
+    background-color: lightgrey;
+    border: 2px black solid;
+    border-radius: 10px;
+    margin: 30px auto;
+  }
+
+  .elements-header {
+    padding: 20px 0 10px 20px;
+    font-size: 20px;
+  }
+
+  .can-edit {
+    border: 2px red solid;
+    border-radius: 5px;
+  }
+
+  .can-edit-page-container {
+    border: 5px dashed red;
+  }
+
+  .recipe-container {
+    width: 700px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+</style>
