@@ -1,0 +1,77 @@
+
+<form>
+  <label for='recipe-name'>Recipe Name</label>
+    <input
+      type='text'
+      id='recipe-name'
+      name='recipe[name]'
+      value='<%= recipe.escape('name') %>'
+    />
+
+  <div class='ingredients-container'>
+    <div>Recipe Ingredients</div>
+    <% recipe.needs().each( function(need, index) { %>
+      <input
+        type=text
+        name='recipe[recipe_needs][<%= index %>][amount]'
+        value='<%= need.amount %>'
+      />
+
+      <input
+        type=text
+        name='recipe[recipe_needs][<%= index %>][amount_type]'
+        value='<%= need.amountType %>'
+      />
+
+      <input
+        type=text
+        name='recipe[recipe_needs][<%= index %>][ingredient]'
+        value='<%= need.ingredientName %>'
+      />
+
+      <br>
+
+    <%= }); %>
+  </div>
+
+  <button class='more-ingredients'>Add an Ingredient</button>
+
+  <div class='steps-container'>
+    <div>Directions</div>
+    <ol class='steps-list'>
+      <% recipe.steps().each( function(step, index) %>
+        <li><textarea name='recipe[steps][]'>
+          <%= step.description %>
+        </textarea></li>
+        <br>
+      <% )}; %>
+    </ol>
+
+  </div>
+  <button class='more-steps'>Add a step</button>
+  <br>
+
+  <div class='info-container'>
+    <label for='prep-time'>Prep Time:</label>
+    <input
+      type='text'
+      id='prep-time'
+      name='recipe[prep_time]'
+      value='<%= recipe.prep_time %>'
+    />
+    <label for='cook-time'>Cook Time:</label>
+    <input
+      type='text'
+      id='cook-time'
+      name='recipe[cook_time]'
+      value='<%= recipe.cook_time %>'
+    />
+    <br>
+    <label for='recipe-notes'>Notes:</label>
+    <textarea name='recipe[notes]' id='recipe-notes'>
+      <%= recipe.notes %>
+    </textarea>
+  </div>
+  <input type='submit'>
+
+</form>
