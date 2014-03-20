@@ -1,5 +1,5 @@
 window.ChefGenius.Views.RecipesIndex = Backbone.View.extend({
-  tempate: JST["recipes/index"],
+  template: JST["recipes/index"],
 
   render: function() {
     var content = this.template({

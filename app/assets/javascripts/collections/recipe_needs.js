@@ -1,4 +1,4 @@
-window.ChefGenius.Collections.RecipeNeeds = Backbone.Collections.extend({
+window.ChefGenius.Collections.RecipeNeeds = Backbone.Collection.extend({
   model: ChefGenius.Models.Need,
 
   initialize: function(models, options) {
