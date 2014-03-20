@@ -22,12 +22,14 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
   },
 
   recipesEdit: function(id) {
-    var recipe = this.recipes.getOrFetch(id);
-    var form = new ChefGenius.Views.RecipesForm({
-      model: recipe
-    });
+    var view = this;
+    this.recipes.getOrFetch(id, function(recipe) {
+      var form = new ChefGenius.Views.RecipesForm({
+        model: recipe
+      });
 
-    this._swapView(form);
+      view._swapView(form);
+    });
   },
 
   recipesNew: function() {

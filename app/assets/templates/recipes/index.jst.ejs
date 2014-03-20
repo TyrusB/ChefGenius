@@ -2,7 +2,10 @@
 
 <ul>
 <% recipes.each( function(recipe) { %>
-  <li><%= recipe.escape('name') %></li>
+  <li><a href='#/recipes/<%= recipe.id %>'>
+    <%= recipe.escape('name') %>
+  </a></li>
 <% }) %>
 </ul>
 
+<a href='#/recipes/new'>Add a new Recipe</a>

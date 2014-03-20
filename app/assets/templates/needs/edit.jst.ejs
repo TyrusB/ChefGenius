@@ -1,0 +1,20 @@
+<form>
+  <input
+    type=text
+    value='<%= need.escape('amount') %>'
+    name='need[amount]'
+  />
+
+  <input
+    type=text
+    value='<%= need.escape('amountType') %>'
+    name='need[amount_type]'
+  />
+
+  <input
+    type=text
+    value='<%= need.escape("ingredientName") %>'
+    name='need[ingredientName]'
+  />
+  <input type='submit'>
+</form>

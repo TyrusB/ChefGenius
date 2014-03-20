@@ -1,4 +1,4 @@
-window.ChefGenius.Views.RecipesForm = Backbone.View.extend({
+window.ChefGenius.Views.RecipesForm = Backbone.CompositeView.extend({
   template: JST["recipes/form"],
 
   render: function() {
