@@ -1,4 +1,4 @@
-window.ChefGenius.Collections.RecipeSteps = Backbone.Collections.extend({
+window.ChefGenius.Collections.RecipeSteps = Backbone.Collection.extend({
   model: ChefGenius.Models.Step,
 
   initialize: function(models, options) {

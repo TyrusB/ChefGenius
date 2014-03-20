@@ -1,5 +1,3 @@
-// pass in rootel and currentUser
-
 window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
@@ -19,7 +17,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
       collection: this.recipes
     });
 
-    _swapViews(index);
+    this._swapView(index);
   },
 
   recipesEdit: function(id) {
@@ -28,7 +26,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
       model: recipe
     });
 
-    _swapView(form);
+    this._swapView(form);
   },
 
   recipesNew: function() {
@@ -39,7 +37,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
       model: recipe
     });
 
-    _swapView(form);
+    this._swapView(form);
   },
 
   recipesShow: function(id) {
@@ -48,7 +46,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
       model: recipe
     });
 
-    _swapView(view);
+    this._swapView(show);
   },
 
   _swapView: function(view) {
