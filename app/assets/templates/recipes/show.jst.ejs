@@ -1,0 +1,16 @@
+
+<h2><%= recipe.escape("name") %><h2>
+
+<div>Ingredients List</div>
+<ul>
+<% recipe.needs().each( function(need) { %>
+  <li><%= need.escape('formattedText') %></li>
+<% }); %>
+</ul>
+
+<div>Steps</div>
+<ol>
+<% recipe.steps().each ( function(step) { %>
+  <li><%= step.escape("description") %></li>
+<% }) %>
+</ol>

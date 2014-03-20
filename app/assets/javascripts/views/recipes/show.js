@@ -1,7 +1,8 @@
-window.ChefGenius.Views.RecipesShow = Backbone.View.extend({
-  tempate: JST["recipes/show"],
+window.ChefGenius.Views.RecipeShow = Backbone.View.extend({
+  template: JST["recipes/show"],
 
   render: function() {
+
     var content = this.template({
       recipe: this.model
     });

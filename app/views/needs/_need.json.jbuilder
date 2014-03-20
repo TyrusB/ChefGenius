@@ -1,6 +1,5 @@
-json.need do
-  json.id :id
-  json.ingredientName need.ingredient.name
-  json.amount :amount
-  json.amountType :amount_type
-end
+json.id need.id
+json.ingredientName need.ingredient.name
+json.amount need.amount
+json.formattedText need.formatted_amount + " " + need.ingredient.name
+json.amountType need.amount_type

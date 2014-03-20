@@ -1,5 +1,5 @@
 window.ChefGenius.Views.RecipesForm = Backbone.View.extend({
-  tempate: JST["recipes/form"],
+  template: JST["recipes/form"],
 
   render: function() {
     var content = this.template({
