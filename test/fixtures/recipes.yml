@@ -6,6 +6,9 @@
 #  name       :string(255)      not null
 #  created_at :datetime
 #  updated_at :datetime
+#  notes      :text
+#  prep_time  :string(255)
+#  cook_time  :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
