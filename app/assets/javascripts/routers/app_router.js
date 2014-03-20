@@ -7,9 +7,10 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
 
   routes: {
     "":"recipesIndex",
-    "recipes/:id/edit":"recipesEdit",
     "recipes/new":"recipesNew",
-    "recipes/:id":"recipeShow"
+    "recipes/:id":"recipeShow",
+    "recipes/:id/edit":"recipesEdit"
+
   },
 
   recipesIndex: function() {
@@ -40,13 +41,16 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
     this._swapView(form);
   },
 
-  recipesShow: function(id) {
-    var recipe = this.recipes.getOrFetch(id);
-    var show = new ChefGenius.Views.RecipeShow({
-      model: recipe
+  recipeShow: function(id) {
+    var view = this;
+    this.recipes.getOrFetch(id, function(recipe) {
+      var show = new ChefGenius.Views.RecipeShow({
+        model: recipe
+      });
+
+      view._swapView(show);
     });
 
-    this._swapView(show);
   },
 
   _swapView: function(view) {

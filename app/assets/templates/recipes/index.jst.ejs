@@ -2,7 +2,7 @@
 
 <ul>
 <% recipes.each( function(recipe) { %>
-  <li><%= recipe.get('name') %></li>
+  <li><%= recipe.escape('name') %></li>
 <% }) %>
 </ul>
 

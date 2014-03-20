@@ -5,7 +5,9 @@ window.ChefGenius.Models.Recipe = Backbone.Model.extend({
     if (jsonResp.steps) {
       this.steps().set(jsonResp.steps);
       delete jsonResp.steps;
-    } else if (jsonResp.needs) {
+    }
+    if (jsonResp.needs) {
+
       this.needs().set(jsonResp.needs);
       delete jsonResp.needs;
     }

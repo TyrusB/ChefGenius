@@ -30,7 +30,7 @@
 
       <br>
 
-    <% }); %>
+    <% }) %>
   </div>
 
   <button class='more-ingredients'>Add an Ingredient</button>
@@ -38,12 +38,12 @@
   <div class='steps-container'>
     <div>Directions</div>
     <ol class='steps-list'>
-      <% recipe.steps().each( function(step, index) %>
+      <% recipe.steps().each( function(step, index) { %>
         <li><textarea name='recipe[steps][]'>
           <%= step.escape("description") %>
         </textarea></li>
         <br>
-      <% )}; %>
+      <% }) %>
     </ol>
 
   </div>

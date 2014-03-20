@@ -18,3 +18,32 @@ window.ChefGenius = {
   }
 };
 
+
+
+//CURRENTLY DOESN'T ACTUALLY CALL CALLBACK UNTIL IT GETS DATA FROM SERVER
+Backbone.Collection.prototype.getOrFetch = function(id, callback) {
+
+  var model;
+  var collection = this;
+
+  if (model = this.get(id)) {
+    model.fetch({
+      success: function() {
+        callback(model);
+      }
+    });
+  } else {
+    model = new this.model( {id: id} );
+    model.collection = this;
+
+    model.fetch({
+      success: function() {
+        this.add(model);
+        callback(model);
+       }
+    })
+  }
+
+
+}
+
