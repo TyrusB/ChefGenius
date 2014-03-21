@@ -1,5 +1,5 @@
-window.ChefGenius.Views.InfoNew = Backbone.View.extend({
-  template: JST["recipes/info/info_new"],
+window.ChefGenius.Views.InfoShow = Backbone.View.extend({
+  template: JST["recipes/info/info_show"],
 
   render: function() {
     var content = this.template({

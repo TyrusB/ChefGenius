@@ -15,15 +15,7 @@ class Api::RecipesController < ApplicationController
   end
 
   def create
-    steps_params = recipe_params["steps"]
-    needs_params = recipe_params["recipe_needs"]
-
-    recipe_only_params = recipe_params.reject { |k, _| k == "recipe_needs" || k == "steps" }
-
-    @recipe = Recipe.new(recipe_only_params)
-
-    @recipe.steps.build(steps_params)
-    @recipe.recipe_needs.build(needs_params)
+    @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
       render "recipes/model"
@@ -43,8 +35,8 @@ class Api::RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipes).permit(:name, :prep_time, :cook_time, :notes,
-                                    :recipe_needs => [:amount, :amount_type, :ingredientName],
-                                    :steps => [:description] )
+                                    :recipe_needs_attributes => [:amount, :amount_type, :ingredientName],
+                                    :steps_attributes => [:description] )
   end
 
 end
