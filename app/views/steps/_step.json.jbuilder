@@ -1,5 +1,1 @@
-json.(
-  step,
-  :id,
-  :description
-)
+json.(step, :id, :description)

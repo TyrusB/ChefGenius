@@ -1,7 +1,15 @@
-json.(recipe, :id, :name, :notes, :cook_time, :prep_time, :created_at, :updated_at)
+json.(recipe, :id, :name, :created_at)
 
 steps ||= nil
-needs ||= nil
+ingredients ||= nil
+info ||= nil
+note ||= nil
+
+unless ingredients.nil?
+  json.ingredients(ingredients) do |ingredient|
+    json.partial!("ingredients/ingredient", :ingredient => ingredient)
+  end
+end
 
 unless steps.nil?
   json.steps(steps) do |step|
@@ -9,9 +17,15 @@ unless steps.nil?
   end
 end
 
-unless needs.nil?
-  json.needs(needs) do |need|
-    json.partial!("needs/need", :need => need)
+unless info.nil?
+  json.info do
+    json.partial!("infos/info", :info => info)
+  end
+end
+
+unless note.nil?
+  json.note do
+    json.partial!("notes/note", :note => note)
   end
 end
 

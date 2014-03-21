@@ -12,7 +12,7 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, :dependent => :destroy
   has_many :steps, -> { order 'steps.created_at' }, :dependent => :destroy
   has_one :note, :dependent => :destroy
-  has_one :time, :dependent => :destroy
+  has_one :info, :dependent => :destroy
 
   belongs_to :user
 

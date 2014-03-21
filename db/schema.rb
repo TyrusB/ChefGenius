@@ -17,28 +17,38 @@ ActiveRecord::Schema.define(version: 20140321223421) do
   enable_extension "plpgsql"
 
   create_table "infos", force: true do |t|
-    t.string  "cook_time"
-    t.string  "prep_time"
-    t.integer "recipe_id"
+    t.string   "cook_time"
+    t.string   "prep_time"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ingredients", force: true do |t|
-    t.string  "description"
-    t.integer "recipe_id"
+    t.string   "description"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "notes", force: true do |t|
-    t.text    "body"
-    t.integer "recipe_id"
+    t.text     "description"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "recipes", force: true do |t|
-    t.string "name"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "steps", force: true do |t|
-    t.text    "body"
-    t.integer "recipe_id"
+    t.text     "description"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

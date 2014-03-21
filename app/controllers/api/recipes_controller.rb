@@ -1,5 +1,5 @@
 class Api::RecipesController < ApplicationController
-  before_filter :user_authenticated?
+  #before_filter :user_authenticated?
 
   def index
     @recipes = Recipe.all
@@ -8,8 +8,10 @@ class Api::RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @needs = @recipe.recipe_needs
     @steps = @recipe.steps
+    @ingredients = @recipe.ingredients
+    @note = @recipe.note
+    @info = @recipe.info
 
     render "recipes/model"
   end
@@ -42,31 +44,13 @@ class Api::RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipes).permit(:name, :prep_time, :cook_time, :notes,
-                                      :recipe_needs_attributes => [:amount, :amount_type, :ingredientName],
-                                      :steps_attributes => [:description] )
+      params.require(:recipes).permit( :name,
+                                       :steps_attributes => [:description],
+                                       :info_attributes => [:prep_time, :cook_time],
+                                       :ingredients_attributes => [:description],
+                                       :note_attributes => [:description]
+                                    )
+
     end
 
 end
-
-
-  # def edit
-#     @recipe = Recipe.find(params[:id])
-#
-#     @needs = @recipe.recipe_needs
-#     2.times { @needs += [RecipeNeed.new] }
-#
-#     @steps = @recipe.steps
-#     2.times { @steps += [Step.new] }
-#   end
-
-
- # def new
-#    @recipe = Recipe.new
-#
-#    @needs = []
-#    2.times { @needs << RecipeNeed.new }
-#
-#    @steps = []
-#    2.times { @steps << Step.new }
-#  end
