@@ -6,6 +6,6 @@ window.ChefGenius.Collections.RecipeNeeds = Backbone.Collection.extend({
   },
 
   url: function() {
-    return this.recipe.url() + "/needs";
+    return "api/needs";
   }
 });
