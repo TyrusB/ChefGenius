@@ -2,11 +2,9 @@
 #
 # Table name: steps
 #
-#  id          :integer          not null, primary key
-#  description :text             not null
-#  recipe_id   :integer          not null
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id        :integer          not null, primary key
+#  body      :text
+#  recipe_id :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
