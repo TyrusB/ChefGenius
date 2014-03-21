@@ -1,4 +1,4 @@
-window.ChefGenius.Views.RecipeShow = Backbone.View.extend({
+window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   template: JST["recipes/show"],
 
   events: {
@@ -13,6 +13,10 @@ window.ChefGenius.Views.RecipeShow = Backbone.View.extend({
 
     this.$el.html(content);
 
+    this.model.needs().each( this.addNeed.bind(this) );
+    this.model.steps().each( this.addStep.bind(this) );
+
+
     return this;
   },
 
@@ -22,19 +26,25 @@ window.ChefGenius.Views.RecipeShow = Backbone.View.extend({
     $('.recipe-container').toggleClass('can-edit-page-container');
     $('.editable').toggleClass('can-edit');
 
-    $('.editable.ingredient').on('click', function() {
-      // Use attributes to get ingredient (id?)
-      $(this).toggleClass('can-edit')
-      $(this).off('click');
-      var needId = $(this).data('id');
-      var need = view.model.needs().get(needId);
-      var needEditView = new ChefGenius.Views.NeedEdit({
-        model: need
-      });
+    _(this.subviews()["#needs-list"]).each( function(subview) {
+      subview.makeEditable();
+    })
 
-      $(this).html(needEditView.render().$el);
+  },
+
+  addNeed: function(need) {
+    var needShow = new ChefGenius.Views.NeedShow({
+      model: need
     });
+
+    this.addSubview('#needs-list', needShow);
+    needShow.render()
+  },
+
+  addStep: function(step) {
+
   }
+
 
 });
 
@@ -42,3 +52,15 @@ window.ChefGenius.Views.RecipeShow = Backbone.View.extend({
 // 3. Add data id attribute on form 4. IngredientEdit view
 
 // getorfetch may not be best option for effect, since it fetches existin model
+//
+//
+// $(this).toggleClass('can-edit')
+// $(this).off('click');
+//
+// var needId = $(this).data('id');
+// var need = view.model.needs().get(needId);
+// var needEditView = new ChefGenius.Views.NeedEdit({
+//   model: need
+// });
+//
+// $(this).html(needEditView.render().$el);

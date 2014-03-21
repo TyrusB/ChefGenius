@@ -7,13 +7,7 @@
 
   <div class='elements-container'>
     <div class='elements-header'>Ingredients List</div>
-    <ul>
-    <% recipe.needs().each( function(need) { %>
-      <li class='editable ingredient' data-id='<%= need.id %>'>
-        <%= need.escape('formattedText') %>
-      </li>
-    <% }); %>
-    </ul>
+    <ul id='needs-list'></ul>
   </div>
 
   <div class='elements-container'>
@@ -83,3 +77,10 @@
 
 
 </style>
+
+
+<!--     <% recipe.needs().each( function(need) { %>
+      <li class='editable ingredient' data-id='<%= need.id %>'>
+        <%= need.escape('formattedText') %>
+      </li>
+    <% }); %> -->

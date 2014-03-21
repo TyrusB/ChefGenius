@@ -21,6 +21,6 @@ class Api::NeedsController < ApplicationController
   private
 
   def needs_params
-    params.require(:needs).permit(:amount, :amountType, :ingredientName)
+    params.require(:needs).permit(:amount, :amount_type, :ingredientName)
   end
 end
