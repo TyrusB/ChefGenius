@@ -2,17 +2,17 @@
 <input
   type=text
   value='<%= need.escape('amount') %>'
-  name='recipes[recipe_needs][<%= number %>][amount]'
+  name='recipes[recipe_needs_attributes][<%= number %>][amount]'
 />
 
 <input
   type=text
   value='<%= need.escape('amountType') %>'
-  name='recipes[recipe_needs][<%= number %>][amount_type]'
+  name='recipes[recipe_needs_attributes][<%= number %>][amount_type]'
 />
 
 <input
   type=text
   value='<%= need.escape("ingredientName") %>'
-  name='recipes[recipe_needs][<%= number %>][ingredientName]'
+  name='recipes[recipe_needs_attributes][<%= number %>][ingredientName]'
 />

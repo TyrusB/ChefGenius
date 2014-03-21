@@ -20,5 +20,7 @@ class Recipe < ActiveRecord::Base
 
   belongs_to :user
 
+  accepts_nested_attributes_for :recipe_needs, :steps
+
 
 end
