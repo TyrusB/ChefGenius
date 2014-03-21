@@ -8,7 +8,7 @@
 #
 
 class Note < ActiveRecord::Base
-  validates :body, :presence => true
+  validates :description, :presence => true
 
   belongs_to :recipe
 

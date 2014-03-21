@@ -130,9 +130,9 @@ end
   ["Add the mushrooms and pearl onions to the sauce. Pour over the chicken and serve", 5],
 
 
-].each do |body, recipe_id|
+].each do |description, recipe_id|
   s = Step.new(
-    :body => body,
+    :description => description,
     :recipe_id => recipe_id
     )
   s.save
@@ -140,7 +140,7 @@ end
 
 5.times do |i|
   n = Note.new(
-    :body => "Bushwick next level Shoreditch, ethical normcore sartorial Vice Tonx meh keytar twee ethnic stumptown Odd Future gastropub. McSweeney's Neutra letterpress, organic 8-bit small batch Shoreditch. Tote bag vegan messenger bag American Apparel, craft beer synth Etsy viral. DIY YOLO chillwave selfies Marfa butcher. Occupy disrupt selvage ethnic squid sartorial. Mixtape ennui art party, mumblecore Thundercats gluten-free gastropub locavore post-ironic Schlitz gentrify. American Apparel gastropub yr, ennui McSweeney's hashtag farm-to-table polaroid asymmetrical hoodie Vice.",
+    :description => "Bushwick next level Shoreditch, ethical normcore sartorial Vice Tonx meh keytar twee ethnic stumptown Odd Future gastropub. McSweeney's Neutra letterpress, organic 8-bit small batch Shoreditch. Tote bag vegan messenger bag American Apparel, craft beer synth Etsy viral. DIY YOLO chillwave selfies Marfa butcher. Occupy disrupt selvage ethnic squid sartorial. Mixtape ennui art party, mumblecore Thundercats gluten-free gastropub locavore post-ironic Schlitz gentrify. American Apparel gastropub yr, ennui McSweeney's hashtag farm-to-table polaroid asymmetrical hoodie Vice.",
     :recipe_id => (i + 1)
   )
   n.save

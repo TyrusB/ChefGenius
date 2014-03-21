@@ -4,6 +4,8 @@ class CreateIngredientsTable < ActiveRecord::Migration
       t.string :description
 
       t.integer :recipe_id
+
+      t.timestamps
     end
   end
 end

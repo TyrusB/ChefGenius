@@ -5,6 +5,8 @@ class CreateInfoTable < ActiveRecord::Migration
       t.string :prep_time
 
       t.integer :recipe_id
+
+      t.timestamps
     end
   end
 end
