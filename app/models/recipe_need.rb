@@ -17,6 +17,11 @@ class RecipeNeed < ActiveRecord::Base
   belongs_to :recipe
   belongs_to :ingredient
 
+
+  def ingredientName=(name)
+    self.ingredient = Ingredient.find_or_create(name)
+  end
+
   def formatted_amount
     if self.amount % 1 == 0.0
       unit = self.amount.to_i

@@ -14,8 +14,22 @@ class Api::RecipesController < ApplicationController
     render "recipes/model"
   end
 
-  def update
-    fail
+  def create
+    steps_params = recipe_params["steps"]
+    needs_params = recipe_params["recipe_needs"]
+
+    recipe_only_params = recipe_params.reject { |k, _| k == "recipe_needs" || k == "steps" }
+
+    @recipe = Recipe.new(recipe_only_params)
+
+    @recipe.steps.build(steps_params)
+    @recipe.recipe_needs.build(needs_params)
+
+    if @recipe.save
+      render "recipes/model"
+    else
+      render :json => @recipe.errors.full_messages
+    end
   end
 
   private
@@ -25,6 +39,12 @@ class Api::RecipesController < ApplicationController
       render :json => {}
       return false
     end
+  end
+
+  def recipe_params
+    params.require(:recipes).permit(:name, :prep_time, :cook_time, :notes,
+                                    :recipe_needs => [:amount, :amount_type, :ingredientName],
+                                    :steps => [:description] )
   end
 
 end
