@@ -17,9 +17,14 @@ window.ChefGenius.Views.NeedEdit = Backbone.View.extend({
 
   updateIngredient: function(event) {
     event.preventDefault();
-    var info = this.$(event.currentTarget).serializeJSON()["need"];
+    var view = this;
+    var info = this.$(event.currentTarget).serializeJSON();
 
-    this.model.save(info);
+    this.model.save(info, {
+      success: function(response) {
+        view.model.set(response);
+      }
+    });
 
 
   }
