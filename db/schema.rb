@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 20140321223421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "infos", force: true do |t|
+    t.string  "cook_time"
+    t.string  "prep_time"
+    t.integer "recipe_id"
+  end
+
   create_table "ingredients", force: true do |t|
     t.string  "description"
     t.integer "recipe_id"
@@ -32,12 +38,6 @@ ActiveRecord::Schema.define(version: 20140321223421) do
 
   create_table "steps", force: true do |t|
     t.text    "body"
-    t.integer "recipe_id"
-  end
-
-  create_table "times", force: true do |t|
-    t.string  "cook_time"
-    t.string  "prep_time"
     t.integer "recipe_id"
   end
 

@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: steps
+# Table name: notes
 #
 #  id        :integer          not null, primary key
 #  body      :text
 #  recipe_id :integer
 #
 
-class Step < ActiveRecord::Base
+class Note < ActiveRecord::Base
   validates :body, :presence => true
 
   belongs_to :recipe
