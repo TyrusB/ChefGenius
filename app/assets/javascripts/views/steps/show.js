@@ -1,14 +1,14 @@
-window.ChefGenius.Views.NeedShow = Backbone.View.extend({
+window.ChefGenius.Views.StepShow = Backbone.View.extend({
   tagName: "li",
 
-  className: "ingredient",
+  className: "step",
 
   attributes: function() {
     return { "data-id": this.model.id }
   },
 
   template: function() {
-    return this.open ? JST['needs/edit'] : JST['needs/show'];
+    return this.open ? JST['steps/edit'] : JST['steps/show'];
   },
 
   initialize: function(options) {
@@ -37,7 +37,7 @@ window.ChefGenius.Views.NeedShow = Backbone.View.extend({
 
   render: function() {
     var content = this.template()({
-      need: this.model
+      step: this.model
     });
 
     this.$el.html(content);
@@ -61,7 +61,7 @@ window.ChefGenius.Views.NeedShow = Backbone.View.extend({
       success: function(response) {
         view.open = false;
         view.render();
-        view.$('.editable').toggleClass('editable-closed');
+        view.$('.editable').toggleClass('editable-closed')
       }
     });
 

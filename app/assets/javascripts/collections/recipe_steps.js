@@ -6,6 +6,6 @@ window.ChefGenius.Collections.RecipeSteps = Backbone.Collection.extend({
   },
 
   url: function() {
-    return this.recipe.url() + "/steps";
+    return "api/steps";
   }
 });
