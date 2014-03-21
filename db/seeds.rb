@@ -8,65 +8,76 @@
 
 
 [
-  [ "Spaghetti Bolognese", "30 minutes", "2 hours", "This is a really good recipe!"],
-  [ "Coq au Vin", "30 minutes", "1.5 hours", "Braising this dish really makes it taste delicious!"],
-  [ "Braised Brussels SProuts", "10 minutes", "20 minutes", "Cream is delicious"],
-  [ "Grilled Vegetables", "20 minutes", "10 minutes", "Prep your grill ahead of time and get ready for some delicious food. I recommend cooking over a really hot fire."],
-  [ "Test Recipe 5", "15 minutes", "2 hours 10 minutes", "TLo-fi non duis aliquip. Photo booth slow-carb organic ethnic ad disrupt. Freegan American Apparel aesthetic accusamus dolor, Tonx banh mi chambray. Literally photo booth Godard, reprehenderit pork belly banjo High Life umami Tonx gluten-free nulla 90's slow-carb master cleanse. Butcher plaid gluten-free, hashtag dolore keffiyeh four loko leggings lo-fi chia est stumptown YOLO nulla. 8-bit esse officia Blue Bottle. Stumptown farm-to-table hoodie tattooed, bespoke literally jean shorts tofu.!"]
-].each do |name, prep_time, cook_time, notes|
-    r = Recipe.new(:name => name, :prep_time => prep_time, :cook_time => cook_time, :notes => notes)
+  [ "Spaghetti Bolognese"],
+  [ "Coq au Vin"],
+  [ "Braised Brussels SProuts"],
+  [ "Grilled Vegetables"],
+  [ "Pesto Pizza"]
+].each do |name|
+    r = Recipe.new(:name => name.first)
     r.save
 end
 
-[ "chicken", "beef", "cream", "milk", "brussels sprouts", "zucchini", "pineapple", "butter", "onion", "carrot" ].each do |name|
-  i = Ingredient.new(:name => name)
-  i.save
-end
 
-# recipe_id, ingedient_id, amount, amount_type
+[ ["One whole chicken, 5lbs", 1],
+  ["1.5 cups milk", 1],
+  ["1 whole onion, chopped", 1],
+  ["4 small or 2 large carrots", 1],
+  ["4 Tbsps of butter", 1],
+  ["8oz of Mushrooms", 1],
+  ["8oz pearl onions", 1],
+  ["6oz of brandy", 1],
+  ["1 cup chicken stock", 1],
+  ["1 cup of wine", 1],
 
-[ [2, 2, 2, "pounds"],
-  [2, 3, 1.5, "cups"],
-  [2, 4, 5, "pounds"],
-  [2, 7, 3, "tsps"],
-  [2, 1, 1.7, "tbs"],
-  [2, 6, 1.7, "tbs"],
+  ["One whole chicken, 5lbs", 2],
+  ["1.5 cups milk", 2],
+  ["1 whole onion, chopped", 2],
+  ["4 small or 2 large carrots", 2],
+  ["4 Tbsps of butter", 2],
+  ["8oz of Mushrooms", 2],
+  ["8oz pearl onions", 2],
+  ["6oz of brandy", 2],
+  ["1 cup chicken stock", 2],
+  ["1 cup of wine", 2],
 
-  [1, 2, 2, "pounds"],
-  [1, 3, 1.5, "cups"],
-  [1, 4, 5, "pounds"],
-  [1, 7, 3, "tsps"],
-  [1, 1, 1.7, "tbs"],
-  [1, 6, 1.7, "tbs"],
+  ["One whole chicken, 5lbs", 3],
+  ["1.5 cups milk", 3],
+  ["1 whole onion, chopped", 3],
+  ["4 small or 2 large carrots", 3],
+  ["4 Tbsps of butter", 3],
+  ["8oz of Mushrooms", 3],
+  ["8oz pearl onions", 3],
+  ["6oz of brandy", 3],
+  ["1 cup chicken stock", 3],
+  ["1 cup of wine", 3],
 
-  [3, 2, 2, "pounds"],
-  [3, 3, 1.5, "cups"],
-  [3, 4, 5, "pounds"],
-  [3, 7, 3, "tsps"],
-  [3, 1, 1.7, "tbs"],
-  [3, 6, 1.7, "tbs"],
+  ["One whole chicken, 5lbs", 4],
+  ["1.5 cups milk", 4],
+  ["1 whole onion, chopped", 4],
+  ["4 small or 2 large carrots", 4],
+  ["4 Tbsps of butter", 4],
+  ["8oz of Mushrooms", 4],
+  ["8oz pearl onions", 4],
+  ["6oz of brandy", 4],
+  ["1 cup chicken stock", 4],
+  ["1 cup of wine", 4],
 
-  [4, 2, 2, "pounds"],
-  [4, 3, 1.5, "cups"],
-  [4, 4, 5, "pounds"],
-  [4, 7, 3, "tsps"],
-  [4, 1, 1.7, "tbs"],
-  [4, 6, 1.7, "tbs"],
+  ["One whole chicken, 5lbs", 5],
+  ["1.5 cups milk", 5],
+  ["1 whole onion, chopped", 5],
+  ["4 small or 2 large carrots", 5],
+  ["4 Tbsps of butter", 5],
+  ["8oz of Mushrooms", 5],
+  ["8oz pearl onions", 5],
+  ["6oz of brandy", 5],
+  ["1 cup chicken stock", 5],
+  ["1 cup of wine", 5]
 
-
-  [5, 2, 2, "pounds"],
-  [5, 3, 1.5, "cups"],
-  [5, 4, 5, "pounds"],
-  [5, 7, 3, "tsps"],
-  [5, 1, 1.7, "tbs"],
-  [5, 6, 1.7, "tbs"],
-
-].each do |recipe_id, ingredient_id, amount, amount_type|
+].each do |body, recipe_id|
     rn = RecipeNeed.new(
       :recipe_id => recipe_id,
-      :ingredient_id => ingredient_id,
-      :amount => amount,
-      :amount_type => amount_type
+      :body => body
     )
     rn.save
 end
@@ -119,9 +130,9 @@ end
   ["Add the mushrooms and pearl onions to the sauce. Pour over the chicken and serve", 5],
 
 
-].each do |description, recipe_id|
+].each do |body, recipe_id|
   s = Step.new(
-    :description => description,
+    :body => body,
     :recipe_id => recipe_id
     )
   s.save
