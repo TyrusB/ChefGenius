@@ -24,20 +24,28 @@ class Api::RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+
+    @recipe.destroy
+
+    render :json => @recipe
+  end
+
   private
 
-  def user_authenticated?
-    if !user_signed_in?
-      render :json => {}
-      return false
+    def user_authenticated?
+      if !user_signed_in?
+        render :json => {}
+        return false
+      end
     end
-  end
 
-  def recipe_params
-    params.require(:recipes).permit(:name, :prep_time, :cook_time, :notes,
-                                    :recipe_needs_attributes => [:amount, :amount_type, :ingredientName],
-                                    :steps_attributes => [:description] )
-  end
+    def recipe_params
+      params.require(:recipes).permit(:name, :prep_time, :cook_time, :notes,
+                                      :recipe_needs_attributes => [:amount, :amount_type, :ingredientName],
+                                      :steps_attributes => [:description] )
+    end
 
 end
 

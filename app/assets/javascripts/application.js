@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require jquery.serializeJSON.min
 //= require lodash.underscore
-//= require turbolinks
-
 //= require backbone
 //= require chef_genius
 //= require_tree ../templates

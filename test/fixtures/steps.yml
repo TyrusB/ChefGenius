@@ -4,7 +4,6 @@
 #
 #  id          :integer          not null, primary key
 #  description :text             not null
-#  ord         :integer          not null
 #  recipe_id   :integer          not null
 #  created_at  :datetime
 #  updated_at  :datetime
