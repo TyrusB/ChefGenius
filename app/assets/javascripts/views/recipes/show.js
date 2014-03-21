@@ -2,7 +2,8 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   template: JST["recipes/show"],
 
   events: {
-    "click button#edit-recipe":"makeEditable"
+    "click button#edit-recipe":"makeEditable",
+    "click button#delete-recipe":"deleteRecipe"
   },
 
   render: function() {
@@ -62,6 +63,14 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
     this.addSubview('#steps-list', stepShow);
     stepShow.render();
+  },
+
+  deleteRecipe: function() {
+    this.model.destroy({
+      success: function() {
+        ChefGenius.router.navigate("", { trigger: true });
+      }
+    })
   }
 
 

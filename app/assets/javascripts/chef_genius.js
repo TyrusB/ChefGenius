@@ -7,7 +7,7 @@ window.ChefGenius = {
     var recipes = new ChefGenius.Collections.Recipes();
     recipes.fetch({
       success: function() {
-        new ChefGenius.Routers.AppRouter({
+        ChefGenius.router = new ChefGenius.Routers.AppRouter({
           $rootEl: $('#main-content'),
           recipes: recipes,
           currentUser: currentUser
@@ -106,4 +106,6 @@ Backbone.CompositeView = Backbone.View.extend({
     return this._subviews;
   }
 });
+
+//FIX: routing issues with Backbone.history
 
