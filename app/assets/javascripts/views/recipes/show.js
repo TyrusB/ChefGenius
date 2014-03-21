@@ -24,9 +24,13 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     var view = this;
 
     $('.recipe-container').toggleClass('can-edit-page-container');
-    $('.editable').toggleClass('can-edit');
+    $('.editable').toggleClass('editable-closed');
 
     _(this.subviews()["#needs-list"]).each( function(subview) {
+      subview.makeEditable();
+    });
+
+    _(this.subviews()["#steps-list"]).each ( function(subview) {
       subview.makeEditable();
     })
 
@@ -42,25 +46,13 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   },
 
   addStep: function(step) {
+    var stepShow = new ChefGenius.Views.StepShow({
+      model: step
+    });
 
+    this.addSubview('#steps-list', stepShow);
+    stepShow.render();
   }
 
 
 });
-
-// 1. Add editable class 2. add editable-item class
-// 3. Add data id attribute on form 4. IngredientEdit view
-
-// getorfetch may not be best option for effect, since it fetches existin model
-//
-//
-// $(this).toggleClass('can-edit')
-// $(this).off('click');
-//
-// var needId = $(this).data('id');
-// var need = view.model.needs().get(needId);
-// var needEditView = new ChefGenius.Views.NeedEdit({
-//   model: need
-// });
-//
-// $(this).html(needEditView.render().$el);

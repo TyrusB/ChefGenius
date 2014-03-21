@@ -1,3 +1,52 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.info-container {
+  position: relative;
+}
+
+.recipe-name {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.ingredient {
+  margin: 10px;
+}
+
+.step {
+  margin: 10px;
+}
+
+.elements-container {
+  width: 600px;
+  min-height: 100px;
+  background-color: lightgrey;
+  border: 2px black solid;
+  border-radius: 10px;
+  margin: 30px auto;
+}
+
+.elements-header {
+  padding: 20px 0 10px 20px;
+  font-size: 20px;
+}
+
+.editable-closed {
+  &:hover {
+    border: 2px red solid;
+    border-radius: 5px;
+  }
+}
+
+.can-edit-page-container {
+  border: 5px dashed red;
+}
+
+.recipe-container {
+  width: 700px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
