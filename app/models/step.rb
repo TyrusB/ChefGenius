@@ -11,8 +11,7 @@
 #
 
 class Step < ActiveRecord::Base
-  validates :description, :ord, :presence => true
-  validates :ord, :uniqueness => { :scope => :recipe_id }
+  validates :description, :presence => true
 
   belongs_to :recipe
 

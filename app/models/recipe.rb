@@ -16,8 +16,9 @@ class Recipe < ActiveRecord::Base
 
   has_many :recipe_needs, :dependent => :destroy
   has_many :ingredients, :through => :recipe_needs
-  has_many :steps
+  has_many :steps, -> { order 'steps.created_at' }
 
   belongs_to :user
+
 
 end

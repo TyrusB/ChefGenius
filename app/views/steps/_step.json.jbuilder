@@ -1,6 +1,5 @@
 json.(
   step,
   :id,
-  :description,
-  :ord
+  :description
 )

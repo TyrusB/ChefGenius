@@ -36,7 +36,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
     var recipe = new ChefGenius.Models.Recipe();
     recipe.collection = this.recipes;
 
-    var form = new ChefGenius.Views.RecipesForm({
+    var form = new ChefGenius.Views.RecipeNew({
       model: recipe
     });
 
