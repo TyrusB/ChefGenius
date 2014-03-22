@@ -36,7 +36,7 @@ window.ChefGenius.Models.Recipe = Backbone.Model.extend({
 
   note: function() {
     if (!this._note) {
-      this._note = new ChefGenius.Model.Note({
+      this._note = new ChefGenius.Models.Note({
         recipe: this
       });
     }
@@ -46,7 +46,7 @@ window.ChefGenius.Models.Recipe = Backbone.Model.extend({
 
   info: function() {
     if (!this._info) {
-      this._info = new ChefGenius.Model.Info({
+      this._info = new ChefGenius.Models.Info({
         recipe: this
       });
     }
