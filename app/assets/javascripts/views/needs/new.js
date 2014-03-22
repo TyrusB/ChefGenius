@@ -1,7 +1,7 @@
-window.ChefGenius.Views.NeedNew = Backbone.View.extend({
+window.ChefGenius.Views.IngredientNew = Backbone.View.extend({
   tagName: "li",
 
-  template: JST["needs/new"],
+  template: JST["ingredients/new"],
 
   initialize: function(options) {
     this.number = options.number;
@@ -9,7 +9,7 @@ window.ChefGenius.Views.NeedNew = Backbone.View.extend({
 
   render: function() {
     var content = this.template({
-      need: this.model,
+      ingredient: this.model,
       number: this.number
     });
 
