@@ -15,6 +15,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     this.$el.html(content);
 
     this.addInfo();
+    this.addNote();
     this.model.ingredients().each( this.addIngredient.bind(this) );
     this.model.steps().each( this.addStep.bind(this) );
 
@@ -40,11 +41,20 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   addInfo: function() {
     var infoView = new ChefGenius.Views.InfoShow({
-      model: this.model
+      model: this.model.info()
     });
 
     this.addSubview('#info-section', infoView);
     infoView.render();
+  },
+
+  addNote: function() {
+    var noteView = new ChefGenius.Views.NoteShow({
+      model: this.model.note()
+    });
+
+    this.addSubview('#note-section', noteView);
+    noteView.render();
   },
 
   addIngredient: function(ingredient) {
