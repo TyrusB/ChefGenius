@@ -16,7 +16,7 @@ class Recipe < ActiveRecord::Base
 
   belongs_to :user
 
-  accepts_nested_attributes_for :ingredients, :steps, :note
+  accepts_nested_attributes_for :ingredients, :steps, :note, :info
 
 
 end

@@ -10,6 +10,14 @@ window.ChefGenius.Models.Recipe = Backbone.Model.extend({
       this.ingredients().set(jsonResp.ingredients);
       delete jsonResp.needs;
     }
+    if (jsonResp && jsonResp.note) {
+      this.note().set(jsonResp.note);
+      delete jsonResp.note;
+    }
+    if (jsonResp && jsonResp.info) {
+      this.info().set(jsonResp.info);
+      delete jsonResp.info;
+    }
 
     return jsonResp;
   },
