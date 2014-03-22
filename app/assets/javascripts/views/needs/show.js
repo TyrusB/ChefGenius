@@ -1,4 +1,4 @@
-window.ChefGenius.Views.NeedShow = Backbone.View.extend({
+window.ChefGenius.Views.IngredientShow = Backbone.View.extend({
   tagName: "li",
 
   className: "ingredient",
@@ -8,7 +8,7 @@ window.ChefGenius.Views.NeedShow = Backbone.View.extend({
   },
 
   template: function() {
-    return this.open ? JST['needs/edit'] : JST['needs/show'];
+    return this.open ? JST['ingredients/edit'] : JST['ingredients/show'];
   },
 
   initialize: function(options) {
@@ -24,7 +24,7 @@ window.ChefGenius.Views.NeedShow = Backbone.View.extend({
   },
 
   toggleOpen: function() {
-    this.open = (this.open == false && this.editable == true) ? true : false;
+    this.open = (this.open === false && this.editable === true) ? true : false;
   },
 
   makeEditable: function() {
@@ -37,7 +37,7 @@ window.ChefGenius.Views.NeedShow = Backbone.View.extend({
 
   render: function() {
     var content = this.template()({
-      need: this.model
+      ingredient: this.model
     });
 
     this.$el.html(content);
