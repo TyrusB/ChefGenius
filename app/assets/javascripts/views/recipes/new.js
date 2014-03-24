@@ -7,7 +7,9 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
   },
 
   events: {
-    "click #submit-recipe":"createRecipe"
+    "click #submit-recipe":"createRecipe",
+    "focus .ingredient-input":"checkEmptyIngredientBoxes",
+    "focus .check-empty":"checkEmptyBoxes"
   },
 
   render: function() {
@@ -74,12 +76,26 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
 
     this.model.save(info, {
       success: function(model) {
-        debugger
         ChefGenius.router.navigate("#/recipes/" + model.id, { trigger: true })
       }
     });
+  },
 
+  checkEmptyBoxes: function(event) {
+    var focusedEl = event.currentTarget;
 
+    if (
+      _(this.$('.check-empty')).all( function(el) {
+        return (el === focusedEl) || (el.className !== focusedEl.className) || !!$.trim( $(el).val() )
+      })
+    ) {
+      this.addLikeInputBox($(focusedEl));
+    }
+  },
+
+  addLikeInputBox: function($boxToClone) {
+    var $newBox = $boxToClone.clone();
+    $boxToClone.closest('ul, li').append($('<li></li>').html($newBox));
   }
 
 });

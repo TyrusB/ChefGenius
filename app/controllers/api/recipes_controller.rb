@@ -18,7 +18,6 @@ class Api::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-
     if @recipe.save
       render "recipes/model"
     else
@@ -49,7 +48,10 @@ class Api::RecipesController < ApplicationController
                                        :info_attributes => [:prep_time, :cook_time],
                                        :ingredients_attributes => [:description],
                                        :note_attributes => [:description]
-                                    )
+                                    ).each do |_, field_array|
+                                      next if !field_array.is_a? Array
+                                      field_array.reject! { |input_group| input_group.values.all?(&:blank?) }
+                                    end
 
     end
 
