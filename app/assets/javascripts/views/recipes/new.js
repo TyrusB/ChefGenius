@@ -7,7 +7,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
   },
 
   events: {
-    "submit form":"createRecipe"
+    "click #submit-recipe":"createRecipe"
   },
 
   render: function() {
@@ -18,6 +18,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     this.$el.html(content);
 
     this.addInfoFields();
+    this.addNoteField();
     for ( var i = 0; i < 2; i++ ) {
       this.addBlankIngredient();
       this.addBlankStep();
@@ -30,8 +31,16 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     var infoForm = new ChefGenius.Views.InfoNew({
       model: this.model
     });
-    this.addSubview('#info-list', infoForm);
+    this.addSubview('#info-section', infoForm);
     infoForm.render();
+  },
+
+  addNoteField: function() {
+    var noteForm = new ChefGenius.Views.NoteNew({
+      model: this.model
+    });
+    this.addSubview('#note-section', noteForm);
+    noteForm.render();
   },
 
   addBlankIngredient: function() {
@@ -61,12 +70,11 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
   createRecipe: function(event) {
     event.preventDefault();
     var view = this;
-    var info = this.$(event.currentTarget).serializeJSON();
-    // var recipeInfo = this.$(event.currentTarget).serializeJSON()["recipes"];
- //    var stepsInfo = this.$(event.currentTarget).serializeJSON()["steps"];
- //    var ingredientsInfo = this.$(event.currentTarget).serializeJSON()["ingredients"];
+    var info = this.$('.recipe-form').serializeJSON();
+
     this.model.save(info, {
       success: function(model) {
+        debugger
         ChefGenius.router.navigate("#/recipes/" + model.id, { trigger: true })
       }
     });

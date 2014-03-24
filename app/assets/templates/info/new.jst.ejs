@@ -1,16 +1,4 @@
-
-<label> Recipe Name:
-  <input class='recipe-title' type='text' name='recipes[name]' value='<%= recipe.get('name') %>'>
-</label>
-<br>
-<label> Prep Time:
-  <input type='text' name='recipes[info_attributes][prep_time]' value='<%= recipe.get('prep_time') %>'>
-</label>
-
-<label> Cook Time:
-  <input type='text' name='recipes[info_attributes][cook_time]' value='<%= recipe.get('prep_time') %>'>
-</label>
-<br>
-<label> Notes
-  <textarea name='recipes[note_attributes][description]'><%= recipe.get('notes') %></textarea>
-</label>
+<div class='time-info'>
+  <div>Prep Time: <input type='text' name='recipes[info_attributes][prep_time]'></div>
+  <div>Cook Time: <input type='text' name='recipes[info_attributes][cook_time]'></div>
+</div>
