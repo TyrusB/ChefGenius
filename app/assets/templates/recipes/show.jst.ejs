@@ -1,29 +1,43 @@
+<div class='links'></div>
 
-<div class='recipe-container'>
-
-  <div class='elements-container'>
-    <div><%= recipe.get('name') %></div>
-    <div id='info-section'></div>
-    <br>
-    <div id='note-section'></div>
+<div class='overall-container'>
+  <div class='recipe-container'>
+  </div>
+  <div class='row recipe-section'>
+    <div class='col-xs-6 col-xs-offset-3 recipe-name'>
+      <h1 class='text-center'><%= recipe.get('name') %></h1>
+    </div>
   </div>
 
-  <div class='elements-container'>
-    <div class='elements-header'>Ingredients List</div>
-    <ul id='ingredients-list'></ul>
+  <div class='row recipe-section'>
+    <div class='col-xs-2 col-xs-offset-3'>
+      <div id='info-section'></div>
+      <div class='img-rounded'></div>
+    </div>
+    <div class='col-xs-4'>
+      <div id='note-section'>About:</div>
+    </div>
+  </div>
+  
+  <div class='row recipe-section'>
+    <div class='col-xs-6 col-xs-offset-3 items-section'>
+      <div class='elements-header'>Ingredients List</div>
+      <ul id='ingredients-list'></ul>
+    </div>
   </div>
 
-  <div class='elements-container'>
-    <div class='elements-header'>Steps</div>
-    <ol id='steps-list'></ol>
+  <div class='row recipe-section'>
+    <div class='col-xs-6 col-xs-offset-3 items-section'>
+      <div class='elements-header'>Steps</div>
+      <ol id='steps-list'></ol>
+    </div>
   </div>
-
-  <button id='edit-recipe'>Edit this Recipe</button>
-  <br>
-  <button id='delete-recipe'>Delete Recipe</button>
 </div>
 
+<div class='buttons'>
+  <button id='edit-recipe' class='recipe-button'>Edit this Recipe</button>
+  <button id='delete-recipe' class='recipe-button'>Delete Recipe</button>
+  <a href='#/'><button class='recipe-button bottom-button'>Back</button></a>
 
-<br>
-<a href='#/'>Back</a>
+</div>
 

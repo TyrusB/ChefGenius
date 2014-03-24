@@ -4,8 +4,83 @@
 
 
 
+body {
+  margin-top: 30px;
+  background-color: #FEFEFA;
+  color: darkslateblue;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.links {
+  position: fixed;
+  border-radius: 10px;
+  border-right: 2px solid #061F70;
+  border-left: 2px solid #061F70;
+  left: 30px;
+  top: 100px;
+  height: 500px;
+  width: 300px;
+}
+
+.recipe-container {
+  position: absolute;
+  height: 102%;
+  margin-left: 265px;
+  width: 600px;
+  border-radius: 10px;
+}
+
+.overall-container {
+  position: relative;
+}
+
+.buttons {
+  width: 100px;
+  height: 300px;
+  position: fixed;
+  right: 200px;
+  top: 100px;
+}
+
+.picture-standin {
+  width: 150px;
+  height: 150px;
+  background: yellow;
+}
+
+.recipe-section {
+  margin: 40px;
+}
+
+button.recipe-button {
+  outline: none;
+  border: none;
+  background-color: #FEFEFA;
+  border-left: 2px solid #061F70;
+  border-right: 2px solid #061F70;
+  border-radius: 10px;
+  margin-top: 30px;
+  width: 100px;
+  height: 38px;
+  
+}
+
+.img-rounded {
+  background-color: grey;
+  width: 140px;
+  height: 140px;
+}
+
+.items-section {
+  border-left: 2px solid #061F70;
+  border-right: 2px solid #061F70;
+  border-radius: 10px;
+  // background-color: #FFB000;
+  // color: white;
+}
+
 .recipe-name {
-  margin: auto;
+  border-bottom: 4px solid darkslateblue;
 }
 
 .ingredient {
@@ -16,7 +91,7 @@
   margin: 10px;
 }
 
-.elements-container {
+/*.elements-container {
   width: 600px;
   min-height: 100px;
   background-color: lightgrey;
@@ -24,7 +99,7 @@
   border-radius: 10px;
   margin: 30px auto;
   position: relative;
-}
+}*/
 
 .elements-header {
   padding: 20px 0 10px 20px;
@@ -33,7 +108,7 @@
 
 .editable-closed {
   &:hover {
-    border: 2px red solid;
+    border: 2px #FFB000 solid;
     border-radius: 5px;
   }
 }
@@ -41,20 +116,20 @@
 .can-edit-page-container {
   border: 5px dashed red;
 }
-
+/*
 .recipe-container {
   width: 700px;
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
-}
+}*/
 
-.time-info {
+/*.time-info {
   position: absolute;
   right: 10px;
   top: 0px;
   font-size: small;
-}
+}*/
 
 .notes {
   font-size: small;
