@@ -1,0 +1,27 @@
+<div id='container'>
+    <p id='p1' data-id="1">This is the first paragraph</p>
+    <p id='p2' data-id="2">This is the second paragraph</p>
+</div>
+
+<script>
+  $(function() {
+    document.onmouseup = testText;
+
+    function testText() {
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+        if (range.startContainer === range.endContainer) {
+            var startPos = range.startOffset;
+            var endPos = range.endOffset;
+            var startContainer = range.startContainer
+            var startEl = startContainer.parentNode
+            var id = startEl.getAttribute("data-id");
+            alert("Id: " + id + ", startPos: " + startPos + ", endPos: " + endPos);
+        }
+        else {
+          alert("Sorry, can only select within a step");
+        }
+    }
+  })
+
+</script>

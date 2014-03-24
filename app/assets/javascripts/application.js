@@ -15,6 +15,7 @@
 //= require jquery.serializeJSON.min
 //= require lodash.underscore
 //= require backbone
+//= require bootstrap
 //= require chef_genius
 //= require_tree ../templates
 //= require_tree ./models
