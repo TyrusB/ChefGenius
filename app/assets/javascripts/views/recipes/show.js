@@ -3,7 +3,8 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   events: {
     "click button#edit-recipe":"makeEditable",
-    "click button#delete-recipe":"deleteRecipe"
+    "click button#delete-recipe":"deleteRecipe",
+    "mouseup .annotatable":"annotationOne"
   },
 
   render: function() {
@@ -81,6 +82,22 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
         ChefGenius.router.navigate("", { trigger: true });
       }
     })
+  },
+
+  annotationOne: function() {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    if (range.startContainer === range.endContainer) {
+        var startPos = range.startOffset;
+        var endPos = range.endOffset;
+        var startContainer = range.startContainer
+        var startEl = startContainer.parentNode
+        var id = startEl.getAttribute("data-id");
+        alert("Id: " + id + ", startPos: " + startPos + ", endPos: " + endPos);
+    }
+    else {
+      alert("Sorry, can only select within a step");
+    }
   }
 
 

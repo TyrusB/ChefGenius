@@ -52,7 +52,10 @@ body {
   margin: 40px;
 }
 
-button.recipe-button {
+.recipe-button {
+  text-align: center;
+  margin: auto 0;
+  display: block;
   outline: none;
   border: none;
   background-color: #FEFEFA;
@@ -62,7 +65,7 @@ button.recipe-button {
   margin-top: 30px;
   width: 100px;
   height: 38px;
-  
+  text: black;
 }
 
 .img-rounded {

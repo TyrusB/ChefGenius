@@ -16,6 +16,7 @@
 //= require lodash.underscore
 //= require backbone
 //= require bootstrap
+//= require marked
 //= require chef_genius
 //= require_tree ../templates
 //= require_tree ./models
