@@ -7,5 +7,6 @@ ChefGenius::Application.routes.draw do
     resources :ingredients
     resources :notes
     resources :infos
+    resources :annotations
   end
 end

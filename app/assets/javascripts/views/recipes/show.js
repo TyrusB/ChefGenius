@@ -86,18 +86,32 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   annotationOne: function() {
     var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    if (range.startContainer === range.endContainer) {
-        var startPos = range.startOffset;
-        var endPos = range.endOffset;
-        var startContainer = range.startContainer
-        var startEl = startContainer.parentNode
-        var id = startEl.getAttribute("data-id");
-        alert("Id: " + id + ", startPos: " + startPos + ", endPos: " + endPos);
+    var range = selection.getRangeAt(0),
+        startPos = range.startOffset,
+        endPos = range.endOffset;
+
+    if (startPos - endPos !== 0) {
+
+      if (range.startContainer === range.endContainer) {
+          var startPos = range.startOffset,
+              endPos = range.endOffset;
+
+          var startEl = range.startContainer.parentNode
+          var annotatable_id = startEl.getAttribute("data-annotatable-id"),
+              annotatable_type = startEl.getAttribute("data-annotatable-type");
+
+          alert("annotatable_id: " + annotatable_id + ", annotatable_type: " + annotatable_type + ", startPos: " + startPos + ", endPos: " + endPos);
+
+
+
+
+
+
+      } else {
+          alert("Sorry, can only select within a step");
+      }
     }
-    else {
-      alert("Sorry, can only select within a step");
-    }
+
   }
 
 
