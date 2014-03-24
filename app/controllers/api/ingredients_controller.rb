@@ -15,6 +15,6 @@ class Api::IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.require(:ingredient).permit(:description)
+    params.require(:ingredients).permit(:description)
   end
 end
