@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tooltipster.min
 //= require jquery.serializeJSON.min
 //= require lodash.underscore
 //= require backbone

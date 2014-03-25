@@ -1,3 +1,32 @@
 // Place all the styles related to the annotations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.annotation-outer {
+  width: 500px;
+  height: 570px;
+  border: 2px solid darkgrey;
+  border-radius: 10px;
+  background: black;
+  z-index: 9900;
+  position: absolute;
+  text: white;
+}
+
+.annotation-inner {
+  width: 480px;
+  height: 550px;
+  background: lightgrey;
+  padding: 10px;
+  margin: 0 auto;
+  z-index: 9950;
+  margin-top: 10px;
+}
+
+.annotation-text {
+  width: 440px;
+}
+
+.annotation-instructions {
+  width: 440px;
+  border-top: 1px dashed black;
+}

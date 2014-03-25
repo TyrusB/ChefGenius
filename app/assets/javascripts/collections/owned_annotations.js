@@ -1,4 +1,4 @@
-window.Backbone.Collections.OwnedAnnotations = Backbone.Collections.extend({
+window.ChefGenius.Collections.OwnedAnnotations = Backbone.Collection.extend({
   model: ChefGenius.Models.Annotation,
 
   initialize: function(models, options) {

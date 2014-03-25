@@ -83,18 +83,26 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
 
   checkEmptyBoxes: function(event) {
     var focusedEl = event.currentTarget;
+    var view = this;
 
     if (
       _(this.$('.check-empty')).all( function(el) {
         return (el === focusedEl) || (el.className !== focusedEl.className) || !!$.trim( $(el).val() )
       })
     ) {
-      this.addLikeInputBox($(focusedEl));
+
+        $(focusedEl).on('keydown', function(event) {
+          if (event.which !== 9) {
+            view.addLikeInputBox($(focusedEl));
+            $(focusedEl).off('keydown');
+          }
+        })
     }
   },
 
   addLikeInputBox: function($boxToClone) {
-    var $newBox = $boxToClone.clone();
+    var $newBox = $boxToClone.clone().html("");
+    // STILL NEED TO FIGURE OUT BOX #
     $boxToClone.closest('ul, li').append($('<li></li>').html($newBox));
   }
 
