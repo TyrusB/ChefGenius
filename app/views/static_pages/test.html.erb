@@ -7,18 +7,16 @@
   $(function() {
     document.onmouseup = handleUserSelection;
 
+    function handleUserSelection() {
+      var selection = window.getSelection();
+      var range = selection.getRangeAt(0);
 
-    function getOffset(startNode, children) {
-      var offset = 0;
-
-      _(children).find(function(el) {
-        if (el.textContent !== startNode.textContent) {
-          offset += el.textContent.length
-        }
-        return el.textContent === startNode.textContent;
-      });
-
-      return offset;
+      if (range.startContainer === range.endContainer) {
+        getSelectionInfo(range);
+      }
+      else {
+        alert("Sorry, can only select within a step");
+      }
     }
 
     function getSelectionInfo(range) {
@@ -39,17 +37,21 @@
 
     }
 
-    function handleUserSelection() {
-      var selection = window.getSelection();
-      var range = selection.getRangeAt(0);
+    function getOffset(startNode, children) {
+      var offset = 0;
 
-      if (range.startContainer === range.endContainer) {
-        getSelectionInfo(range);
-      }
-      else {
-        alert("Sorry, can only select within a step");
-      }
+      _(children).find(function(el) {
+        if (el.textContent !== startNode.textContent) {
+          offset += el.textContent.length
+        }
+        return el.textContent === startNode.textContent;
+      });
+
+      return offset;
     }
+
+
+
 
   })
 
