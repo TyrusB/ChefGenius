@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140324212109) do
   create_table "annotations", force: true do |t|
     t.text     "content"
     t.integer  "annotatable_id"
-    t.integer  "annotatable_type"
+    t.string   "annotatable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

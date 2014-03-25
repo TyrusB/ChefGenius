@@ -4,10 +4,11 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   events: {
     "click button#edit-recipe":"makeEditable",
     "click button#delete-recipe":"deleteRecipe",
-    "mouseup .annotatable":"annotationOne"
+    "mouseup .annotatable":"annotationOne",
   },
 
   render: function() {
+
 
     var content = this.template({
       recipe: this.model
@@ -49,6 +50,13 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     infoView.render();
   },
 
+  addAnnotationBox: function() {
+    var annotationBox = new ChefGenius.Views.AnnotationNew();
+
+    this.addSubview('#annotation-section', annotationBox);
+    annotationBox.render();
+  },
+
   addNote: function() {
     var noteView = new ChefGenius.Views.NoteShow({
       model: this.model.note()
@@ -84,7 +92,42 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     })
   },
 
+
   annotationOne: function() {
+    function insertSpan(start, end, $el) {
+      var originalText = $el.html();
+
+      var spanOpen = "<span class='annotated-pending ttip' title='Annotate?'>",
+          spanClose = "</span>";
+
+      var replacement = $el.html().slice(0, start) + spanOpen + $el.html().slice(start, end) + spanClose + $el.html().slice(end);
+      $el.html( replacement )
+
+      $(document).on('click', 'div', function(event) {
+        if ( !$( event.target ).hasClass( "tooltipster-base" ) && !$( event.target ).hasClass( "annotate-button" ) ) {
+          $el.html( originalText );
+        }
+      })
+    }
+
+    function createTooltip() {
+      $('.ttip').tooltipster({
+        content: $("<a href='#' class='annotate-button'>Annotate this text?</button>"),
+        autoClose: false,
+        offsetY: 10,
+        interactive: true
+      });
+
+      $('.ttip').tooltipster("show");
+
+      $('.annotate-button').on("click", function(event) {
+        event.preventDefault();
+        view.triggerAnnotateBox();
+      })
+    }
+
+    var view = this;
+
     var selection = window.getSelection();
     var range = selection.getRangeAt(0),
         startPos = range.startOffset,
@@ -96,14 +139,30 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
           var startPos = range.startOffset,
               endPos = range.endOffset;
 
-          var startEl = range.startContainer.parentNode
+          var startEl = range.startContainer.parentNode,
+              $el = $(startEl)
           var annotatable_id = startEl.getAttribute("data-annotatable-id"),
               annotatable_type = startEl.getAttribute("data-annotatable-type");
 
-          alert("annotatable_id: " + annotatable_id + ", annotatable_type: " + annotatable_type + ", startPos: " + startPos + ", endPos: " + endPos);
 
+          insertSpan(startPos, endPos, $el);
+          createTooltip();
 
+          // alert("annotatable_id: " + annotatable_id + ", annotatable_type: " + annotatable_type + ", startPos: " + startPos + ", endPos: " + endPos);
 
+          // var annotation = new ChefGenius.Models.Annotation({
+//             annotations: {
+//               annotatable_id: annotatable_id,
+//               annotatable_type: annotatable_type,
+//               content: "Test"
+//             }
+//           })
+//
+//           annotation.save({
+//             success: function() {
+//               alert("annotation saved!");
+//             }
+//           })
 
 
 
@@ -112,7 +171,14 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
       }
     }
 
+  },
+
+
+  triggerAnnotateBox: function() {
+    this.addAnnotationBox();
   }
 
 
 });
+
+
