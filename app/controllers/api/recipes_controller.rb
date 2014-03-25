@@ -8,11 +8,12 @@ class Api::RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @steps = @recipe.steps
-    @ingredients = @recipe.ingredients
+    @steps = @recipe.steps.includes(:annotations)
+    @ingredients = @recipe.ingredients.includes(:annotations)
     @note = @recipe.note
     @info = @recipe.info
 
+    fail
     render "recipes/model"
   end
 
