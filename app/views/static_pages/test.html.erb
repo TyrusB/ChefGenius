@@ -1,27 +1,59 @@
 <div id='container'>
-    <p id='p1' data-id="1">This is the first paragraph</p>
-    <p id='p2' data-id="2">This is the second paragraph</p>
+    <p id='p1' data-id="1" class='holds-annotations'>TBefore they sold out flexitarian artisan mustache umami American Apparel. Typewriter readymade Austin umami paleo. Pop-up hashtag put a bird on it, messenger bag +1 biodiesel Bushwick. <span style='background: yellow'>PBR Blue Bottle DIY pop-up, slow-carb fashion axe flexitarian paleo bespoke four loko whatever hella.</span> Kitsch photo booth slow-carb sustainable plaid Williamsburg, Cosby sweater bitters seitan brunch. Cornhole sriracha Pinterest, single-origin coffee gastropub shabby chic yr farm-to-table mumblecore before they sold out typewriter Thundercats XOXO. Squid Pinterest semiotics, Banksy cred whatever American Apparel ethical gluten-free cornhole authentic cardigan.</p>
+    <p id='p2' data-id="2" class='holds-annotations'>This is the second paragraph<span style='background:yellow'> Some test text</span></p>
 </div>
 
 <script>
   $(function() {
-    document.onmouseup = testText;
+    document.onmouseup = handleUserSelection;
 
-    function testText() {
+
+    function getOffset(startNode, children) {
+      var offset = 0;
+
+      _(children).find(function(el) {
+        if (el.textContent !== startNode.textContent) {
+          offset += el.textContent.length
+        }
+        return el.textContent === startNode.textContent;
+      });
+
+      return offset;
+    }
+
+    function getSelectionInfo(range) {
+      var startPos = range.startOffset,
+          endPos = range.endOffset,
+          startNode = range.startContainer;
+
+      var $li = $(startNode.parentNode).closest('.holds-annotations')
+      var children = [].slice.call($li[0].childNodes);
+
+      var offset = getOffset(startNode, children);
+
+      var id = $li.data('id'),
+          offsetStartPos = offset + startPos,
+          offsetEndPos = offset + endPos;
+
+      alert("Id: " + id + ", startPos: " + offsetStartPos + ", endPos: " + offsetEndPos);
+
+    }
+
+    function handleUserSelection() {
         var selection = window.getSelection();
         var range = selection.getRangeAt(0);
+
         if (range.startContainer === range.endContainer) {
-            var startPos = range.startOffset;
-            var endPos = range.endOffset;
-            var startContainer = range.startContainer
-            var startEl = startContainer.parentNode
-            var id = startEl.getAttribute("data-id");
-            alert("Id: " + id + ", startPos: " + startPos + ", endPos: " + endPos);
+          getSelectionInfo(range);
         }
         else {
           alert("Sorry, can only select within a step");
         }
-    }
+      }
   })
 
 </script>
+
+
+<!-- possibilities: regexp for string (with offset if multiple words occur) -->
+<!-- OR calculating total index -->

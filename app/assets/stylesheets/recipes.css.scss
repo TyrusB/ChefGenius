@@ -5,7 +5,7 @@
 
 
 body {
-  margin-top: 30px;
+  margin-top: 60px;
   background-color: #FEFEFA;
   color: darkslateblue;
   font-family: Verdana, Geneva, sans-serif;
@@ -142,5 +142,9 @@ body {
 
 .annotated-pending {
   background-color: yellow;
+}
+
+.navbar {
+  z-index: 10000;
 }
 

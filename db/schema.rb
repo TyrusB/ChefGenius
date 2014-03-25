@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324212109) do
+ActiveRecord::Schema.define(version: 20140325175829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20140324212109) do
     t.string   "annotatable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "start_pos",        null: false
+    t.integer  "end_pos",          null: false
   end
 
   create_table "infos", force: true do |t|
