@@ -3,6 +3,8 @@ ChefGenius::Application.routes.draw do
 
   get "/test", to: "static_pages#test"
 
+  get "/test2", to: "static_pages#test2"
+
   namespace :api do
     resources :recipes
     resources :steps

@@ -1,0 +1,84 @@
+<p id='p1' data-id="1" class='holds-annotations'>TBefore they sold out flexitarian artisan mustache umami American Apparel. Typewriter readymade Austin umami paleo. Pop-up hashtag put a bird on it, messenger bag +1 biodiesel Bushwick. PBR Blue Bottle DIY pop-up, slow-carb fashion axe flexitarian paleo bespoke four loko whatever hella. Kitsch photo booth slow-carb sustainable plaid Williamsburg, Cosby sweater bitters seitan brunch. Cornhole sriracha Pinterest, single-origin coffee gastropub shabby chic yr farm-to-table mumblecore before they sold out typewriter Thundercats XOXO. Squid Pinterest semiotics, Banksy cred whatever American Apparel ethical gluten-free cornhole authentic cardigan.</p>
+
+<script>
+$(function() {
+  //hard code for test
+  var spans = [ [10, 20], [100, 200], [350, 400] ];
+  // now grab your element
+  $p = $('#p1');
+
+  var startIndex = 0;
+  var accumHTML = "";
+  var pText = $p.text();
+
+  _(spans).each( function(indexArray) {
+    var spanStart = indexArray[0],
+        spanEnd = indexArray[1],
+        spanOpenTag = "<span style='background:yellow'>",
+        spanCloseTag = "</span>";
+
+    var spanHTML = spanOpenTag + pText.slice(spanStart, spanEnd) + spanCloseTag
+    accumHTML += pText.slice(startIndex, spanStart) + spanHTML;
+
+    startIndex = spanEnd;
+  })
+
+  accumHTML += pText.slice(startIndex);
+
+  $p.html( accumHTML );
+
+
+
+
+
+
+  document.onmouseup = handleUserSelection;
+
+
+  function getOffset(startNode, children) {
+    var offset = 0;
+
+    _(children).find(function(el) {
+      if (el.textContent !== startNode.textContent) {
+        offset += el.textContent.length
+      }
+      return el.textContent === startNode.textContent;
+    });
+
+    return offset;
+  }
+
+  function getSelectionInfo(range) {
+    var startPos = range.startOffset,
+        endPos = range.endOffset,
+        startNode = range.startContainer;
+
+    var $li = $(startNode.parentNode).closest('.holds-annotations')
+    var children = [].slice.call($li[0].childNodes);
+
+    var offset = getOffset(startNode, children);
+
+    var id = $li.data('id'),
+        offsetStartPos = offset + startPos,
+        offsetEndPos = offset + endPos;
+
+    alert("Id: " + id + ", startPos: " + offsetStartPos + ", endPos: " + offsetEndPos);
+
+  }
+
+  function handleUserSelection() {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+
+    if (range.startContainer === range.endContainer) {
+      getSelectionInfo(range);
+    }
+    else {
+      alert("Sorry, can only select within a step");
+    }
+  }
+
+
+})
+
+</script>
