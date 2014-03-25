@@ -4,23 +4,19 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   events: {
     "click button#edit-recipe":"makeEditable",
     "click button#delete-recipe":"deleteRecipe",
-    "mouseup .annotatable":"annotationOne",
+    "mouseup .annotatable":"handleUserSelection",
   },
 
   render: function() {
-
-
     var content = this.template({
       recipe: this.model
     });
-
     this.$el.html(content);
 
     this.addInfo();
     this.addNote();
     this.model.ingredients().each( this.addIngredient.bind(this) );
     this.model.steps().each( this.addStep.bind(this) );
-
 
     return this;
   },
@@ -34,7 +30,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     _(this.subviews()["#ingredients-list"]).each( function(subview) {
       subview.makeEditable();
     });
-
     _(this.subviews()["#steps-list"]).each ( function(subview) {
       subview.makeEditable();
     })
@@ -45,14 +40,17 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     var infoView = new ChefGenius.Views.InfoShow({
       model: this.model.info()
     });
-
     this.addSubview('#info-section', infoView);
     infoView.render();
   },
 
-  addAnnotationBox: function() {
-    var annotationBox = new ChefGenius.Views.AnnotationNew();
-
+  addAnnotationBox: function(startPos, endPos, annotatableId, annotatableType) {
+    var annotationBox = new ChefGenius.Views.AnnotationNew({
+      startPos: startPos,
+      endPos: endPos,
+      annotatableId: annotatableId,
+      annotatableType: annotatableType
+    });
     this.addSubview('#annotation-section', annotationBox);
     annotationBox.render();
   },
@@ -61,7 +59,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     var noteView = new ChefGenius.Views.NoteShow({
       model: this.model.note()
     });
-
     this.addSubview('#note-section', noteView);
     noteView.render();
   },
@@ -70,7 +67,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     var ingredientShow = new ChefGenius.Views.IngredientShow({
       model: ingredient
     });
-
     this.addSubview('#ingredients-list', ingredientShow);
     ingredientShow.render()
   },
@@ -79,7 +75,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     var stepShow = new ChefGenius.Views.StepShow({
       model: step
     });
-
     this.addSubview('#steps-list', stepShow);
     stepShow.render();
   },
@@ -92,40 +87,41 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     })
   },
 
+  insertSpan: function(start, end, $el) {
+    var originalText = $el.html();
 
-  annotationOne: function() {
-    function insertSpan(start, end, $el) {
-      var originalText = $el.html();
+    var spanOpen = "<span class='annotated-pending ttip' title='Annotate?'>",
+        spanClose = "</span>";
 
-      var spanOpen = "<span class='annotated-pending ttip' title='Annotate?'>",
-          spanClose = "</span>";
+    var replacement = $el.html().slice(0, start) + spanOpen + $el.html().slice(start, end) + spanClose + $el.html().slice(end);
+    $el.html( replacement )
 
-      var replacement = $el.html().slice(0, start) + spanOpen + $el.html().slice(start, end) + spanClose + $el.html().slice(end);
-      $el.html( replacement )
+    $(document).on('click', 'div', function(event) {
+      if ( !$( event.target ).hasClass( "tooltipster-base" ) && !$( event.target ).hasClass( "annotate-button" ) ) {
+        $el.html( originalText );
+      }
+    })
+  },
 
-      $(document).on('click', 'div', function(event) {
-        if ( !$( event.target ).hasClass( "tooltipster-base" ) && !$( event.target ).hasClass( "annotate-button" ) ) {
-          $el.html( originalText );
-        }
-      })
-    }
+  createTooltip: function(startPos, endPos, annotatableId, annotatableType) {
+    var view = this;
 
-    function createTooltip() {
-      $('.ttip').tooltipster({
-        content: $("<a href='#' class='annotate-button'>Annotate this text?</button>"),
-        autoClose: false,
-        offsetY: 10,
-        interactive: true
-      });
+    $('.ttip').tooltipster({
+      content: $("<a href='#' class='annotate-button'>Annotate this text?</button>"),
+      autoClose: false,
+      offsetY: 10,
+      interactive: true
+    });
 
-      $('.ttip').tooltipster("show");
+    $('.ttip').tooltipster("show");
 
-      $('.annotate-button').on("click", function(event) {
-        event.preventDefault();
-        view.triggerAnnotateBox();
-      })
-    }
+    $('.annotate-button').on("click", function(event) {
+      event.preventDefault();
+      view.addAnnotationBox(startPos, endPos, annotatableId, annotatableType);
+    })
+  },
 
+  handleUserSelection: function() {
     var view = this;
 
     var selection = window.getSelection();
@@ -141,43 +137,19 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
           var startEl = range.startContainer.parentNode,
               $el = $(startEl)
-          var annotatable_id = startEl.getAttribute("data-annotatable-id"),
-              annotatable_type = startEl.getAttribute("data-annotatable-type");
+          var annotatableId = startEl.getAttribute("data-annotatable-id"),
+              annotatableType = startEl.getAttribute("data-annotatable-type");
 
 
-          insertSpan(startPos, endPos, $el);
-          createTooltip();
-
-          // alert("annotatable_id: " + annotatable_id + ", annotatable_type: " + annotatable_type + ", startPos: " + startPos + ", endPos: " + endPos);
-
-          // var annotation = new ChefGenius.Models.Annotation({
-//             annotations: {
-//               annotatable_id: annotatable_id,
-//               annotatable_type: annotatable_type,
-//               content: "Test"
-//             }
-//           })
-//
-//           annotation.save({
-//             success: function() {
-//               alert("annotation saved!");
-//             }
-//           })
-
-
+          view.insertSpan(startPos, endPos, $el);
+          view.createTooltip(startPos, endPos, annotatableId, annotatableType);
 
       } else {
           alert("Sorry, can only select within a step");
       }
     }
 
-  },
-
-
-  triggerAnnotateBox: function() {
-    this.addAnnotationBox();
   }
-
 
 });
 

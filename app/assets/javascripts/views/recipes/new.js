@@ -2,8 +2,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
   template: JST["recipes/new"],
 
   initialize: function() {
-    this.totalIngredients = 0;
-    this.totalSteps = 0;
+    this.uniqueNum = 0;
   },
 
   events: {
@@ -51,7 +50,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     // MAKE SURE NOT TO SAVE THIS IF LEFT BLANK
     var ingredientForm = new ChefGenius.Views.IngredientNew({
       model: ingredient,
-      number: this.totalIngredients++
+      number: this.uniqueNum++
     });
     this.addSubview('#ingredients-list', ingredientForm);
     ingredientForm.render();
@@ -63,7 +62,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
 
     var stepForm = new ChefGenius.Views.StepNew({
       model: step,
-      number: this.totalSteps++
+      number: this.uniqueNum++
     });
     this.addSubview('#steps-list', stepForm);
     stepForm.render();
@@ -77,6 +76,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     this.model.save(info, {
       success: function(model) {
         ChefGenius.router.navigate("#/recipes/" + model.id, { trigger: true })
+        // Backbone.history.navigate("#/recipes/" + model.id, { trigger: true })
       }
     });
   },
@@ -90,11 +90,12 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
         return (el === focusedEl) || (el.className !== focusedEl.className) || !!$.trim( $(el).val() )
       })
     ) {
-
+        this.$('.check-empty').off('focus')
         $(focusedEl).on('keydown', function(event) {
           if (event.which !== 9) {
             view.addLikeInputBox($(focusedEl));
             $(focusedEl).off('keydown');
+            view.on('focus','.check-empty', view.checkEmptyBoxes.bind(view));
           }
         })
     }
@@ -102,7 +103,10 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
 
   addLikeInputBox: function($boxToClone) {
     var $newBox = $boxToClone.clone().html("");
-    // STILL NEED TO FIGURE OUT BOX #
+    var oldName = $newBox.attr('name')
+    var newName = oldName.replace(/\d+/, this.uniqueNum++);
+    $boxToClone.attr('name', newName);
+
     $boxToClone.closest('ul, li').append($('<li></li>').html($newBox));
   }
 
