@@ -1,4 +1,4 @@
-window.ChefGenius.Views.StepShow = Backbone.View.extend({
+window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
   tagName: "li",
 
   className: "step",
@@ -15,7 +15,8 @@ window.ChefGenius.Views.StepShow = Backbone.View.extend({
     this.open = false;
     this.editable = false;
 
-    this.listenTo(this.model, "change", this.render);
+    Backbone.AnnotatableView.prototype.initialize.call(this);
+    this.listenTo(this.model.annotations(), "all", this.render);
   },
 
   events: {
@@ -41,6 +42,8 @@ window.ChefGenius.Views.StepShow = Backbone.View.extend({
     });
 
     this.$el.html(content);
+
+    this.addAnnotationSpans();
 
     return this;
   },

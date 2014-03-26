@@ -1,3 +1,3 @@
-window.ChefGenius.Models.Ingredient = Backbone.Model.extend({
+window.ChefGenius.Models.Ingredient = Backbone.AnnotatableModel.extend({
 
 })

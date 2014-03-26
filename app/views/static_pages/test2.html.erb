@@ -7,23 +7,29 @@ $(function() {
   // now grab your element
   $p = $('#p1');
 
-  var startIndex = 0;
-  var accumHTML = "";
-  var pText = $p.text();
 
-  _(spans).each( function(indexArray) {
-    var spanStart = indexArray[0],
-        spanEnd = indexArray[1],
-        spanOpenTag = "<span style='background:yellow'>",
-        spanCloseTag = "</span>";
+  function buildHTML(spans) {
+    var startIndex = 0;
+    var accumHTML = "";
+    var pText = $p.text();
 
-    var spanHTML = spanOpenTag + pText.slice(spanStart, spanEnd) + spanCloseTag
-    accumHTML += pText.slice(startIndex, spanStart) + spanHTML;
+    _(spans).each( function(indexArray) {
+      var spanStart = indexArray[0],
+          spanEnd = indexArray[1],
+          spanOpenTag = "<span style='background:yellow'>",
+          spanCloseTag = "</span>";
 
-    startIndex = spanEnd;
-  })
+      var spanHTML = spanOpenTag + pText.slice(spanStart, spanEnd) + spanCloseTag
+      accumHTML += pText.slice(startIndex, spanStart) + spanHTML;
 
-  accumHTML += pText.slice(startIndex);
+      startIndex = spanEnd;
+    })
+
+    accumHTML += pText.slice(startIndex);
+    return accumHTML;
+  }
+
+  accumHTML = buildHTML(spans)
 
   $p.html( accumHTML );
 

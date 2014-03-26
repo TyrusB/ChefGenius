@@ -13,7 +13,6 @@ class Api::RecipesController < ApplicationController
     @note = @recipe.note
     @info = @recipe.info
 
-    fail
     render "recipes/model"
   end
 

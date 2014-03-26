@@ -3,15 +3,15 @@ window.ChefGenius.Models.Recipe = Backbone.Model.extend({
 
   parse: function(jsonResp) {
     if (jsonResp && jsonResp.steps) {
-      this.steps().set(jsonResp.steps);
+      this.steps().set(jsonResp.steps, { parse: true });
       delete jsonResp.steps;
     }
     if (jsonResp && jsonResp.ingredients) {
-      this.ingredients().set(jsonResp.ingredients);
+      this.ingredients().set(jsonResp.ingredients, { parse: true });
       delete jsonResp.needs;
     }
     if (jsonResp && jsonResp.note) {
-      this.note().set(jsonResp.note);
+      this.note().set(jsonResp.note, { parse: true });
       delete jsonResp.note;
     }
     if (jsonResp && jsonResp.info) {

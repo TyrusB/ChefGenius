@@ -1,3 +1,3 @@
-window.ChefGenius.Models.Step = Backbone.Model.extend({
+window.ChefGenius.Models.Step = Backbone.AnnotatableModel.extend({
 
 })

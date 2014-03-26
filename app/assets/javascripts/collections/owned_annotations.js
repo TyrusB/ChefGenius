@@ -7,6 +7,10 @@ window.ChefGenius.Collections.OwnedAnnotations = Backbone.Collection.extend({
 
   url: function() {
     return "api/annotations";
+  },
+
+  comparator: function(annotation) {
+    return annotation.get("start_pos");
   }
 
 })
