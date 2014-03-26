@@ -7,5 +7,9 @@ window.ChefGenius.Collections.RecipeIngredients = Backbone.Collection.extend({
 
   url: function() {
     return "api/ingredients";
+  },
+
+  comparator: function(ingredient) {
+    return ingredient.get("created_at");
   }
 });

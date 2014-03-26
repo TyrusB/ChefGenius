@@ -1,4 +1,4 @@
-json.(step, :id, :description)
+json.(step, :id, :description, :created_at)
 
 unless step.annotations.empty?
   json.annotations(step.annotations) do |annotation|

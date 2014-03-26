@@ -1,4 +1,4 @@
-json.(ingredient, :id, :description)
+json.(ingredient, :id, :description, :created_at)
 
 unless ingredient.annotations.empty?
   json.annotations(ingredient.annotations) do |annotation|
