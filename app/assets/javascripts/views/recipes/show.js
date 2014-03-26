@@ -3,8 +3,14 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   events: {
     "click button#edit-recipe":"makeEditable",
-    "click button#delete-recipe":"deleteRecipe",
-    "mouseup .annotatable":"handleUserSelection",
+    "click button#delete-recipe":"deleteRecipe"
+    // "mouseup .annotatable":"handleUserSelection",
+  },
+
+  initialize: function(options) {
+    this.vent = options.vent
+
+    this.listenTo(this.vent, "tooltip:clicked", this.addAnnotationBox)
   },
 
   render: function() {
@@ -44,7 +50,9 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     infoView.render();
   },
 
-  addAnnotationBox: function(startPos, endPos, annotatableId, annotatableType) {
+  addAnnotationBox: function(model) {
+    console.log("Adding box!");
+    var annotation = new ChefGenius.Models.Annotation()
     var annotationBox = new ChefGenius.Views.AnnotationNew({
       startPos: startPos,
       endPos: endPos,
@@ -73,7 +81,8 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   addStep: function(step) {
     var stepShow = new ChefGenius.Views.StepShow({
-      model: step
+      model: step,
+      vent: this.vent
     });
     this.addSubview('#steps-list', stepShow);
     stepShow.render();
@@ -87,69 +96,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     })
   },
 
-  insertSpan: function(start, end, $el) {
-    var originalText = $el.html();
 
-    var spanOpen = "<span class='annotated-pending ttip' title='Annotate?'>",
-        spanClose = "</span>";
-
-    var replacement = $el.html().slice(0, start) + spanOpen + $el.html().slice(start, end) + spanClose + $el.html().slice(end);
-    $el.html( replacement )
-
-    $(document).on('click', 'div', function(event) {
-      if ( !$( event.target ).hasClass( "tooltipster-base" ) && !$( event.target ).hasClass( "annotate-button" ) ) {
-        $el.html( originalText );
-      }
-    })
-  },
-
-  createTooltip: function(startPos, endPos, annotatableId, annotatableType) {
-    var view = this;
-
-    $('.ttip').tooltipster({
-      content: $("<a href='#' class='annotate-button'>Annotate this text?</button>"),
-      autoClose: false,
-      offsetY: 10,
-      interactive: true
-    });
-
-    $('.ttip').tooltipster("show");
-
-    $('.annotate-button').on("click", function(event) {
-      event.preventDefault();
-      view.addAnnotationBox(startPos, endPos, annotatableId, annotatableType);
-    })
-  },
-
-  handleUserSelection: function() {
-    var view = this;
-
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0),
-        startPos = range.startOffset,
-        endPos = range.endOffset;
-
-    if (startPos - endPos !== 0) {
-
-      if (range.startContainer === range.endContainer) {
-          var startPos = range.startOffset,
-              endPos = range.endOffset;
-
-          var startEl = range.startContainer.parentNode,
-              $el = $(startEl)
-          var annotatableId = startEl.getAttribute("data-annotatable-id"),
-              annotatableType = startEl.getAttribute("data-annotatable-type");
-
-
-          view.insertSpan(startPos, endPos, $el);
-          view.createTooltip(startPos, endPos, annotatableId, annotatableType);
-
-      } else {
-          alert("Sorry, can only select within a step");
-      }
-    }
-
-  }
 
 });
 
