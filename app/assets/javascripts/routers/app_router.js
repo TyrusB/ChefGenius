@@ -47,7 +47,8 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
     var view = this;
     this.recipes.getOrFetch(id, function(recipe) {
       var show = new ChefGenius.Views.RecipeShow({
-        model: recipe
+        model: recipe,
+        vent: vent
       });
 
       view._swapView(show);

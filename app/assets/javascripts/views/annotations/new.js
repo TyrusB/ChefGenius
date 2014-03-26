@@ -25,6 +25,7 @@ window.ChefGenius.Views.AnnotationNew = Backbone.View.extend({
     var view = this;
     var content = this.$('form').serializeJSON()["content"];
     var annotation = new ChefGenius.Models.Annotation;
+    annotation.
     annotation.save({
       annotations: {
         content: content,

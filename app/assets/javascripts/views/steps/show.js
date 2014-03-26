@@ -14,6 +14,7 @@ window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
   initialize: function(options) {
     this.open = false;
     this.editable = false;
+    this.vent = options.vent;
 
     Backbone.AnnotatableView.prototype.initialize.call(this);
     this.listenTo(this.model.annotations(), "all", this.render);
@@ -21,7 +22,9 @@ window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
 
   events: {
     "click .editable-closed":"beginEditing",
-    "submit form":"endEditing"
+    "submit form":"endEditing",
+    // this should probably be in the superclass
+    "mouseup .annotatable":"handleUserSelection",
   },
 
   toggleOpen: function() {
@@ -69,6 +72,8 @@ window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
     });
 
 
-  }
+  },
+
+
 
 });
