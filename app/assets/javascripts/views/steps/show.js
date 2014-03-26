@@ -17,14 +17,17 @@ window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
     this.vent = options.vent;
 
     Backbone.AnnotatableView.prototype.initialize.call(this);
-    this.listenTo(this.model.annotations(), "all", this.render);
   },
 
-  events: {
-    "click .editable-closed":"beginEditing",
-    "submit form":"endEditing",
-    // this should probably be in the superclass
-    "mouseup .holds-annotations":"handleUserSelection",
+  events: function() {
+    var theseEvents = {
+      "click .editable-closed":"beginEditing",
+      "submit form":"endEditing"
+    }
+    protoEvents = Backbone.AnnotatableView.prototype.events;
+
+    return _.extend(theseEvents, protoEvents);
+
   },
 
   toggleOpen: function() {
