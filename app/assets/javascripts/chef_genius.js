@@ -18,8 +18,6 @@ window.ChefGenius = {
   }
 };
 
-
-
 //CURRENTLY DOESN'T ACTUALLY CALL CALLBACK UNTIL IT GETS DATA FROM SERVER
 Backbone.Collection.prototype.getOrFetch = function(id, callback) {
 
@@ -47,8 +45,63 @@ Backbone.Collection.prototype.getOrFetch = function(id, callback) {
 
 Backbone.View.prototype.leave = function() {
   this.remove();
-}
+};
 
+Backbone.AnnotatableModel = Backbone.Model.extend({
+  annotations: function() {
+    if (!this._annotations) {
+      this._annotations = new ChefGenius.Collections.OwnedAnnotations([],{
+        owner: this
+      });
+    }
+
+    return this._annotations;
+  },
+
+  parse: function(jsonResp) {
+    if (jsonResp.annotations) {
+      this.annotations().set(jsonResp.annotations);
+
+      delete jsonResp.annotations;
+    }
+
+    return jsonResp;
+  }
+
+});
+
+Backbone.AnnotatableView = Backbone.View.extend({
+  initialize: function(){
+    this.listenTo(this.model.annotations(), "all", this.render);
+  },
+
+  addAnnotationSpans: function() {
+    var startIndex = 0;
+    var accumHTML = "";
+    var text = this.$('.annotatable').text();
+
+
+    this.model.annotations().each( function(annotation) {
+      var spanStart = annotation.get("start_pos"),
+          spanEnd = annotation.get("end_pos"),
+          spanOpenTag = "<span style='background:yellow'>",
+          spanCloseTag = "</span>";
+
+      var spanHTML = spanOpenTag + text.slice(spanStart, spanEnd) + spanCloseTag
+      accumHTML += text.slice(startIndex, spanStart) + spanHTML;
+
+      startIndex = spanEnd;
+    })
+
+    accumHTML += text.slice(startIndex);
+
+    this.$('.annotatable').html( accumHTML );
+
+  },
+
+
+
+});
 
 Backbone.CompositeView = Backbone.View.extend({
 
