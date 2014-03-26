@@ -7,5 +7,9 @@ window.ChefGenius.Collections.RecipeSteps = Backbone.Collection.extend({
 
   url: function() {
     return "api/steps";
+  },
+
+  comparator: function(step) {
+    return step.get('created_at')
   }
 });

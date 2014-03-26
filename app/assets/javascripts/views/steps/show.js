@@ -1,7 +1,7 @@
 window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
   tagName: "li",
 
-  className: "step",
+  className: "step holds-annotations",
 
   attributes: function() {
     return { "data-id": this.model.id }
@@ -24,7 +24,7 @@ window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
     "click .editable-closed":"beginEditing",
     "submit form":"endEditing",
     // this should probably be in the superclass
-    "mouseup .annotatable":"handleUserSelection",
+    "mouseup .holds-annotations":"handleUserSelection",
   },
 
   toggleOpen: function() {
