@@ -79,6 +79,8 @@ body {
   border-left: 2px solid #061F70;
   border-right: 2px solid #061F70;
   border-radius: 10px;
+  font-size: medium;
+  line-height: 150%;
   // background-color: #FFB000;
   // color: white;
 }
@@ -117,8 +119,25 @@ body {
   }
 }
 
-.can-edit-page-container {
+.can-edit-page-contain er {
   border: 5px dashed red;
+}
+
+.annotated {
+  color: orange;
+  &:link {
+   text-decoration: none;
+  }
+  &:hover {
+    background-color: orange;
+    color: #061F70;
+  }
+
+}
+
+.annotation-pending {
+  background-color: orange;
+  color: #061F70;
 }
 /*
 .recipe-container {
@@ -140,9 +159,6 @@ body {
 }
 
 
-.annotated-pending {
-  background-color: yellow;
-}
 
 .navbar {
   z-index: 10000;

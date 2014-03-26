@@ -3,6 +3,11 @@ Backbone.AnnotatableView = Backbone.View.extend({
     this.listenTo(this.model.annotations(), "all", this.render);
   },
 
+  events: {
+    "click a.annotated":"handleAnnotationClick",
+    "mouseup .holds-annotations":"handleUserSelection"
+  },
+
   addAnnotationSpans: function(currentSelection) {
     if (currentSelection) {
 
@@ -13,18 +18,17 @@ Backbone.AnnotatableView = Backbone.View.extend({
     var accumHTML = "";
     var text = this.$('.holds-annotations').text();
 
-
     this.model.annotations().each( function(annotation) {
       var spanStart = annotation.get("start_pos"),
           spanEnd = annotation.get("end_pos");
 
       if (annotation === currentSelection) {
-        var spanOpenTag = "<span style='background:yellow' class='annotated-pending ttip'>"
+        var spanOpenTag = "<a href='#' class='annotation-pending ttip'>"
       } else {
-        var spanOpenTag = "<span style='background:yellow'>"
+        var spanOpenTag = "<a href='#' class='annotated' data-id=" + annotation.id + ">"
       }
 
-      var spanCloseTag = "</span>";
+      var spanCloseTag = "</a>";
 
       var spanHTML = spanOpenTag + text.slice(spanStart, spanEnd) + spanCloseTag
       accumHTML += text.slice(startIndex, spanStart) + spanHTML;
@@ -43,15 +47,17 @@ Backbone.AnnotatableView = Backbone.View.extend({
 
   },
 
-  handleUserSelection: function() {
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
+  handleUserSelection: function(event) {
+    if ( !$(event.target).hasClass('annotated') ) {
+      var selection = window.getSelection();
+      var range = selection.getRangeAt(0);
 
-    if (range.startContainer === range.endContainer) {
-      this.getSelectionInfo(range);
-    }
-    else {
-      alert("Sorry, can only select within a step");
+      if (range.startContainer !== range.endContainer) {
+        alert("Sorry, you can only select within a step");
+      }
+      else if ( (range.startOffset - range.endOffset) !== 0 ) {
+        this.getSelectionInfo(range);
+      }
     }
   },
 
@@ -90,56 +96,47 @@ Backbone.AnnotatableView = Backbone.View.extend({
       annotatable_type: type
     });
 
+    //HAVE TO HAVE THIS ONE FIRST
     this.vent.trigger("item:highlighted")
+
     this.addAnnotationSpans(potentialAnnotation)
+    this.createTooltip();
 
-    this.listenTo(this.vent, "item:highlighted", this.renderOnce)
+    potentialAnnotation.collection = this.model.annotations();
+    this.addTooltipListener(potentialAnnotation);
 
+    this.listenToOnce(this.vent, "item:highlighted", this.render)
 
-    // this.insertSpan(offsetStartPos, offsetEndPos, $li)
-
-    alert("Id: " + id + ", startPos: " + offsetStartPos + ", endPos: " + offsetEndPos);
   },
-
-  renderOnce: function() {
-    this.render();
-    this.off(this.vent);
-  },
-
-  // insertSpan: function(start, end, $el) {
- //
- //
- //    var originalText = $el.html();
- //
- //    var spanOpen = "<span class='annotated-pending ttip' title='Annotate?'>",
- //        spanClose = "</span>";
- //
- //    var replacement = $el.html().slice(0, start) + spanOpen + $el.html().slice(start, end) + spanClose + $el.html().slice(end);
- //    $el.html( replacement )
- //
- //    $(document).on('click', 'div', function(event) {
- //      if ( !$( event.target ).hasClass( "tooltipster-base" ) && !$( event.target ).hasClass( "annotate-button" ) ) {
- //        $el.html( originalText );
- //      }
- //    })
- //  },
 
   createTooltip: function() {
     var view = this;
 
     $('.ttip').tooltipster({
-      content: $("<a href='#' class='annotate-button'>Annotate this text?</button>"),
+      content: $("<a href='#' class='annotate-button'>Annotate</button>"),
       autoClose: false,
-      offsetY: 10,
+      offsetY: 5,
       interactive: true
     });
 
     $('.ttip').tooltipster("show");
+  },
+
+  addTooltipListener: function(potentialAnnotation) {
+    var view = this;
 
     $('.annotate-button').on("click", function(event) {
       event.preventDefault();
-      view.vent.trigger("tooltip:clicked", this.model)
+      view.vent.trigger("tooltip:clicked", potentialAnnotation)
+      $('.ttip').tooltipster("hide");
+      $('.ttip').toggleClass('.ttip')
     })
   },
+
+  handleAnnotationClick: function(event) {
+    event.preventDefault();
+    var $annotation = $(event.currentTarget);
+    this.vent.trigger("annotation-link:clicked", $annotation, this.model.annotations())
+  }
 
 });

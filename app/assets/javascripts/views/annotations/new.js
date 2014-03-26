@@ -6,10 +6,7 @@ window.ChefGenius.Views.AnnotationNew = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.startPos = options.startPos;
-    this.endPos = options.endPos;
-    this.annotatableId = options.annotatableId;
-    this.annotatableType = options.annotatableType;
+    this.vent = options.vent
   },
 
   render: function() {
@@ -23,27 +20,24 @@ window.ChefGenius.Views.AnnotationNew = Backbone.View.extend({
 
   saveAnnotation: function() {
     var view = this;
-    var content = this.$('form').serializeJSON()["content"];
-    var annotation = new ChefGenius.Models.Annotation;
-    annotation.
-    annotation.save({
-      annotations: {
-        content: content,
-        annotatable_id: this.annotatableId,
-        annotatable_type: this.annotatableType,
-        start_pos: this.startPos,
-        end_pos: this.endPos
-      }
-    },
-    {
+
+    var formData = this.$('form').serializeJSON();
+    //kind of hacky
+    var attrs = {
+      content: formData.content,
+      start_pos: this.model.get('start_pos'),
+      end_pos: this.model.get('end_pos'),
+      annotatable_id: this.model.get('annotatable_id'),
+      annotatable_type: this.model.get('annotatable_type')
+    }
+
+    this.model.save({
+      annotations: attrs
+    }, {
       success: function(model) {
-        view.leave();
-        alert("form saved successfully!");
+        model.collection.add(model);
+        view.vent.trigger("annotation:saved", view);
       }
     })
   }
 })
-
-//todo:
-// add model to collection
-// alerts

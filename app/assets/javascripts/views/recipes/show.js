@@ -3,14 +3,15 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   events: {
     "click button#edit-recipe":"makeEditable",
-    "click button#delete-recipe":"deleteRecipe"
-    // "mouseup .annotatable":"handleUserSelection",
+    "click button#delete-recipe":"deleteRecipe",
   },
 
   initialize: function(options) {
     this.vent = options.vent
 
     this.listenTo(this.vent, "tooltip:clicked", this.addAnnotationBox)
+    this.listenTo(this.vent, "annotation:saved", this.handleAnnotationSaved)
+    this.listenTo(this.vent, "annotation-link:clicked", this.handleAnnotationClicked)
   },
 
   render: function() {
@@ -42,6 +43,24 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   },
 
+  handleAnnotationSaved: function() {
+    $('.annotation-pending').toggleClass('annotation-pending annotated')
+  },
+
+  handleAnnotationClicked: function($annotation, collection) {
+    var id = $annotation.data('id');
+    var annotation = collection.get(id)
+
+    var annotationShow = new ChefGenius.Views.AnnotationShow({
+      model: annotation,
+      vent: this.vent
+    })
+
+    this.addSubview('#annotation-show-section', annotationShow);
+    annotationShow.render();
+    $('#annotation-show-modal').modal();
+  },
+
   addInfo: function() {
     var infoView = new ChefGenius.Views.InfoShow({
       model: this.model.info()
@@ -50,22 +69,20 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     infoView.render();
   },
 
-  addAnnotationBox: function(model) {
-    console.log("Adding box!");
-    var annotation = new ChefGenius.Models.Annotation()
-    var annotationBox = new ChefGenius.Views.AnnotationNew({
-      startPos: startPos,
-      endPos: endPos,
-      annotatableId: annotatableId,
-      annotatableType: annotatableType
-    });
-    this.addSubview('#annotation-section', annotationBox);
-    annotationBox.render();
+  addAnnotationBox: function(annotation) {
+    var annotationNew = new ChefGenius.Views.AnnotationNew({
+      model: annotation,
+      vent: this.vent
+    })
+    this.addSubview('#annotation-section', annotationNew);
+    annotationNew.render();
+    $('#annotation-modal').modal();
   },
 
   addNote: function() {
     var noteView = new ChefGenius.Views.NoteShow({
-      model: this.model.note()
+      model: this.model.note(),
+      vent: this.vent
     });
     this.addSubview('#note-section', noteView);
     noteView.render();
@@ -73,7 +90,8 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   addIngredient: function(ingredient) {
     var ingredientShow = new ChefGenius.Views.IngredientShow({
-      model: ingredient
+      model: ingredient,
+      vent: this.vent
     });
     this.addSubview('#ingredients-list', ingredientShow);
     ingredientShow.render()

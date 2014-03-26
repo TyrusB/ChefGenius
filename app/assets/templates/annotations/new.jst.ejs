@@ -1,25 +1,36 @@
-<div class='annotation-outer'>
-  <div class='annotation-inner'>
-    Write an annotation:
-    <br>
-    <form>
-      <textarea class='annotation-text' name='content'></textarea>
-    </form>
-    <div class='annotation-instructions'>To add an image, just paste your url</div>
-    <button class='annotation-save'>Save</button>
+<div class="modal fade" id='annotation-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Write an Annotation:</h4>
+      </div>
 
-    <div class='annotation-style'>
-      Style Guidelines:
-      <ul>
-        <li>Embed a video / Tweet / whatever by pasting the URL</li>
-        <li>Add a link like this:
-          [Check out my fave website](http://rapgenius.com)
-        </li>
-        <li> Simple formatting:
-          *This text is in italics*
-          **This text is bold**
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+      <div class="modal-body">
+        <form>
+          <textarea class='annotation-text' name='content'></textarea>
+          <div class='annotation-instructions'>To add an image, just paste your url</div>
+        </form>
+      </div>
+
+      <div class='annotation-style'>
+        Style Guidelines:
+        <ul>
+          <li>Embed a video / Tweet / whatever by pasting the URL</li>
+          <li>Add a link like this:
+            [Check out my fave website](http://rapgenius.com)
+          </li>
+          <li> Simple formatting:
+            *This text is in italics*
+            **This text is bold**
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary annotation-save" data-dismiss='modal'>Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

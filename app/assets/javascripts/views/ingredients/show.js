@@ -1,4 +1,4 @@
-window.ChefGenius.Views.IngredientShow = Backbone.View.extend({
+window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   tagName: "li",
 
   className: "ingredient",
@@ -14,13 +14,21 @@ window.ChefGenius.Views.IngredientShow = Backbone.View.extend({
   initialize: function(options) {
     this.open = false;
     this.editable = false;
+    this.vent = options.vent;
 
     this.listenTo(this.model, "change", this.render);
+    Backbone.AnnotatableView.prototype.initialize.call(this);
   },
 
-  events: {
-    "click .editable-closed":"beginEditing",
-    "submit form":"endEditing"
+  events: function() {
+    var theseEvents = {
+      "click .editable-closed":"beginEditing",
+      "submit form":"endEditing"
+    }
+    protoEvents = Backbone.AnnotatableView.prototype.events;
+
+    return _.extend(theseEvents, protoEvents);
+
   },
 
   toggleOpen: function() {
@@ -39,6 +47,8 @@ window.ChefGenius.Views.IngredientShow = Backbone.View.extend({
     var content = this.template()({
       ingredient: this.model
     });
+
+    this.addAnnotationSpans();
 
     this.$el.html(content);
 
