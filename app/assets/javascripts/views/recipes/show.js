@@ -49,16 +49,21 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   handleAnnotationClicked: function($annotation, collection) {
     var id = $annotation.data('id');
-    var annotation = collection.get(id)
+    var view = this;
 
-    var annotationShow = new ChefGenius.Views.AnnotationShow({
-      model: annotation,
-      vent: this.vent
+    collection.getOrFetch(id, function(annotation) {
+      var annotationShow = new ChefGenius.Views.AnnotationShow({
+        model: annotation,
+        vent: view.vent
+      })
+
+      view.addSubview('#annotation-show-section', annotationShow);
+      annotationShow.render();
+      $('#annotation-show-modal').modal();
+      $('#annotation-show-modal').on('hidden.bs.modal', function(e) {
+        annotationShow.leave();
+      });
     })
-
-    this.addSubview('#annotation-show-section', annotationShow);
-    annotationShow.render();
-    $('#annotation-show-modal').modal();
   },
 
   addInfo: function() {
@@ -77,6 +82,10 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     this.addSubview('#annotation-section', annotationNew);
     annotationNew.render();
     $('#annotation-modal').modal();
+
+    $('#annotation-modal').on('hidden.bs.modal', function(e) {
+      annotationNew.leave();
+    })
   },
 
   addNote: function() {

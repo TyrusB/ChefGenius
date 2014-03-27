@@ -9,6 +9,12 @@ class Api::AnnotationsController < ApplicationController
     end
   end
 
+  def show
+    @annotation = Annotation.find(params[:id])
+    @suggestions = @annotation.suggestions
+    render "annotations/model"
+  end
+
 
   private
 
