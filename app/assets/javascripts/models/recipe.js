@@ -2,21 +2,21 @@ window.ChefGenius.Models.Recipe = Backbone.Model.extend({
   urlRoot: "/api/recipes",
 
   parse: function(jsonResp) {
-    if (jsonResp && jsonResp.steps) {
+    if (jsonResp.steps) {
       this.steps().set(jsonResp.steps, { parse: true });
       delete jsonResp.steps;
     }
-    if (jsonResp && jsonResp.ingredients) {
+    if (jsonResp.ingredients) {
       this.ingredients().set(jsonResp.ingredients, { parse: true });
       delete jsonResp.needs;
     }
-    if (jsonResp && jsonResp.note) {
-      this.note().set(jsonResp.note, { parse: true });
-      delete jsonResp.note;
-    }
-    if (jsonResp && jsonResp.info) {
+    if (jsonResp.info) {
       this.info().set(jsonResp.info);
       delete jsonResp.info;
+    }
+    if (jsonResp.note) {
+      this.note().set(ChefGenius.Models.Note.prototype.parse(jsonResp.note));
+      delete jsonResp.note;
     }
 
     return jsonResp;

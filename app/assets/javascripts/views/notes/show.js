@@ -2,7 +2,18 @@ window.ChefGenius.Views.NoteShow = Backbone.AnnotatableView.extend({
   template: JST["notes/show"],
 
   initialize: function(options) {
-    this.vent = options.vent
+    this.vent = options.vent;
+    Backbone.AnnotatableView.prototype.initialize.call(this);
+  },
+
+  events: function() {
+    var theseEvents = {
+
+    }
+    protoEvents = Backbone.AnnotatableView.prototype.events;
+
+    return _.extend(theseEvents, protoEvents);
+
   },
 
   render: function() {
@@ -10,7 +21,8 @@ window.ChefGenius.Views.NoteShow = Backbone.AnnotatableView.extend({
       note: this.model
     });
     this.$el.html(content);
-     this.addAnnotationSpans();
+    this.addAnnotationSpans();
     return this;
   }
+
 })

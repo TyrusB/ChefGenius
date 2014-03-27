@@ -19,6 +19,7 @@
 //= require bootstrap
 //= require marked
 //= require chef_genius
+//= require_tree ./models/superclasses
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
