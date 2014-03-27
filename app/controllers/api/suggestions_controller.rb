@@ -1,6 +1,8 @@
 class Api::SuggestionsController < ApplicationController
+  load_and_authorize_resource
   def create
     @suggestion = Suggestion.new(suggestion_params)
+    @suggestion.author = current_user
 
     if @suggestion.save
       render :json => @suggestion
