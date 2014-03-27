@@ -89,6 +89,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   },
 
   addNote: function() {
+
     var noteView = new ChefGenius.Views.NoteShow({
       model: this.model.note(),
       vent: this.vent
