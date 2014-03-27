@@ -1,7 +1,7 @@
 window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   tagName: "li",
 
-  className: "ingredient holds-annotations",
+  className: "ingredient",
 
   attributes: function() {
     return { "data-id": this.model.id }
@@ -16,7 +16,6 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
     this.editable = false;
     this.vent = options.vent;
 
-    this.listenTo(this.model, "change", this.render);
     Backbone.AnnotatableView.prototype.initialize.call(this);
   },
 
@@ -48,9 +47,9 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
       ingredient: this.model
     });
 
-    this.addAnnotationSpans();
-
     this.$el.html(content);
+
+    this.addAnnotationSpans();
 
     return this;
   },

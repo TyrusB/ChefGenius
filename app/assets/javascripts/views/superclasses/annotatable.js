@@ -11,7 +11,6 @@ Backbone.AnnotatableView = Backbone.View.extend({
 
   addAnnotationSpans: function(currentSelection) {
     if (currentSelection) {
-
       this.model.annotations().add(currentSelection, { silent: true });
     }
 

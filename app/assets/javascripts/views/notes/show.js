@@ -9,9 +9,8 @@ window.ChefGenius.Views.NoteShow = Backbone.AnnotatableView.extend({
     var content = this.template({
       note: this.model
     });
-    this.addAnnotationSpans();
-
     this.$el.html(content);
+     this.addAnnotationSpans();
     return this;
   }
 })
