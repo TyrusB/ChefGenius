@@ -12,7 +12,7 @@ gem 'backbone-on-rails'
 gem 'devise'
 gem 'execjs'
 gem 'thin'
-
+gem 'cancan'
 
 group :doc do
   gem 'sdoc', require: false

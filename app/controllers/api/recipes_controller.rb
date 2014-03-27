@@ -1,6 +1,5 @@
 class Api::RecipesController < ApplicationController
-  #before_filter :user_authenticated?
-
+  load_and_authorize_resource
   def index
     @recipes = Recipe.all
     render "recipes/collection"
