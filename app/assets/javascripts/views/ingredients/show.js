@@ -1,7 +1,7 @@
 window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   tagName: "li",
 
-  className: "ingredient",
+  className: "ingredient holds-annotations",
 
   attributes: function() {
     return { "data-id": this.model.id }

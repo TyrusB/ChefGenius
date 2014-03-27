@@ -5,7 +5,8 @@ Backbone.AnnotatableView = Backbone.View.extend({
 
   events: {
     "click a.annotated":"handleAnnotationClick",
-    "mouseup .holds-annotations":"handleUserSelection"
+    "mouseup .holds-annotations":"handleUserSelection",
+    "click a.annotation-pending":"disableLink"
   },
 
   addAnnotationSpans: function(currentSelection) {
@@ -47,8 +48,12 @@ Backbone.AnnotatableView = Backbone.View.extend({
 
   },
 
+  disableLink: function(event) {
+    event.preventDefault();
+  },
+
   handleUserSelection: function(event) {
-    if ( !$(event.target).hasClass('annotated') ) {
+    if ( !$(event.target).hasClass('annotated') && !$(event.target).hasClass('annotation-pending') ) {
       var selection = window.getSelection();
       var range = selection.getRangeAt(0);
 
@@ -115,7 +120,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
     $('.ttip').tooltipster({
       content: $("<a href='#' class='annotate-button'>Annotate</button>"),
       autoClose: false,
-      offsetY: 5,
+      offsetY: 2,
       interactive: true
     });
 
@@ -129,7 +134,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
       event.preventDefault();
       view.vent.trigger("tooltip:clicked", potentialAnnotation)
       $('.ttip').tooltipster("hide");
-      $('.ttip').toggleClass('.ttip')
+      $('.ttip').toggleClass('ttip');
     })
   },
 

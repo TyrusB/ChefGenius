@@ -131,6 +131,7 @@ body {
   &:hover {
     background-color: orange;
     color: #061F70;
+    text-decoration: none;
   }
 
 }
@@ -138,6 +139,10 @@ body {
 .annotation-pending {
   background-color: orange;
   color: #061F70;
+  &:hover {
+    text-decoration: none;
+    color: #061F70;
+  }
 }
 /*
 .recipe-container {

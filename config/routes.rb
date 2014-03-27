@@ -12,5 +12,6 @@ ChefGenius::Application.routes.draw do
     resources :notes
     resources :infos
     resources :annotations
+    resources :suggestions
   end
 end
