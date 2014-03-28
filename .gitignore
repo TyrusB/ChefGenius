@@ -16,3 +16,6 @@
 /tmp
 
 /devnotes.txt
+
+# Ignore application configuration
+/config/application.yml

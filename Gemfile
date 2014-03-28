@@ -13,6 +13,9 @@ gem 'devise'
 gem 'execjs'
 gem 'thin'
 gem 'cancan'
+gem 'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :doc do
   gem 'sdoc', require: false

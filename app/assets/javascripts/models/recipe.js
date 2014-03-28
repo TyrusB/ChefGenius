@@ -19,6 +19,9 @@ window.ChefGenius.Models.Recipe = Backbone.Model.extend({
       delete jsonResp.note;
     }
 
+    this.set('photoUrl', jsonResp.photo.url);
+    delete jsonResp.photo;
+
     return jsonResp;
   },
 

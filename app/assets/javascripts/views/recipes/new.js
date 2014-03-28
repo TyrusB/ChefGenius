@@ -8,7 +8,8 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
   events: {
     "click #submit-recipe":"createRecipe",
     "focus .ingredient-input":"checkEmptyIngredientBoxes",
-    "focus .check-empty":"checkEmptyBoxes"
+    "focus .check-empty":"checkEmptyBoxes",
+    "change .recipe-picture":"handle_files"
   },
 
   render: function() {
@@ -26,6 +27,23 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     }
 
     return this;
+  },
+
+  handle_files: function(event) {
+    var view = this;
+    var file = event.currentTarget.files[0]
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      // you need to send e.target.result in your $.ajax request
+      view.renderPhoto(e.target.result)
+      console.log(this.result);
+    }
+    reader.readAsDataURL(file);
+  },
+
+  renderPhoto: function(data) {
+    var $img = $("<img></img>").attr("src", data).attr("id", "uploaded-picture")
+    this.$('#picture-container').append($img)
   },
 
   addInfoFields: function() {
@@ -75,8 +93,8 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
 
     this.model.save(info, {
       success: function(model) {
+        model.collection.add(model);
         ChefGenius.router.navigate("#/recipes/" + model.id, { trigger: true })
-        // Backbone.history.navigate("#/recipes/" + model.id, { trigger: true })
       }
     });
   },
