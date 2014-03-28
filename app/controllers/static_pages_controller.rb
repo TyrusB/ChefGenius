@@ -1,7 +1,11 @@
+require 'json'
+
 class StaticPagesController < ApplicationController
   before_filter :authenticate_user!
 
   def home
+    @recipes = Recipe.all
+    @recipes_json = @recipes.to_json.html_safe
   end
 
   def test
@@ -9,4 +13,5 @@ class StaticPagesController < ApplicationController
 
   def test2
   end
+
 end

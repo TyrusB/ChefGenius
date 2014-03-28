@@ -11,8 +11,11 @@ gem 'jbuilder', '~> 1.2'
 gem 'backbone-on-rails'
 gem 'devise'
 gem 'execjs'
-# gem 'thin'
-
+gem 'thin'
+gem 'cancan'
+gem 'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :doc do
   gem 'sdoc', require: false

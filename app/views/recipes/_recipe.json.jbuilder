@@ -1,4 +1,10 @@
-json.(recipe, :id, :name, :created_at)
+json.(recipe, :id, :name, :created_at, :author_id)
+
+if recipe.title_photo
+  json.photo do
+    json.url recipe.title_photo.url(:small)
+  end
+end
 
 steps ||= nil
 ingredients ||= nil
