@@ -15,7 +15,7 @@ class Api::SuggestionsController < ApplicationController
   private
 
     def suggestion_params
-      params.require(:suggestions).permit(:content, :annotation_id).meger(:author => current_user)
+      params.require(:suggestions).permit(:content, :annotation_id).merge(:author => current_user)
     end
 
 end

@@ -167,12 +167,39 @@ ul li {
   z-index: 10000;
 }
 
+
+// SHARED
+
+.title-picture {
+  width: 180px;
+  height: 180px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 //NEW RECIPES
 
-.note-new textarea {
-  width: 550px;
-  max-width: 550px;
-  height: 125px;
+.note-new {
+  margin-top: 120px;
+
+  textarea {
+    width: 550px;
+    max-width: 550px;
+    height: 125px;
+    border-radius: 5px;
+  }
+}
+
+
+.picture-standin {
+  border: 2px solid darkgrey;
+  background: lightgrey;
+  width: 180px;
+  height: 180px;
+  position: absolute;
+  top: 0;
+  left: 0;
   border-radius: 5px;
 }
 
@@ -182,9 +209,16 @@ ul li {
   margin-left: auto;
 }
 
+
 input {
   margin: 10px;
   width: 80%;
+}
+
+input[type=file] {
+  margin: 0;
+  position: absolute;
+  top: 200px;
 }
 
 textarea {
