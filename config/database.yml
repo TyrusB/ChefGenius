@@ -51,11 +51,3 @@ test:
   pool: 5
   username: appacademy
   password:
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: ChefGenius_production
-  pool: 5
-  username: ChefGenius
-  password:
