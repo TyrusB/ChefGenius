@@ -46,7 +46,7 @@ body {
 .picture-standin {
   width: 150px;
   height: 150px;
-  background: yellow;
+  background: lightgrey;
 }
 
 .recipe-section {
@@ -169,3 +169,7 @@ body {
   z-index: 10000;
 }
 
+.recipe-picture {
+  width: 200px;
+  height: 200px;
+}

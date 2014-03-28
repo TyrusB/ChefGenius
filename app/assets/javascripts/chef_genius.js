@@ -3,18 +3,16 @@ window.ChefGenius = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function(currentUser) {
-    var recipes = new ChefGenius.Collections.Recipes();
-    recipes.fetch({
-      success: function() {
-        ChefGenius.router = new ChefGenius.Routers.AppRouter({
-          $rootEl: $('#main-content'),
-          recipes: recipes,
-          currentUser: currentUser
-        });
-        Backbone.history.start();
-      }
+  initialize: function(recipes, currentUserId) {
+    var recipes = new ChefGenius.Collections.Recipes(JSON.parse(recipes));
+    ChefGenius.router = new ChefGenius.Routers.AppRouter({
+      $rootEl: $('#main-content'),
+      recipes: recipes
     });
+
+    Backbone.history.start();
+
+    ChefGenius.currentUserId = currentUserId;
   }
 };
 

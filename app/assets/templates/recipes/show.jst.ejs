@@ -12,7 +12,7 @@
   <div class='row recipe-section'>
     <div class='col-xs-2 col-xs-offset-3'>
       <div id='info-section'></div>
-      <div class='img-rounded'></div>
+      <div id='img-container' class='img-rounded'></div>
     </div>
     <div class='col-xs-4'>
       <div id='note-section'>About:</div>
@@ -35,8 +35,15 @@
 </div>
 
 <div class='buttons'>
-  <button id='edit-recipe' class='recipe-button'>Edit this Recipe</button>
-  <button id='delete-recipe' class='recipe-button'>Delete Recipe</button>
+  <% if (ChefGenius.currentUserId === recipe.get('author_id') ) { %>
+    <button id='edit-recipe' class='recipe-button'>
+      Edit this Recipe
+    </button>
+    <button id='delete-recipe' class='recipe-button'>
+      Delete Recipe
+    </button>
+  <% }; %>
+
   <a href='#/' class='recipe-button bottom-button'>Back</button></a>
 </div>
 

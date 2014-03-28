@@ -7,8 +7,7 @@ class Ability
       user ||= User.new # guest user (not logged in)
 
       can :read, :all
-      can :create, Annotation
-      can :create, Suggestion
+      can :create, [Annotation, Suggestion, Recipe]
       can [:destroy, :update], [ Recipe, Annotation, Suggestion] do |model|
         model.try(:author) == user
       end

@@ -24,6 +24,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     this.addNote();
     this.model.ingredients().each( this.addIngredient.bind(this) );
     this.model.steps().each( this.addStep.bind(this) );
+    this.addPhoto();
 
     return this;
   },
@@ -41,6 +42,10 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
       subview.makeEditable();
     })
 
+  },
+
+  addPhoto: function() {
+    this.$('#img-container').append($("<img></img>").attr("id", "recipe-picture").attr( "src", this.model.get('photoUrl') ))
   },
 
   handleAnnotationSaved: function() {

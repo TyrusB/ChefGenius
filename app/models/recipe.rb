@@ -18,5 +18,9 @@ class Recipe < ActiveRecord::Base
 
   accepts_nested_attributes_for :ingredients, :steps, :note, :info
 
+  has_attached_file :title_photo, :styles => {
+    :small => "150x150>",
+    :large => "500x500#"
+  }
 
 end
