@@ -1,6 +1,8 @@
 /* title */
 .navbar-default .navbar-brand {
     color: orange;
+    margin-left: 20px;
+    font-size: 150%;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -23,4 +25,20 @@
 .navbar-default .navbar-nav > .open > a:hover, 
 .navbar-default .navbar-nav > .open > a:focus {
     color: white;
+}
+
+.dropdown {
+  margin-left: 25px;
+}
+
+.signed-in-text {
+  margin-left: 75px;
+}
+
+.navbar-right {
+  margin-right: 100px !important;
+  li {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }

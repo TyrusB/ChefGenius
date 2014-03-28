@@ -31,7 +31,15 @@
     </li>
   </ul>
 
-  <ul class="nav navbar-nav navbar-left">
+  <% if signed_in? %>
+    <div class='nav navbar-nav navbar-left'>
+      <p class='navbar-text signed-in-text'>
+        Signed in As: <%= current_user.email %>
+      </p>
+    </div>
+  <% end %>
+
+  <ul class="nav navbar-nav navbar-right">
     <li><a href="<%= root_url %>">Home</a></li>
     <li><a href="#">About</a></li>
     <li><a href='#'>Contact</a></li>
