@@ -1,5 +1,5 @@
 class Api::StepsController < ApplicationController
-
+  load_and_authorize_resource
   def update
     @step = Step.find(params[:id])
 

@@ -2,8 +2,7 @@
 
 <script>
 $(document).ready(function(){
-  // THIS IS A PLACEHOLDER VALUE V !!!!!
-  ChefGenius.initialize("current_user")
+  ChefGenius.initialize( '<%= @recipes_json %>', <%= current_user.id %>);
 });
 </script>
 

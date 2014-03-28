@@ -30,8 +30,15 @@
 </div>
 
 <div class='buttons'>
-  <button id='edit-recipe' class='recipe-button'>Edit this Recipe</button>
-  <button id='delete-recipe' class='recipe-button'>Delete Recipe</button>
+  <% if (ChefGenius.currentUserId === recipe.get('author_id') ) { %>
+    <button id='edit-recipe' class='recipe-button'>
+      Edit this Recipe
+    </button>
+    <button id='delete-recipe' class='recipe-button'>
+      Delete Recipe
+    </button>
+  <% }; %>
+
   <a href='#/' class='recipe-button bottom-button'>Back</button></a>
 </div>
 

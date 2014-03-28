@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -11,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327200442) do
+ActiveRecord::Schema.define(version: 20140328003004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140327200442) do
     t.datetime "updated_at"
     t.integer  "start_pos",        null: false
     t.integer  "end_pos",          null: false
+    t.integer  "author_id",        null: false
   end
 
   create_table "infos", force: true do |t|
@@ -52,6 +54,14 @@ ActiveRecord::Schema.define(version: 20140327200442) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cook_time"
+    t.string   "prep_time"
+    t.integer  "author_id",                                        null: false
+    t.string   "title_photo_file_name"
+    t.string   "title_photo_content_type"
+    t.integer  "title_photo_file_size"
+    t.datetime "title_photo_updated_at"
+    t.string   "category",                 default: "Main Course", null: false
   end
 
   create_table "steps", force: true do |t|
@@ -66,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140327200442) do
     t.integer  "annotation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "author_id",     null: false
   end
 
   create_table "users", force: true do |t|

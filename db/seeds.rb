@@ -6,15 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+[ ["test@test.com", "password"],
+  ["brooks85@gmail.com", "password"]
+].each do |email, password|
+  u = User.new( email: email, password: password)
+  u.save
+end
 
 [
-  [ "Spaghetti Bolognese"],
-  [ "Coq au Vin"],
-  [ "Braised Brussels SProuts"],
-  [ "Grilled Vegetables"],
-  [ "Pesto Pizza"]
-].each do |name|
-    r = Recipe.new(:name => name.first)
+  [ "Spaghetti Bolognese", 1],
+  [ "Coq au Vin", 1],
+  [ "Braised Brussels SProuts", 1],
+  [ "Grilled Vegetables", 2],
+  [ "Pesto Pizza", 2]
+].each do |name, user_id|
+    r = Recipe.new(:name => name, :author_id => user_id)
     r.save
 end
 
