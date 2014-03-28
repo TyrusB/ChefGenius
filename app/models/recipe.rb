@@ -22,5 +22,6 @@ class Recipe < ActiveRecord::Base
     :small => "150x150>",
     :large => "500x500#"
   }
+  validates_attachment_content_type :title_photo, :content_type => /\Aimage\/.*\Z/
 
 end
