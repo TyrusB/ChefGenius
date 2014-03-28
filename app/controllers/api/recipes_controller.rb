@@ -19,6 +19,7 @@ class Api::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+
     if @recipe.save
       @steps = @recipe.steps.includes(:annotations)
       @ingredients = @recipe.ingredients.includes(:annotations)
@@ -48,7 +49,7 @@ class Api::RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipes).permit( :name,
+      params.require(:recipes).permit( :name, :title_photo,
                                        :steps_attributes => [:description],
                                        :info_attributes => [:prep_time, :cook_time],
                                        :ingredients_attributes => [:description],

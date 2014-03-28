@@ -2,7 +2,7 @@ json.(recipe, :id, :name, :created_at, :author_id)
 
 if recipe.title_photo
   json.photo do
-    json.url recipe.title_photo.url
+    json.url recipe.title_photo.url(:small)
   end
 end
 
