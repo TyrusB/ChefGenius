@@ -6,16 +6,17 @@
 .annotation-text {
   width: 90%;
   border-radius: 0px;
-  border: 1px 1px 0 1px solid black;
-  margin: 0;
+  border: 1px 1px 1px 1px solid black;
+  margin: 0 auto 0 20px;
   width: 90%;
   max-width: 90%;
-  height: 100px;
-  max-height: 100px;
+  height: 150px;
+  max-height: 150px;
+  border-radius: 5px;
 }
 
 .annotation-instructions {
-  margin-top: 0;
+  margin: 0 auto 30px 20px;
   width: 90%;
   max-width: 90%;
   height: 30px;
@@ -28,6 +29,14 @@
 .annotation-style {
   margin-top: 30px;
   width: 90%;
+  margin: 0 auto 30px 30px;
+  ul {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    li {
+      margin-top: 5px;
+    }
+  }
 }
 
 body .modal {
@@ -35,15 +44,59 @@ body .modal {
   z-index: 12000;
 }
 
-.annotation-form {
-}
+
 
 .modal-header{
   padding-bottom: 0;
 }
 
 
+#new-suggestions-containter {
+  margin-top: 10px;
+}
+
+#new-suggestions-containter {
+  margin-top: 10px;
+}
 
 .content-container {
   border: 1px solid black;
+  border-radius: 3px;
+  height: 150px;
+  padding: 2px;
+}
+
+.new-comment-form {
+  position: relative;
+  input[type=submit] {
+    position: absolute;
+    right: 10px;
+    width: 75px;
+    height: 75px;
+  }
+  .new-comment-input {
+    height: 75px; 
+    max-height: 75px;
+    width: 80%;
+    max-width: 80%;
+  }
+}
+
+.comment-show {
+  width: 90%;
+  background: lightgrey;
+  position: relative;
+  height: 25px;
+  padding: 3px;
+  margin: 10px
+}
+
+.comment-info {
+  text-align: right;
+  font-size: 80%;
+}
+
+.comment-container {
+  margin: 10px;
+  height: 40px;
 }
