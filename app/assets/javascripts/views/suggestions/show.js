@@ -1,6 +1,8 @@
 window.ChefGenius.Views.SuggestionShow = Backbone.View.extend({
   template: JST["suggestions/show"],
 
+  className: "comment-container",
+
   initialize: function(options) {
     this.vent = options.vent
   },

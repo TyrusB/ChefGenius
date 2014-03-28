@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'backbone-on-rails'
 gem 'devise'
 gem 'execjs'
-gem 'thin'
+# gem 'thin'
 
 
 group :doc do

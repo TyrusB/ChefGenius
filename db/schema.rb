@@ -52,8 +52,6 @@ ActiveRecord::Schema.define(version: 20140327200442) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cook_time"
-    t.string   "prep_time"
   end
 
   create_table "steps", force: true do |t|

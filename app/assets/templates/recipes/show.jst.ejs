@@ -1,33 +1,28 @@
 <div class='links'></div>
 
 <div class='overall-container'>
-  <div class='recipe-container'>
-  </div>
+
   <div class='row recipe-section'>
-    <div class='col-xs-6 col-xs-offset-3 recipe-name'>
+    <div class='recipe-name'>
       <h1 class='text-center'><%= recipe.get('name') %></h1>
     </div>
   </div>
 
   <div class='row recipe-section'>
-    <div class='col-xs-2 col-xs-offset-3'>
       <div id='info-section'></div>
       <div class='img-rounded'></div>
-    </div>
-    <div class='col-xs-4'>
-      <div id='note-section'>About:</div>
-    </div>
+      <div id='note-section' class='note-show'>About:</div>
   </div>
 
   <div class='row recipe-section'>
-    <div class='col-xs-6 col-xs-offset-3 items-section'>
+    <div class='items-section ingredients-section'>
       <div class='elements-header'>Ingredients List</div>
       <ul id='ingredients-list' class='annotatable'></ul>
     </div>
   </div>
 
   <div class='row recipe-section'>
-    <div class='col-xs-6 col-xs-offset-3 items-section'>
+    <div class='items-section'>
       <div class='elements-header'>Steps</div>
       <ol id='steps-list' class='annotatable'></ol>
     </div>

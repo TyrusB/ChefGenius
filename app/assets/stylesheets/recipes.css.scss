@@ -19,39 +19,44 @@ body {
   left: 30px;
   top: 100px;
   height: 500px;
-  width: 300px;
+  width: 250px;
   z-index: 0;
 }
 
-.recipe-container {
-  position: absolute;
-  height: 102%;
-  margin-left: 265px;
-  width: 600px;
-  border-radius: 10px;
-}
-
 .overall-container {
-  position: relative;
+  position: absolute;
+  left: 350px;
+  width: 700px;
 }
 
 .buttons {
   width: 100px;
   height: 300px;
   position: fixed;
-  right: 200px;
+  left: 1150px;
   top: 100px;
 }
 
-.picture-standin {
-  width: 150px;
-  height: 150px;
-  background: yellow;
+.note-show {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 400px;
+  max-height: 240px;
 }
 
 .recipe-section {
   margin: 40px;
+  position: relative;
 }
+
+.img-rounded {
+  margin-top: 20px;
+  width: 180px;
+  height: 180px;
+  background-color: lightgrey;
+}
+
 
 .recipe-button {
   text-align: center;
@@ -69,20 +74,13 @@ body {
   text: black;
 }
 
-.img-rounded {
-  background-color: grey;
-  width: 140px;
-  height: 140px;
-}
-
 .items-section {
+  margin-top: 20px;
   border-left: 2px solid #061F70;
   border-right: 2px solid #061F70;
   border-radius: 10px;
   font-size: medium;
   line-height: 150%;
-  // background-color: #FFB000;
-  // color: white;
 }
 
 .recipe-name {
@@ -97,19 +95,28 @@ body {
   margin: 10px;
 }
 
-/*.elements-container {
-  width: 600px;
-  min-height: 100px;
-  background-color: lightgrey;
-  border: 2px black solid;
-  border-radius: 10px;
-  margin: 30px auto;
-  position: relative;
-}*/
+#ingredients-list {
+  margin-bottom: 20px;
+}
+
+#steps-list {
+  margin-bottom: 20px;
+}
+
+.ingredients-section {
+  width: 500px;
+}
 
 .elements-header {
   padding: 20px 0 10px 20px;
   font-size: 20px;
+}
+
+ul li {
+  margin-left: 10px;
+  padding-left: 10px;
+  position: relative;
+
 }
 
 .editable-closed {
@@ -144,28 +151,46 @@ body {
     color: #061F70;
   }
 }
-/*
-.recipe-container {
-  width: 700px;
-  border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}*/
 
-/*.time-info {
+.ingredient-checkbox {
+  display: inline;
   position: absolute;
-  right: 10px;
-  top: 0px;
-  font-size: small;
-}*/
+  right: 20px;
+}
 
 .notes {
   font-size: small;
 }
 
 
-
 .navbar {
   z-index: 10000;
 }
 
+
+// NEW RECIPES
+
+.note-new textarea {
+  width: 550px;
+  max-width: 550px;
+  height: 125px;
+  border-radius: 5px;
+}
+
+.info-new {
+  width: 300px;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+input {
+  margin: 10px;
+  width: 80%;
+}
+
+textarea {
+  width: 80%;
+  height: 70px;
+  margin: 10px;
+  border-radius: 10px;
+}

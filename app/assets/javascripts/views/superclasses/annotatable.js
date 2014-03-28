@@ -57,7 +57,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
       var range = selection.getRangeAt(0);
 
       if (range.startContainer !== range.endContainer) {
-        alert("Sorry, you can only select within a step");
+        alert("Sorry, you can only annotate a single element.");
       }
       else if ( (range.startOffset - range.endOffset) !== 0 ) {
         this.getSelectionInfo(range);
