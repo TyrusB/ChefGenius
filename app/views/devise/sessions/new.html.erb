@@ -1,17 +1,66 @@
-<h2>Sign in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+<div class='jumbotron'>
+  <div class='row'>
+    <h1 class='text-center'>Chef Genius<br><small>A Rap Genius Clone</small></h1>
+  </div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <div class='row button-row'>
+    <div class='col col-xs-4'>
+      <%= button_to "Sign In", class: "landing-button reg"%>
+    </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <div class='col col-xs-4'>
+      <%= button_to "Sign In As Guest", class: "landing-button guest", controller: 'devise/sessions', action: 'create', email: "test@test.com", password: "password"  %>
+    </div>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+    <div class='col col-xs-4'>
+      <%= button_to "Sign In With Facebook", class: "landing-button fb" %>
+    </div>
+  </div>
 
-<%= render "devise/shared/links" %>
+
+  <div class='row'>
+    <div class='col col-xs-6 col-xs-offset-3'>
+      <h2>Sign in (Make hidden, triggerable by click)</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div><%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %></div>
+
+        <div><%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off" %></div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+        <% end -%>
+
+        <div><%= f.submit "Sign in" %></div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<style>
+
+.button-row {
+  margin-top: 50px;
+}
+
+  body {
+    background: url("http://rencentermarin.org/wp-content/uploads/2012/09/cooking-classes.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .jumbotron {
+    margin-top: 50px;
+    background-color: white;
+    min-height: 500px;
+    border-radius: 40px !important;
+  }
+</style>
+

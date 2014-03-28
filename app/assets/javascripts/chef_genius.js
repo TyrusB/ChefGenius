@@ -3,7 +3,7 @@ window.ChefGenius = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function(recipes, currentUserId) {
+  initialize: function(recipes, currentUser) {
     var recipes = new ChefGenius.Collections.Recipes(JSON.parse(recipes));
     ChefGenius.router = new ChefGenius.Routers.AppRouter({
       $rootEl: $('#main-content'),
@@ -12,7 +12,7 @@ window.ChefGenius = {
 
     Backbone.history.start();
 
-    ChefGenius.currentUserId = currentUserId;
+    ChefGenius.currentUser = JSON.parse(currentUser);
   }
 };
 
