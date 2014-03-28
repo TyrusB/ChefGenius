@@ -9,7 +9,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     "click #submit-recipe":"createRecipe",
     "focus .ingredient-input":"checkEmptyIngredientBoxes",
     "focus .check-empty":"checkEmptyBoxes",
-    "change .recipe-picture":"handle_files"
+    "change .recipe-photo-input":"handle_files"
   },
 
   render: function() {
@@ -43,8 +43,8 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
   },
 
   renderPhoto: function(data) {
-    var $img = $("<img></img>").attr("src", data).attr("id", "uploaded-picture")
-    this.$('#picture-container').append($img)
+    var $img = $("<img></img>").attr("src", data).attr("class", "title-picture img-rounded");
+    this.$('#picture-container').html($img)
   },
 
   addInfoFields: function() {
@@ -130,7 +130,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     var newName = oldName.replace(/\d+/, this.uniqueNum++);
     $boxToClone.attr('name', newName);
 
-    $boxToClone.closest('ul, li').append($('<li></li>').html($newBox));
+    $boxToClone.closest('ul, ol').append($('<li></li>').html($newBox));
   }
 
 });
