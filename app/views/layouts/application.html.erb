@@ -32,10 +32,14 @@
   </ul>
 
   <% if signed_in? %>
-    <div class='nav navbar-nav navbar-left'>
+    <div class='nav navbar-nav navbar-left signout-button'>
       <p class='navbar-text signed-in-text'>
         Signed in As: <%= current_user.email %>
       </p>
+    </div>
+
+    <div class='nav navbar-nav navbar-left'>
+      <%= button_to "Sign Out", destroy_user_session_path, class: "btn btn-default navbar-btn", method: :delete %>
     </div>
   <% end %>
 

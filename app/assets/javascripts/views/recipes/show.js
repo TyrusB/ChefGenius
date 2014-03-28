@@ -45,7 +45,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   },
 
   addPhoto: function() {
-    this.$('#img-container').append($("<img></img>").attr("id", "recipe-picture").attr( "src", this.model.get('photoUrl') ))
+    this.$('.img-rounded').replaceWith($("<img></img>").attr('class', 'img-rounded').attr( "src", this.model.get('photoUrl') ))
   },
 
   handleAnnotationSaved: function() {
