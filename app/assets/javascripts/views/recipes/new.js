@@ -36,7 +36,8 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     reader.onload = function(e) {
       // you need to send e.target.result in your $.ajax request
       view.renderPhoto(e.target.result)
-      console.log(this.result);
+      view.photoData = e.target.result
+      // add view var with data
     }
     reader.readAsDataURL(file);
   },
@@ -90,6 +91,10 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     event.preventDefault();
     var view = this;
     var info = this.$('.recipe-form').serializeJSON();
+
+    if (this.photoData) {
+      info.recipes["title_photo"] = this.photoData;
+    }
 
     this.model.save(info, {
       success: function(model) {
