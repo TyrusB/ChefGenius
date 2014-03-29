@@ -2,10 +2,12 @@
 #
 # Table name: infos
 #
-#  id        :integer          not null, primary key
-#  cook_time :string(255)
-#  prep_time :string(255)
-#  recipe_id :integer
+#  id         :integer          not null, primary key
+#  cook_time  :string(255)
+#  prep_time  :string(255)
+#  recipe_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class Info < ActiveRecord::Base

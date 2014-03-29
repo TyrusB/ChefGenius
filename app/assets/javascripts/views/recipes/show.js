@@ -3,7 +3,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
 
   events: {
     "click button#edit-recipe":"makeEditable",
-    "click button#delete-recipe":"deleteRecipe",
+    "click button#delete-recipe":"deleteRecipe"
   },
 
   initialize: function(options) {
@@ -12,12 +12,14 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     this.listenTo(this.vent, "tooltip:clicked", this.addAnnotationBox)
     this.listenTo(this.vent, "annotation:saved", this.handleAnnotationSaved)
     this.listenTo(this.vent, "annotation-link:clicked", this.handleAnnotationClicked)
+    $(document).on("click", "body", this.testForAnnotationRefresh.bind(this) )
   },
 
   render: function() {
     var content = this.template({
       recipe: this.model
     });
+
     this.$el.html(content);
 
     this.addInfo();
@@ -45,7 +47,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   },
 
   addPhoto: function() {
-    this.$('.img-rounded').replaceWith($("<img></img>").attr('class', 'img-rounded').attr( "src", this.model.get('photoUrl') ))
+    this.$('.img-rounded').replaceWith($("<img></img>").attr('class', 'img-rounded').attr( "src", this.model.get('photo') ))
   },
 
   handleAnnotationSaved: function() {
@@ -129,7 +131,13 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     })
   },
 
-
+  testForAnnotationRefresh: function(event) {
+    if (!$(event.target).hasClass("tooltipter-content") && 
+        !$(event.target).hasClass("annotate-button") &&
+        !$(event.target).hasClass("annotation-pending") ) {
+      this.vent.trigger("annotationRefresh");
+    } 
+  }
 
 });
 

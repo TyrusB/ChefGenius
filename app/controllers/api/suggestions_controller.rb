@@ -6,7 +6,7 @@ class Api::SuggestionsController < ApplicationController
     @suggestion = Suggestion.new(suggestion_params)
 
     if @suggestion.save
-      render :json => @suggestion
+      render "suggestions/model"
     else
       render :json => :unprocessable_entity
     end

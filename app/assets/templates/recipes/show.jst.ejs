@@ -4,7 +4,7 @@
 
   <div class='row recipe-section'>
     <div class='recipe-name'>
-      <h1 class='text-center'><%= recipe.get('name') %></h1>
+      <h1 class='text-center'><%= recipe.escape('name') %></h1>
     </div>
   </div>
 
@@ -30,7 +30,7 @@
 </div>
 
 <div class='buttons'>
-  <% if (ChefGenius.currentUser.id === recipe.get('author_id') ) { %>
+  <% if (ChefGenius.currentUser.id === recipe.escape('authorId') ) { %>
     <button id='edit-recipe' class='recipe-button'>
       Edit this Recipe
     </button>

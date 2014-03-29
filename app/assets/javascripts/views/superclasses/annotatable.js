@@ -101,7 +101,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
     });
 
     //HAVE TO HAVE THIS ONE FIRST
-    this.vent.trigger("item:highlighted")
+    this.vent.trigger("annotationRefresh")
 
     this.addAnnotationSpans(potentialAnnotation)
     this.createTooltip();
@@ -109,8 +109,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
     potentialAnnotation.collection = this.model.annotations();
     this.addTooltipListener(potentialAnnotation);
 
-    this.listenToOnce(this.vent, "item:highlighted", this.render)
-
+    this.listenToOnce(this.vent, "annotationRefresh", this.render)
   },
 
   createTooltip: function() {

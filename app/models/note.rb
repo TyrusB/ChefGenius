@@ -2,9 +2,11 @@
 #
 # Table name: notes
 #
-#  id        :integer          not null, primary key
-#  body      :text
-#  recipe_id :integer
+#  id          :integer          not null, primary key
+#  description :text
+#  recipe_id   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 class Note < ActiveRecord::Base

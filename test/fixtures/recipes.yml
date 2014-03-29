@@ -2,8 +2,18 @@
 #
 # Table name: recipes
 #
-#  id   :integer          not null, primary key
-#  name :string(255)
+#  id                       :integer          not null, primary key
+#  name                     :string(255)
+#  created_at               :datetime
+#  updated_at               :datetime
+#  cook_time                :string(255)
+#  prep_time                :string(255)
+#  author_id                :integer          not null
+#  title_photo_file_name    :string(255)
+#  title_photo_content_type :string(255)
+#  title_photo_file_size    :integer
+#  title_photo_updated_at   :datetime
+#  category                 :string(255)      default("Main Course"), not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
