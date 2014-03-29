@@ -1,4 +1,6 @@
 <div class='comment-show'>
-  <div><%= suggestion.get("content") %><div>
+  <div><%= suggestion.escape("content") %><div>
 </div>
-<div class='comment-info'>-- (user_name) at (time)</div>
+<div class='comment-info'>
+  -- <%= suggestion.escape('authorEmail') %>
+</div>

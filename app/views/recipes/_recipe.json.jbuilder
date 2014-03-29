@@ -1,9 +1,10 @@
-json.(recipe, :id, :name, :created_at, :author_id)
+json.(recipe, :id, :name, :created_at)
+
+json.authorId recipe.author.id
+json.authorEmail recipe.author.email
 
 if recipe.title_photo
-  json.photo do
-    json.url recipe.title_photo.url(:small)
-  end
+  json.photo recipe.title_photo
 end
 
 steps ||= nil

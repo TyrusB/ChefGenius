@@ -36,7 +36,6 @@ window.ChefGenius.Views.AnnotationShow = Backbone.CompositeView.extend({
     var suggestion = new ChefGenius.Models.Suggestion();
     var suggestionNew = new ChefGenius.Views.SuggestionNew({
       model: suggestion,
-      annotation: this.model,
       vent: this.vent
     })
 
@@ -46,18 +45,21 @@ window.ChefGenius.Views.AnnotationShow = Backbone.CompositeView.extend({
 
   newComment: function(event) {
     var view = this;
-
     event.preventDefault();
+    // format comment data
     var commentData = $(event.currentTarget).serializeJSON();
-
+    var otherInfo = {
+      annotation_id: this.model.id
+    }
+    _.extend(commentData.suggestions, otherInfo);
+    //initialize/save comment
     var comment = new ChefGenius.Models.Suggestion();
     comment.collection = this.model.suggestions();
-
     comment.save(commentData, {
       success: function(suggestion) {
         view.model.suggestions().add(suggestion);
         view.addSuggestion(suggestion);
-        $('form')[0].reset()
+        $('.new-comment-form')[0].reset()
       }
     })
   }
