@@ -6,11 +6,11 @@
 
   <div class='row button-row'>
     <div class='col col-xs-4'>
-      <%= button_to "Sign In", class: "landing-button reg"%>
+      <%= button_to "Sign In", {}, class: "landing-button reg"%>
     </div>
 
     <div class='col col-xs-4'>
-      <%= button_to "Sign In As Guest", class: "landing-button guest", controller: 'devise/sessions', action: 'create', email: "test@test.com", password: "password"  %>
+      <%= button_to "Sign In As Guest", {controller: 'devise/sessions', action: 'create', user: { email: "test@test.com", password: "password"} }, { form_class: "landing-button guest" }  %>
     </div>
 
     <div class='col col-xs-4'>
@@ -20,7 +20,7 @@
 
 
   <div class='row'>
-    <div class='col col-xs-6 col-xs-offset-3'>
+    <div class='col col-xs-6 col-xs-offset-3 hidden signin'>
       <h2>Sign in (Make hidden, triggerable by click)</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
