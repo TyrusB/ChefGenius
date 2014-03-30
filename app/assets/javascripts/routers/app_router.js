@@ -7,6 +7,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
 
   routes: {
     "":"recipesIndex",
+    "recipes":"recipesIndex",
     "recipes/new":"recipesNew",
     "recipes/:id":"recipeShow",
     "recipes/:id/edit":"recipesEdit",
@@ -30,7 +31,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
 
     var recipesOfType = this.recipes.where( { category: description } );
     var subCollection = new ChefGenius.Collections.Recipes(recipesOfType)
-    
+
     var subIndex = new ChefGenius.Views.RecipesIndex({
       collection: subCollection,
       description: description
