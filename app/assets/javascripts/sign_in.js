@@ -4,4 +4,8 @@ $(function() {
     event.preventDefault();
     $('.signin').toggleClass('hidden');
   });
+
+  $('.fb').click(function(event) {
+    event.preventDefault();
+  });
 });
