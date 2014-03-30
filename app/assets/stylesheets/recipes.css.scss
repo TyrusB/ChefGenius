@@ -50,13 +50,6 @@ body {
   position: relative;
 }
 
-.img-rounded {
-  margin-top: 20px;
-  width: 180px;
-  height: 180px;
-  background-color: lightgrey;
-}
-
 
 .recipe-button {
   text-align: center;
@@ -176,11 +169,18 @@ ul li {
 // SHARED
 
 .title-picture {
-  width: 180px;
-  height: 180px;
+  width: 250px;
+  height: 250px;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.img-rounded {
+  margin-top: 20px;
+  width: 250px;
+  height: 250px;
+  background-color: lightgrey;
 }
 
 //NEW RECIPES
@@ -200,8 +200,8 @@ ul li {
 .picture-standin {
   border: 2px solid darkgrey;
   background: lightgrey;
-  width: 180px;
-  height: 180px;
+  width: 250px;
+  height: 250px;
   position: absolute;
   top: 0;
   left: 0;
@@ -214,6 +214,13 @@ ul li {
   margin-left: auto;
 }
 
+.category-selector {
+  width: 300px;
+  margin-right: 0;
+  margin-left: auto;
+  margin-bottom: 30px
+}
+
 
 input {
   margin: 10px;
@@ -223,7 +230,7 @@ input {
 input[type=file] {
   margin: 0;
   position: absolute;
-  top: 200px;
+  top: 260px;
 }
 
 textarea {

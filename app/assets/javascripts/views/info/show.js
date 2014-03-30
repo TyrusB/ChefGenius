@@ -3,7 +3,7 @@ window.ChefGenius.Views.InfoShow = Backbone.View.extend({
 
   render: function() {
     var content = this.template({
-      recipe: this.model
+      info: this.model
     });
 
     this.$el.html(content);

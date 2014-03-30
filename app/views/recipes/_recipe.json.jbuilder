@@ -1,4 +1,4 @@
-json.(recipe, :id, :name, :created_at)
+json.(recipe, :id, :name, :category, :created_at)
 
 json.authorId recipe.author.id
 json.authorEmail recipe.author.email

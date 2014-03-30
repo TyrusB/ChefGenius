@@ -9,16 +9,34 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
     "":"recipesIndex",
     "recipes/new":"recipesNew",
     "recipes/:id":"recipeShow",
-    "recipes/:id/edit":"recipesEdit"
-
+    "recipes/:id/edit":"recipesEdit",
+    "recipes/type/:type":"recipesSubIndex"
   },
 
   recipesIndex: function() {
     var index = new ChefGenius.Views.RecipesIndex({
-      collection: this.recipes
+      collection: this.recipes,
+      description: "All Recipes"
     });
 
     this._swapView(index);
+  },
+
+  recipesSubIndex: function(type) {
+    //formatting url-route
+    var description = type.replace("-", " ").replace(/\b\w/g, function(letter) {
+      return letter.toUpperCase();
+    });
+
+    var recipesOfType = this.recipes.where( { category: description } );
+    var subCollection = new ChefGenius.Collections.Recipes(recipesOfType)
+    
+    var subIndex = new ChefGenius.Views.RecipesIndex({
+      collection: subCollection,
+      description: description
+    });
+
+    this._swapView(subIndex);
   },
 
   recipesEdit: function(id) {
