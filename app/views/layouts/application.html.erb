@@ -4,6 +4,9 @@
   <title>ChefGenius</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
+  <% if params[:controller] == "devise/sessions" %>
+    <%= javascript_include_tag "sign_in" %>
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -20,13 +23,13 @@
         <b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
-        <li><a href="#/recipes/type/main-course">Main Courses</a></li>
-        <li><a href="#/recipes/type/appetizer">Appetizers</a></li>
-        <li><a href="#/recipes/type/dessert">Desserts</a></li>
+        <li><a href="<%= root_url %>#/recipes/type/main-course">Main Courses</a></li>
+        <li><a href="<%= root_url %>#/recipes/type/appetizer">Appetizers</a></li>
+        <li><a href="<%= root_url %>#/recipes/type/dessert">Desserts</a></li>
         <li class="divider"></li>
-        <li><a href="#/">All Recipes</a></li>
+        <li><a href="<%= root_url %>#/">All Recipes</a></li>
         <li class="divider"></li>
-        <li><a href="#/recipes/new">Add a Recipe</a></li>
+        <li><a href="<%= root_url %>#/recipes/new">Add a Recipe</a></li>
       </ul>
     </li>
   </ul>
