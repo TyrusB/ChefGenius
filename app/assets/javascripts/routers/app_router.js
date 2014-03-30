@@ -17,7 +17,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
   recipesIndex: function() {
     var index = new ChefGenius.Views.RecipesIndex({
       collection: this.recipes,
-      description: "All Recipes"
+      description: "All"
     });
 
     this._swapView(index);
