@@ -49,7 +49,7 @@ class Api::RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipes).permit( :name, :title_photo,
+      params.require(:recipes).permit( :name, :title_photo, :category,
                                        :steps_attributes => [:description],
                                        :info_attributes => [:prep_time, :cook_time],
                                        :ingredients_attributes => [:description],

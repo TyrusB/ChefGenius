@@ -9,8 +9,17 @@
       </div>
 
       <div class='row recipe-section'>
-
+        <div class='category-selector'>
+          <label for='category-select'>Select Category:</label>
+          <select id='category-select' name='recipes[category]'>
+            <option value='Main Course'>Main Course</option>
+            <option value='Appetizer'>Appetizer</option>
+            <option value='Dessert'>Dessert</option>
+          </select>
+        </div>
+        
         <div id='info-section' class='info-new'></div>
+
         <div id='picture-container'>
           <div class='picture-standin'>Upload picture here...</div>
           <input type="file" multiple class='recipe-photo-input'>
@@ -33,11 +42,6 @@
         </div>
       </div>
 
-      <!-- <div class='row recipe-section'>
-        <div class='col-xs-offset-3'>
-          <button id='submit-recipe'>Add this recipe</button>
-        </div>
-      </div> -->
     </form>
 
   <div class='buttons'>

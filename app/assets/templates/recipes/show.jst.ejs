@@ -30,7 +30,7 @@
 </div>
 
 <div class='buttons'>
-  <% if (ChefGenius.currentUser.id === recipe.escape('authorId') ) { %>
+  <% if (ChefGenius.currentUser.id === recipe.get('authorId') ) { %>
     <button id='edit-recipe' class='recipe-button'>
       Edit this Recipe
     </button>

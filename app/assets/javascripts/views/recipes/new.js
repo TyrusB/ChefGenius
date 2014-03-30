@@ -91,7 +91,7 @@ window.ChefGenius.Views.RecipeNew = Backbone.CompositeView.extend({
     event.preventDefault();
     var view = this;
     var info = this.$('.recipe-form').serializeJSON();
-
+    
     if (this.photoData) {
       info.recipes["title_photo"] = this.photoData;
     }

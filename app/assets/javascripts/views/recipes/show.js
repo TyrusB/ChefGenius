@@ -26,6 +26,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     this.addNote();
     this.model.ingredients().each( this.addIngredient.bind(this) );
     this.model.steps().each( this.addStep.bind(this) );
+    this.renderSubviews();
     this.addPhoto();
 
     return this;
@@ -78,7 +79,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
       model: this.model.info()
     });
     this.addSubview('#info-section', infoView);
-    infoView.render();
   },
 
   addAnnotationBox: function(annotation) {
@@ -102,7 +102,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
       vent: this.vent
     });
     this.addSubview('#note-section', noteView);
-    noteView.render();
   },
 
   addIngredient: function(ingredient) {
@@ -111,7 +110,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
       vent: this.vent
     });
     this.addSubview('#ingredients-list', ingredientShow);
-    ingredientShow.render()
   },
 
   addStep: function(step) {
@@ -120,7 +118,6 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
       vent: this.vent
     });
     this.addSubview('#steps-list', stepShow);
-    stepShow.render();
   },
 
   deleteRecipe: function() {
