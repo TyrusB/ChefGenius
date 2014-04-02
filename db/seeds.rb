@@ -20,7 +20,10 @@ end
   [ "Grilled Vegetables", 2],
   [ "Pesto Pizza", 2]
 ].each do |name, user_id|
-    r = Recipe.new(:name => name, :author_id => user_id)
+    picture_info = open('https://s3-us-west-2.amazonaws.com/chefgenius-production/Coq_au_vin_rouge.jpg')
+
+    r = Recipe.new(:name => name, :author_id => user_id,
+                    :title_photo => picture_info)
     r.save
 end
 
