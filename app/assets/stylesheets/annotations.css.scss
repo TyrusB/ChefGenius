@@ -6,7 +6,7 @@
 .annotation-text {
   width: 90%;
   border-radius: 0px;
-  border: 1px 1px 1px 1px solid black;
+  border: 1px solid black;
   margin: 0 auto 0 20px;
   width: 90%;
   max-width: 90%;
@@ -15,16 +15,16 @@
   border-radius: 5px;
 }
 
-.annotation-instructions {
-  margin: 0 auto 30px 20px;
-  width: 90%;
-  max-width: 90%;
-  height: 30px;
-  max-height: 30px;
-  border: 1px solid black;
-  border-top: 1px dashed black;
-  padding: 5px;
-}
+//.annotation-instructions {
+//  margin: 0 auto 30px 20px;
+//  width: 90%;
+//  max-width: 90%;
+//  height: 30px;
+//  max-height: 30px;
+//  border: 1px solid black;
+//  border-top: 1px dashed black;
+//  padding: 5px;
+//}
 
 .annotation-style {
   margin-top: 30px;
@@ -62,8 +62,9 @@ body .modal {
 .content-container {
   border: 1px solid black;
   border-radius: 3px;
-  height: 150px;
+  min-height: 150px;
   padding: 2px;
+  margin-bottom: 20px;
 }
 
 .new-comment-form {

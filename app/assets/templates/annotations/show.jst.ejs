@@ -8,7 +8,7 @@
 
       <div class="modal-body">
         <div class='content-container'>
-          <%= annotation.escape('content') %>
+          <%= marked(annotation.escape('content')) %>
         </div>
         <div class='annotation-info'>
           Annotated By: <%= annotation.escape('authorEmail') %>
