@@ -1,10 +1,21 @@
+// Info on classnames/attributes and how they work with annotations and edits
+// editable, annotatable: classes that serve as permanent markers
+// can-edit, can-annotate: classes that indicate the present state of the view
+// open : attribute that indicates whether or not the view should render
+//        an edit view or a show view.
+
 window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   tagName: "li",
 
-  className: "ingredient",
+  // editable & annotatable are permanent markers, can-* indicates current state
+  className: "ingredient editable annotatable can-annotate", //holds-annotations?
 
   attributes: function() {
-    return { "data-id": this.model.id }
+    return  { 
+              //for polymorphic associations on Rails end
+              "data-annotatable-id": this.model.id,
+              "data-annotatable-type": 'Ingredient'
+            }
   },
 
   template: function() {
@@ -12,34 +23,11 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   },
 
   initialize: function(options) {
-    this.open = false;
-    this.editable = false;
     this.vent = options.vent;
 
+    this.lisenTo(this.vent, 'edit-button:clicked', this.closeEdit)
+
     Backbone.AnnotatableView.prototype.initialize.call(this);
-  },
-
-  events: function() {
-    var theseEvents = {
-      "click .editable-closed":"beginEditing",
-      "submit form":"endEditing"
-    }
-    protoEvents = Backbone.AnnotatableView.prototype.events;
-
-    return _.extend(theseEvents, protoEvents);
-
-  },
-
-  toggleOpen: function() {
-    this.open = (this.open === false && this.editable === true) ? true : false;
-  },
-
-  makeEditable: function() {
-    this.editable = true;
-  },
-
-  makeNotEditable: function() {
-    this.editable = false;
   },
 
   render: function() {
@@ -48,11 +36,40 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
     });
 
     this.$el.html(content);
-
+  
     this.addAnnotationSpans();
 
     return this;
   },
+
+  events: function() {
+    var theseEvents = {
+      "click":"handleClick",
+      "submit form":"submitChanges"
+    }
+    protoEvents = Backbone.AnnotatableView.prototype.events;
+
+    return _.extend(theseEvents, protoEvents);
+
+  },
+
+  closeEdit: function() {
+    if (this.open === true) {
+      this.open = false;
+      this.render();
+    }
+  },
+
+  handleClick: function() {
+    if ( this.open === false && this.$el.hasClass('can-edit') ) {
+      this.open = true;
+      this.render();
+    }
+  },
+
+  // toggleOpen: function() {
+  //   this.open = (this.open === false && this.editable === true) ? true : false;
+  // },
 
   beginEditing: function() {
     if (this.editable) {
@@ -61,7 +78,7 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
     }
   },
 
-  endEditing: function(event) {
+  submitChanges: function(event) {
     event.preventDefault();
     var view = this;
     var info = this.$(event.currentTarget).serializeJSON();
@@ -70,11 +87,8 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
       success: function(response) {
         view.open = false;
         view.render();
-        view.$('.editable').toggleClass('editable-closed');
       }
     });
-
-
   }
 
 });
