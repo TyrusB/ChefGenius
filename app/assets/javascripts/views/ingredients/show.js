@@ -1,8 +1,8 @@
 // Info on classnames/attributes and how they work with annotations and edits
 // editable, annotatable: classes that serve as permanent markers
-// can-edit, can-annotate: classes that indicate the present state of the view
+// can-edit, can-annotate: classes that indicate the present state of the view. Will be one or another
 // open : attribute that indicates whether or not the view should render
-//        an edit view or a show view.
+//        an edit view or a show view. Should only be true when can-edit is applied.
 
 window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   tagName: "li",
@@ -23,11 +23,27 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   },
 
   initialize: function(options) {
+    this.open = false;
+    
     this.vent = options.vent;
-
-    this.lisenTo(this.vent, 'edit-button:clicked', this.closeEdit)
+    this.listenTo(this.vent, 'edit-button:clicked', this.closeEdit)
 
     Backbone.AnnotatableView.prototype.initialize.call(this);
+  },
+
+  makeEditable: function() {
+    //deprecated
+  },
+
+  events: function() {
+    var theseEvents = {
+      "click":"handleClick",
+      "submit form":"submitChanges"
+    }
+    protoEvents = Backbone.AnnotatableView.prototype.events;
+
+    return _.extend(theseEvents, protoEvents);
+
   },
 
   render: function() {
@@ -42,17 +58,6 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
     return this;
   },
 
-  events: function() {
-    var theseEvents = {
-      "click":"handleClick",
-      "submit form":"submitChanges"
-    }
-    protoEvents = Backbone.AnnotatableView.prototype.events;
-
-    return _.extend(theseEvents, protoEvents);
-
-  },
-
   closeEdit: function() {
     if (this.open === true) {
       this.open = false;
@@ -62,17 +67,6 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
 
   handleClick: function() {
     if ( this.open === false && this.$el.hasClass('can-edit') ) {
-      this.open = true;
-      this.render();
-    }
-  },
-
-  // toggleOpen: function() {
-  //   this.open = (this.open === false && this.editable === true) ? true : false;
-  // },
-
-  beginEditing: function() {
-    if (this.editable) {
       this.open = true;
       this.render();
     }
