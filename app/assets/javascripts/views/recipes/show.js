@@ -2,7 +2,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   template: JST["recipes/show"],
 
   events: {
-    "click button#edit-recipe":"makeEditable",
+    "click button#edit-recipe":"toggleEditable",
     "click button#delete-recipe":"deleteRecipe"
   },
 
@@ -32,7 +32,9 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  makeEditable: function() {
+  toggleEditable: function() {
+    this.vent.trigger("edit-button:clicked");
+
     var view = this;
 
     $('.recipe-container').toggleClass('can-edit-page-container');
@@ -44,6 +46,9 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     _(this.subviews()["#steps-list"]).each ( function(subview) {
       subview.makeEditable();
     })
+
+    this.$('.editable').toggleClass('can-edit');
+    this.$('.annotatable').toggleClass('can-annotate');
 
   },
 
