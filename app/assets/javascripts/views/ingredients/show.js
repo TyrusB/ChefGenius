@@ -7,48 +7,40 @@
 window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   tagName: "li",
 
-  // editable & annotatable are permanent markers, can-* indicates current state
-  className: "ingredient editable annotatable can-annotate", //holds-annotations?
+  className: function() {
+    return "ingredient " + _.result(Backbone.EditableAnnotatableView.prototype, "className");
+  },
 
-  attributes: function() {
-    return  { 
-              //for polymorphic associations on Rails end
-              "data-annotatable-id": this.model.id,
-              "data-annotatable-type": 'Ingredient'
-            }
+  attributes: function() { 
+    return {
+      //for polymorphic associations on Rails end
+      "data-annotatable-id": this.model.id,
+      "data-annotatable-type": 'Ingredient'
+    }
   },
 
   template: function() {
-    return this.open ? JST['ingredients/edit'] : JST['ingredients/show'];
+    return this.open ? JST['steps/edit'] : JST['steps/show'];
   },
 
   initialize: function(options) {
-    this.open = false;
-    
     this.vent = options.vent;
-    this.listenTo(this.vent, 'edit-button:clicked', this.closeEdit)
 
-    Backbone.AnnotatableView.prototype.initialize.call(this);
-  },
-
-  makeEditable: function() {
-    //deprecated
+    Backbone.EditableAnnotatableView.prototype.initialize.call(this);
   },
 
   events: function() {
-    var theseEvents = {
-      "click":"handleClick",
-      "submit form":"submitChanges"
+    var showEvents = {
+      
     }
-    protoEvents = Backbone.AnnotatableView.prototype.events;
+    protoEvents = _.result(Backbone.EditableAnnotatableView.prototype, "events");
 
-    return _.extend(theseEvents, protoEvents);
-
+    return _.extend(showEvents, protoEvents);
   },
 
   render: function() {
     var content = this.template()({
-      ingredient: this.model
+      step: this.model
     });
 
     this.$el.html(content);
@@ -58,31 +50,5 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
     return this;
   },
 
-  closeEdit: function() {
-    if (this.open === true) {
-      this.open = false;
-      this.render();
-    }
-  },
-
-  handleClick: function() {
-    if ( this.open === false && this.$el.hasClass('can-edit') ) {
-      this.open = true;
-      this.render();
-    }
-  },
-
-  submitChanges: function(event) {
-    event.preventDefault();
-    var view = this;
-    var info = this.$(event.currentTarget).serializeJSON();
-
-    this.model.save(info, {
-      success: function(response) {
-        view.open = false;
-        view.render();
-      }
-    });
-  }
 
 });
