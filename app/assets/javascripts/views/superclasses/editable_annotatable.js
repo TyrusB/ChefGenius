@@ -1,25 +1,24 @@
-Backbone.EditableView = Backbone.View.extend({
-  tagName: "li",
+Backbone.EditableAnnotatableView = Backbone.AnnotatableView.extend({
+  className: function() {
+    // use result for extensibility, in case annotatable's className is a function
+    return "editable " + _.result(Backbone.AnnotatableView.prototype, "className")
+  }, 
 
-  className: "editable", 
+  events: function() {
+    var editEvents = {
+      "click":"handleClick",
+      "submit form":"submitChanges"
+    }
 
-  attributes: function() {
-    return  { 
-              //for polymorphic associations on Rails end
-              "data-annotatable-id": this.model.id,
-              "data-annotatable-type": 'Ingredient'
-            }
-  },
-
-  events: {
-    "click":"handleClick",
-    "submit form":"submitChanges"
+    return _.extend(editEvents, _.result(Backbone.AnnotatableView.prototype, "events"));
   },
 
   initialize: function() {
     this.open = false;
     
     this.listenTo(this.vent, 'edit-button:clicked', this.closeEdit)
+
+    Backbone.AnnotatableView.prototype.initialize.call(this);
   },
 
   closeEdit: function() {
@@ -48,5 +47,4 @@ Backbone.EditableView = Backbone.View.extend({
       }
     });
   }
-
 })

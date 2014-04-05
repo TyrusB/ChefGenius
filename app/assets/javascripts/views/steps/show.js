@@ -1,10 +1,16 @@
-window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
+window.ChefGenius.Views.StepShow = Backbone.EditableAnnotatableView.extend({
   tagName: "li",
 
-  className: "step",
+  className: function() {
+    return "step " + _.result(Backbone.EditableAnnotatableView.prototype, "className");
+  },
 
-  attributes: function() {
-    return { "data-id": this.model.id }
+  attributes: function() { 
+    return {
+      //for polymorphic associations on Rails end
+      "data-annotatable-id": this.model.id,
+      "data-annotatable-type": 'Step'
+    }
   },
 
   template: function() {
@@ -12,34 +18,18 @@ window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
   },
 
   initialize: function(options) {
-    this.open = false;
-    this.editable = false;
     this.vent = options.vent;
 
-    Backbone.AnnotatableView.prototype.initialize.call(this);
+    Backbone.EditableAnnotatableView.prototype.initialize.call(this);
   },
 
   events: function() {
-    var theseEvents = {
-      "click .editable-closed":"beginEditing",
-      "submit form":"endEditing"
+    var showEvents = {
+      
     }
-    protoEvents = Backbone.AnnotatableView.prototype.events;
+    protoEvents = _.result(Backbone.EditableAnnotatableView.prototype, "events");
 
-    return _.extend(theseEvents, protoEvents);
-
-  },
-
-  toggleOpen: function() {
-    this.open = (this.open == false && this.editable == true) ? true : false;
-  },
-
-  makeEditable: function() {
-    this.editable = true;
-  },
-
-  makeNotEditable: function() {
-    this.editable = false;
+    return _.extend(showEvents, protoEvents);
   },
 
   render: function() {
@@ -48,35 +38,11 @@ window.ChefGenius.Views.StepShow = Backbone.AnnotatableView.extend({
     });
 
     this.$el.html(content);
-
+  
     this.addAnnotationSpans();
 
     return this;
   },
-
-  beginEditing: function() {
-    if (this.editable) {
-      this.open = true;
-      this.render();
-    }
-  },
-
-  endEditing: function(event) {
-    event.preventDefault();
-    var view = this;
-    var info = this.$(event.currentTarget).serializeJSON();
-
-    this.model.save(info, {
-      success: function(response) {
-        view.open = false;
-        view.render();
-        view.$('.editable').toggleClass('editable-closed')
-      }
-    });
-
-
-  },
-
 
 
 });

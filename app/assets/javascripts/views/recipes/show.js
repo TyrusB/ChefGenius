@@ -40,13 +40,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     $('.recipe-container').toggleClass('can-edit-page-container');
     $('.editable').toggleClass('editable-closed');
 
-    _(this.subviews()["#ingredients-list"]).each( function(subview) {
-      subview.makeEditable();
-    });
-    _(this.subviews()["#steps-list"]).each ( function(subview) {
-      subview.makeEditable();
-    })
-
+    
     this.$('.editable').toggleClass('can-edit');
     this.$('.annotatable').toggleClass('can-annotate');
 
