@@ -12,6 +12,13 @@ class Api::SuggestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @suggestion = Suggestion.find(params[:id])
+    @suggestion.destroy
+
+    render :json => @suggestion
+  end
+
   private
 
     def suggestion_params

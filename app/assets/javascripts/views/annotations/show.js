@@ -2,11 +2,12 @@ window.ChefGenius.Views.AnnotationShow = Backbone.CompositeView.extend({
   template: JST["annotations/show"],
 
   initialize: function(options) {
-    this.vent = options.vent
+    this.vent = options.vent;
   },
 
   events: {
-    'submit form':'newComment'
+    'submit form':'newComment',
+    'click .delete-comment':"deleteComment"
   },
 
   render: function() {
@@ -62,6 +63,14 @@ window.ChefGenius.Views.AnnotationShow = Backbone.CompositeView.extend({
         $('.new-comment-form')[0].reset()
       }
     })
+  },
+
+  deleteComment: function(event) {
+    var $button = $(event.currentTarget);
+    var id = $button.data('id');  
+    var comment = this.model.suggestions().get(id);
+
+    comment.destroy();
   }
 
 })

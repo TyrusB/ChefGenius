@@ -22,9 +22,9 @@ end
 ].each do |name, user_id|
     picture_info = File.open('app/assets/images/coq_au_vin.jpg')
 
-    r = Recipe.new(:name => name, :author_id => user_id,
-                    :title_photo => picture_info )
-    r.save
+    r = Recipe.new(:name => name, :author_id => user_id)#s,
+                    #:title_photo => picture_info )
+    r.save!
 end
 
 

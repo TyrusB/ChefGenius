@@ -4,7 +4,8 @@ window.ChefGenius.Views.SuggestionShow = Backbone.View.extend({
   className: "comment-container",
 
   initialize: function(options) {
-    this.vent = options.vent
+    this.vent = options.vent;
+    this.listenTo(this.model, 'destroy', this.leave)
   },
 
   render: function() {
