@@ -1,5 +1,10 @@
 <div class='comment-show'>
-  <div><%= suggestion.escape("content") %><div>
+  <div>
+    <%= suggestion.escape("content") %>
+    <% if (suggestion.get('authorId') === ChefGenius.currentUser.id) { %>
+      <button class='delete-comment' data-id='<%= suggestion.id %>'>Delete</button>
+    <% }; %>
+  <div>
 </div>
 <div class='comment-info'>
   -- <%= suggestion.escape('authorEmail') %>
