@@ -22,9 +22,29 @@ window.ChefGenius.Views.AnnotationNew = Backbone.View.extend({
     var view = this;
 
     var formData = this.$('form').serializeJSON();
-    //kind of hacky
+
+    var content = formData.content;
+
+    var content = content.replace(/([^\[\/\(]|^)(http|www).+\..+/g, function(link) {
+      link = link.replace(/\s/, "");
+      // if link is an image
+      if (/http.+\.(jpeg|jpg|gif|png)/.test(link)) {
+        return "![" + link + "]("+ link + ")";
+      // if not, it's a link, test whether it needs to be prepended with http:// or not
+      } else if (/^www.+/.test(link)) {
+        return "[" + link + "](http://" + link + ")";
+      } else {
+        return "[" + link + "](" + link + ")";
+      }
+    })
+    
+
+    // var content = preformatted.replace(/http.+\.(jpeg|jpg|gif|png)/, function(link) {
+    //   return "![link to " + link + "]("+ link + ")"
+    // });
+    
     var attrs = {
-      content: formData.content,
+      content: content,
       start_pos: this.model.get('start_pos'),
       end_pos: this.model.get('end_pos'),
       annotatable_id: this.model.get('annotatable_id'),
