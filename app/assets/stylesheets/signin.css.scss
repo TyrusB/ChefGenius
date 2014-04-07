@@ -8,7 +8,7 @@
 }
 
 body {
-  background: url("http://rencentermarin.org/wp-content/uploads/2012/09/cooking-classes.jpg") no-repeat center center fixed;
+  background: url("/images/chef_genius.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -23,10 +23,15 @@ body {
 
 .signin {
   display: none;
+  margin-top: 50px;
 }
 
 .landing-button {
   width: 80%;
   font-size: 20px;
   position: relative;
+}
+
+html, body {
+  height: 100%;
 }
