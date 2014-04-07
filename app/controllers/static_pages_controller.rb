@@ -1,7 +1,7 @@
 require 'json'
 
 class StaticPagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => :home
 
   def home
     @recipes = Recipe.all
@@ -9,10 +9,10 @@ class StaticPagesController < ApplicationController
     @user_json = { email: current_user.email, id: current_user.id }.to_json.html_safe
   end
 
-  def test
+  def about
   end
 
-  def test2
+  def contact
   end
 
 end
