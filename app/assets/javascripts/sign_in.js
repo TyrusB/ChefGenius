@@ -9,6 +9,10 @@ $(function() {
     }
   });
 
+  $('.guest').hover(function(event) {
+    $('.image-drop').slideDown('slow');
+  });
+
   $('.fb').click(function(event) {
     event.preventDefault();
   });

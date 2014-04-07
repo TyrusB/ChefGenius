@@ -1,7 +1,7 @@
 
 <div class='jumbotron landing-page'>
   <div class='row'>
-    <h1 class='text-center'>Chef Genius<br><small>A Rap Genius Clone</small></h1>
+    <h1 class='text-center'>Chef Genius<span class='image-holder'><img src='/images/hat.png' width='75' height:'150' class='image-drop'></span><br><small>A Rap Genius Clone</small></h1>
   </div>
 
   <div class='row button-row'>
@@ -65,13 +65,21 @@
   bottom: 10px;
   min-height: 75%;
 }
+.image-holder {
+  position: relative;
+}
 
-
+.image-drop {
+  display: none;
+  position: absolute;
+  left: 30px;
+}
 </style>
 
 <script>
   $(function() {
     $('.overall-container').delay(800).fadeIn('slow');
+
   })
 
   $('.landing-button').hover(
