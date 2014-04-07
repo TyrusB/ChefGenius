@@ -1,11 +1,27 @@
 <h1><%= description %> Recipes</h1>
 
-<ul>
-<% recipes.each( function(recipe) { %>
-  <li><a href='#/recipes/<%= recipe.id %>'>
-    <%= recipe.escape('name') %>
-  </a></li>
-<% }) %>
-</ul>
+<% if (recipes.models.length > 0) { %>
+<div class='row recipe-section'>
+  <div class='list-section col-xs-8'>
+    <ul class='annotatable recipe-list'>
+    <% recipes.each( function(recipe) { %>
+      <li><a href='#/recipes/<%= recipe.id %>'>
+        <%= recipe.escape('name') %>
+      </a> <small>by <%= recipe.escape('authorEmail') %></small></li>
+    <% }) %>
+    </ul>
+  </div>
+</div>
+<% } %>
 
 <a href='#/recipes/new'>Add a new Recipe</a>
+
+<style>
+  .overall-container {
+    height: 80%;
+  }
+
+  body, html {
+    height: 100%;
+  }
+</style>

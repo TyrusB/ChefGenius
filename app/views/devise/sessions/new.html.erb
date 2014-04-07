@@ -1,26 +1,26 @@
 
-<div class='jumbotron'>
+<div class='jumbotron landing-page'>
   <div class='row'>
     <h1 class='text-center'>Chef Genius<br><small>A Rap Genius Clone</small></h1>
   </div>
 
   <div class='row button-row'>
     <div class='col col-xs-4'>
-      <%= button_to "Sign In", {}, class: "landing-button reg"%>
+      <%= button_to "Sign In", {}, class: "landing-button reg recipe-button"%>
     </div>
 
     <div class='col col-xs-4'>
-      <%= button_to "Sign In As Guest", {controller: 'devise/sessions', action: 'create', user: { email: "test@test.com", password: "password"} }, { form_class: "landing-button guest" }  %>
+      <%= button_to "Sign In As Guest", {controller: 'devise/sessions', action: 'create', user: { email: "test@test.com", password: "password"} }, { class: "recipe-button landing-button guest" }  %>
     </div>
 
     <div class='col col-xs-4'>
-      <%= button_to "Sign In With Facebook",{}, form_class: "landing-button fb" %>
+      <%= button_to "Sign In With Facebook",{}, class: "recipe-button landing-button fb" %>
     </div>
   </div>
 
 
   <div class='row'>
-    <div class='col col-xs-6 col-xs-offset-3 hidden signin'>
+    <div class='col col-xs-6 col-xs-offset-3 signin'>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal"}) do |f| %>
         
         <div class='form-group'>
@@ -57,23 +57,28 @@
 
 <style>
 
-.button-row {
-  margin-top: 50px;
+.overall-container {
+  display: none;
+  border-radius: 10px;
+  border: 0;
+  position: relative;
+  bottom: 10px;
 }
 
-  body {
-    background: url("http://rencentermarin.org/wp-content/uploads/2012/09/cooking-classes.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
 
-  .jumbotron {
-    margin-top: 50px;
-    background-color: white;
-    min-height: 500px;
-    border-radius: 40px !important;
-  }
 </style>
 
+<script>
+  $(function() {
+    $('.overall-container').delay(800).fadeIn('slow');
+  })
+
+  $('.landing-button').hover(
+    function() {
+      $(this).css("top", "-7px");
+    },
+    function() {
+      $(this).css("top", "0");
+    }
+  )
+</script>

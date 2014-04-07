@@ -1,3 +1,32 @@
 .signin {
   margin-top: 30px;
 }
+
+
+.button-row {
+  margin-top: 70px;
+}
+
+body {
+  background: url("http://rencentermarin.org/wp-content/uploads/2012/09/cooking-classes.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.landing-page {
+  background-color: white;
+  min-height: 500px;
+  border-radius: 40px !important;
+}
+
+.signin {
+  display: none;
+}
+
+.landing-button {
+  width: 80%;
+  font-size: 20px;
+  position: relative;
+}
