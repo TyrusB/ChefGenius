@@ -16,7 +16,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
   },
 
   handleUserSelection: function(event) {
-    if ( !$(event.target).hasClass('annotated') && !$(event.target).hasClass('annotation-pending') ) {
+    if ( $(event.target).hasClass('can-annotate') && !$(event.target).hasClass('annotated') && !$(event.target).hasClass('annotation-pending') ) {
       var selection = window.getSelection();
       var range = selection.getRangeAt(0);
 

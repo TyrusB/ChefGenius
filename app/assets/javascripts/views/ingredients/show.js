@@ -4,7 +4,7 @@
 // open : attribute that indicates whether or not the view should render
 //        an edit view or a show view. Should only be true when can-edit is applied.
 
-window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
+window.ChefGenius.Views.IngredientShow = Backbone.EditableAnnotatableView.extend({
   tagName: "li",
 
   className: function() {
@@ -20,7 +20,7 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
   },
 
   template: function() {
-    return this.open ? JST['steps/edit'] : JST['steps/show'];
+    return this.open ? JST['ingredients/edit'] : JST['ingredients/show'];
   },
 
   initialize: function(options) {
@@ -40,12 +40,14 @@ window.ChefGenius.Views.IngredientShow = Backbone.AnnotatableView.extend({
 
   render: function() {
     var content = this.template()({
-      step: this.model
+      ingredient: this.model
     });
 
     this.$el.html(content);
   
-    this.addAnnotationSpans();
+    if (this.open === false) {
+      this.addAnnotationSpans();
+    }
 
     return this;
   },
