@@ -5,7 +5,6 @@ ChefGenius::Application.routes.draw do
   # Test pages for Annotatable UI 
   # get "/test", to: "static_pages#test"
   # get "/test2", to: "static_pages#test2"
-
   namespace :api do
     resources :recipes
     resources :steps
@@ -15,4 +14,7 @@ ChefGenius::Application.routes.draw do
     resources :annotations
     resources :suggestions
   end
+
+  get "/about", to: "static_pages#about"
+  get "/contact", to: "static_pages#contact"
 end
