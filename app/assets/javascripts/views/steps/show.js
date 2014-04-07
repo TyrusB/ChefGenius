@@ -39,7 +39,10 @@ window.ChefGenius.Views.StepShow = Backbone.EditableAnnotatableView.extend({
 
     this.$el.html(content);
   
-    this.addAnnotationSpans();
+    if (this.open === false) {
+      this.addAnnotationSpans();
+    }
+   
 
     return this;
   },
