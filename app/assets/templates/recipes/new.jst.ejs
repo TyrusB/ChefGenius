@@ -1,5 +1,5 @@
 
-<div class='overall-container'>
+<div class='recipe-container col-xs-offset-1 col-xs-8'>
 
     <form class='recipe-form'>
       <div class='row recipe-section'>
@@ -9,24 +9,27 @@
       </div>
 
       <div class='row recipe-section'>
-        <div class='category-selector'>
-          <label for='category-select'>Select Category:</label>
-          <select id='category-select' name='recipes[category]'>
-            <option value='Main Course'>Main Course</option>
-            <option value='Appetizer'>Appetizer</option>
-            <option value='Dessert'>Dessert</option>
-          </select>
+        <div class='col-xs-5'>
+          <div id='picture-container'>
+            <div class='picture-standin'>Upload picture here...</div>
+          </div>
+          <input type="file" class='recipe-photo-input'>
+          <div id='note-section' class='note-new'>About:</div>
         </div>
-        
-        <div id='info-section' class='info-new'></div>
-
-        <div id='picture-container'>
-          <div class='picture-standin'>Upload picture here...</div>
-          <input type="file" multiple class='recipe-photo-input'>
+        <div class='col-xs-7'>
+          <div class='category-selector'>
+            <label for='category-select'>Select Category:</label>
+            <select id='category-select' name='recipes[category]'>
+              <option value='Main Course'>Main Course</option>
+              <option value='Appetizer'>Appetizer</option>
+              <option value='Dessert'>Dessert</option>
+            </select>
+          </div>
+          
+          <div id='info-section' class='info-new'></div>
         </div>
-        <div id='note-section' class='note-new'>About:</div>
-
       </div>
+
 
       <div class='row recipe-section'>
         <div class='items-section'>

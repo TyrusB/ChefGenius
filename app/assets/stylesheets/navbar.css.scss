@@ -1,12 +1,15 @@
+$logo-color: floralwhite;
+$navbar-color: darkslateblue;
+
 /* title */
 .navbar-default .navbar-brand {
-    color: orange;
-    margin-left: 20px;
+    color: $logo-color;
+    margin-left: 10px;
     font-size: 150%;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: orange;
+    color: $logo-color;
 }
 /* link */
 .navbar-default .navbar-nav > li > a {
@@ -28,17 +31,25 @@
 }
 
 .dropdown {
-  margin-left: 25px;
+  margin-left: 15px;
 }
 
 .signed-in-text {
-  margin-left: 75px;
+  margin-left: 45px;
+}
+
+.navbar {
+  background-color: $navbar-color !important
 }
 
 .navbar-right {
-  margin-right: 100px !important;
+  margin-right: 50px !important;
   li {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
+}
+
+.navbar {
+  z-index: 10000;
 }

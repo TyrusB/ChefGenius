@@ -1,0 +1,148 @@
+// Place all the styles related to the recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//SPACING SECTION
+body {
+  margin-top: 50px;
+  background-color: darkgrey;
+  color: darkslateblue;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+// This class is the 'raised' looking portion
+.overall-container {
+  background-color: #FEFEFA !important;
+  border-right: 7px solid lightgrey;
+  border-left: 7px solid lightgrey;
+  min-height: 100%;
+}
+
+// BUTTONS SECTION
+
+// The button container
+.buttons {
+  width: 100px;
+  height: 300px;
+  position: fixed;
+  left: 75%;
+  top: 15%;
+}
+// Styling for the buttons themselves.
+.recipe-button {
+  text-align: center;
+  margin: auto 0;
+  display: block;
+  outline: none;
+  border: none;
+  background-color: #FEFEFA;
+  border-left: 2px solid #061F70;
+  border-right: 2px solid #061F70;
+  border-radius: 10px;
+  margin-top: 30px;
+  width: 100px;
+  height: 38px;
+  text: black;
+}
+
+
+
+//RECIPE SHOW PAGE
+
+//Recipe Title
+.recipe-name {
+  border-bottom: 4px solid darkslateblue;
+}
+
+
+//Recipe info section
+
+// Title image
+.img-rounded {
+  margin-top: 20px;
+  width: 200px;
+  height: 200px;
+  background-color: lightgrey;
+}
+
+//Adding some margins
+.recipe-section {
+  margin: 5%;
+  position: relative;
+}
+
+// Recipe Item sections(ingredients, steps)
+
+// Section name styling
+.elements-header {
+  padding: 20px 0 10px 20px;
+  font-size: 20px;
+}
+
+// Themed ()-style borders, some added spacing
+.list-section {
+  margin-top: 20px;
+  border-left: 2px solid #061F70;
+  border-right: 2px solid #061F70;
+  border-radius: 10px;
+  font-size: medium;
+  line-height: 150%;
+  // Pad bottom of lists
+  .recipe-list {
+    padding-bottom: 5px;
+    li {
+      margin: 10px;
+    }
+  }
+}
+
+// Some extra left padding for ingredient list items
+#ingredients-list li {
+  margin-left: 10px;
+  padding-left: 10px;
+  position: relative;
+
+}
+
+//STATE DEPENDENT STYLES
+
+.editable-closed {
+  &:hover {
+    border: 2px #FFB000 solid;
+    border-radius: 5px;
+  }
+}
+
+.can-edit-page-contain er {
+  border: 5px dashed red;
+}
+
+.annotated {
+  color: orange;
+  &:link {
+   text-decoration: none;
+  }
+  &:hover {
+    background-color: orange;
+    color: #061F70;
+    text-decoration: none;
+  }
+
+}
+
+.annotation-pending {
+  background-color: orange;
+  color: #061F70;
+  &:hover {
+    text-decoration: none;
+    color: #061F70;
+  }
+}
+
+.ingredient-checkbox {
+  display: inline;
+  position: absolute;
+  right: 20px;
+}
+

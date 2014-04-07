@@ -1,0 +1,56 @@
+
+
+//NEW RECIPES
+
+//Note section
+
+.note-new {
+  margin-top: 50px;
+
+  textarea {
+    width: 550px;
+    max-width: 550px;
+    height: 125px;
+    border-radius: 5px;
+  }
+}
+
+// Grey area for where the picture eventually gets rezzed
+.picture-standin {
+  border: 2px solid darkgrey;
+  background: lightgrey;
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+}
+
+
+.info-new {
+  input {
+    width: 90%;
+    margin: 10px;
+  }
+}
+
+.category-selector {
+  margin-right: 0;
+  margin-left: auto;
+  margin-bottom: 30px
+}
+
+li input {
+  margin: 10px;
+  width: 90%;
+}
+
+input[type=file] {
+  margin-top: 10px;
+  width: 110%
+}
+
+li textarea {
+  width: 90%;
+  height: 70px;
+  margin: 10px;
+  border-radius: 10px;
+}

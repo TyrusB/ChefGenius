@@ -1,6 +1,6 @@
 <!-- <div class='links'></div> -->
 
-<div class='overall-container'>
+<div class='recipe-container col-xs-offset-1 col-xs-8'>
 
   <div class='row recipe-section'>
     <div class='recipe-name'>
@@ -9,22 +9,26 @@
   </div>
 
   <div class='row recipe-section'>
+    <div class='col-xs-5'>
       <div id='info-section'></div>
       <div class='img-rounded'></div>
+    </div>
+    <div class='col-xs-7'>
       <div id='note-section' class='note-show'>About:</div>
-  </div>
-
-  <div class='row recipe-section'>
-    <div class='items-section ingredients-section'>
-      <div class='elements-header'>Ingredients List</div>
-      <ul id='ingredients-list' class='annotatable'></ul>
     </div>
   </div>
 
   <div class='row recipe-section'>
-    <div class='items-section'>
+    <div class='list-section col-xs-10'>
+      <div class='elements-header'>Ingredients List</div>
+      <ul id='ingredients-list' class='annotatable recipe-list'></ul>
+    </div>
+  </div>
+
+  <div class='row recipe-section'>
+    <div class='list-section'>
       <div class='elements-header'>Preparation</div>
-      <ol id='steps-list' class='annotatable'></ol>
+      <ol id='steps-list' class='annotatable recipe-list'></ol>
     </div>
   </div>
 </div>

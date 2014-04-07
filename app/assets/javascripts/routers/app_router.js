@@ -15,29 +15,43 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
   },
 
   recipesIndex: function() {
-    var index = new ChefGenius.Views.RecipesIndex({
-      collection: this.recipes,
-      description: "All"
-    });
+    var router = this;
 
-    this._swapView(index);
+    // Note, temporarily using non-bootstrapped data.
+    this.recipes.fetch({
+      success: function() {
+        var index = new ChefGenius.Views.RecipesIndex({
+          collection: router.recipes,
+          description: "All"
+        });
+
+        router._swapView(index);
+      }
+    })
+
   },
 
   recipesSubIndex: function(type) {
-    //formatting url-route
-    var description = type.replace("-", " ").replace(/\b\w/g, function(letter) {
-      return letter.toUpperCase();
-    });
+    var router = this;
 
-    var recipesOfType = this.recipes.where( { category: description } );
-    var subCollection = new ChefGenius.Collections.Recipes(recipesOfType)
+    this.recipes.fetch({ 
+      success: function() {
+        //formatting url-route
+        var description = type.replace("-", " ").replace(/\b\w/g, function(letter) {
+          return letter.toUpperCase();
+        });
 
-    var subIndex = new ChefGenius.Views.RecipesIndex({
-      collection: subCollection,
-      description: description
-    });
+        var recipesOfType = router.recipes.where( { category: description } );
+        var subCollection = new ChefGenius.Collections.Recipes(recipesOfType)
 
-    this._swapView(subIndex);
+        var subIndex = new ChefGenius.Views.RecipesIndex({
+          collection: subCollection,
+          description: description
+        });
+
+        router._swapView(subIndex);
+      }
+    })
   },
 
   recipesEdit: function(id) {
