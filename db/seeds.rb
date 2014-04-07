@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 [ ["test@test.com", "password"],
-  ["brooks85@gmail.com", "password"]
+  ["brooks85@gmail.com", "password"],
   ["guest@chef-genius.com", "password"]
 ].each do |email, password|
   u = User.new( email: email, password: password)
