@@ -16,6 +16,7 @@ gem 'cancan'
 gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'newrelic_rpm'
 
 group :doc do
   gem 'sdoc', require: false
