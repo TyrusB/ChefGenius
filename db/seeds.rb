@@ -6,9 +6,9 @@ ty2 = User.create!(email: "brooks85.ty@gmail.com", password: "password")
 spag_bol = Recipe.new(
   name: "Spaghetti Bolognese",
   category: "Main Course",
-  title_photo: File.open("app/assets/images/coq_au_vin.jpg"),
+  title_photo: File.open("public/images/spag_bol.jpg"),
 
-  note: Note.new(description: "Bushwick next level Shoreditch, ethical normcore sartorial Vice Tonx meh keytar twee ethnic stumptown Odd Future gastropub. McSweeney's Neutra letterpress, organic 8-bit small batch Shoreditch. Tote bag vegan messenger bag American Apparel, craft beer synth Etsy viral. DIY YOLO chillwave selfies Marfa butcher. Occupy disrupt selvage ethnic squid sartorial. Mixtape ennui art party, mumblecore Thundercats gluten-free gastropub locavore post-ironic Schlitz gentrify. American Apparel gastropub yr, ennui McSweeney's hashtag farm-to-table polaroid asymmetrical hoodie Vice."),
+  note: Note.new(description: "This is a delicious meat-based sauce for pasta based on a traditional italian recipe. To get the full flavor, it's best to let the sauce simmer for the full 4 hours. Use red wine if you've got time, otherwise go for white wine. There's no need to add any additional seasonings to this recipe -- salt and pepper are all you need in addition to the flavor of the meat."),
 
   info: Info.new(cook_time: "1.5 - 4 hours", prep_time: "30 minutes"),
 
@@ -36,7 +36,8 @@ spag_bol.steps.build(
     { description: "Increase heat to medium-high and add ground beef to pot 1/3 at a time. Let cook for approximately 15 minutes, turning down heat to medium for the last 5 minutes. Stir only occaisionally, to prevent burning" },
     { description: "Stir pot and deglaze with wine, scraping up the dark caramel colored bits stuck to the bottom of the pan" },
     { description: "Add mik and beef broth to pot. Stir and reduce to a simmer." },
-    { description: "Cover pot halfway and cook from 1.5 - 4 hours (the longer the better). The sauce is done once the consistency is thick, like oatmeal." }
+    { description: "Cover pot halfway and cook from 1.5 - 4 hours (the longer the better). The sauce is done once the consistency is thick, like oatmeal." },
+    { description: "Scoop out the chopped carrots, onions, and celery, and run through a food processor to thicken the sauce. Optionally, you can just dice the ingredients very thin in the beginning instead." }
   ]
 )
 
@@ -47,9 +48,9 @@ coq = Recipe.new(
   name: "Coq Au Vin",
   category: "Main Course",
   author_id: ty.id,
-  title_photo: File.open("app/assets/images/coq_au_vin.jpg"),
+  title_photo: File.open("public/images/coq_au_vin.jpg"),
 
-  note: Note.new(description: "Bushwick next level Shoreditch, ethical normcore sartorial Vice Tonx meh keytar twee ethnic stumptown Odd Future gastropub. McSweeney's Neutra letterpress, organic 8-bit small batch Shoreditch. Tote bag vegan messenger bag American Apparel, craft beer synth Etsy viral. DIY YOLO chillwave selfies Marfa butcher. Occupy disrupt selvage ethnic squid sartorial. Mixtape ennui art party, mumblecore Thundercats gluten-free gastropub locavore post-ironic Schlitz gentrify. American Apparel gastropub yr, ennui McSweeney's hashtag farm-to-table polaroid asymmetrical hoodie Vice."),
+  note: Note.new(description: "This is a traditional French country dish that's a great way to impress anyone you're having over. It takes a long time, both to prepare and took cook, but if you're going for fancy, hearty, and tasty, Coq Au Vin can't be beat. Traditionally, this recipe calls for a an old rooster to be used, but any roasting chicken that's around 5 pounds or so should do."),
 
   info: Info.new(cook_time: "2 hours", prep_time: "1.5 hours")
 )
@@ -90,7 +91,7 @@ pizza = Recipe.new(
   name: "Kale Pizza",
   category: "Main Course",
   author_id: ty2.id,
-  title_photo: File.open("app/assets/images/coq_au_vin.jpg"),
+  title_photo: File.open("public/images/kale_pizza.jpg"),
 
   note: Note.new(description: "Yes, seriously, Kale Pizza! Sounds gross, but it's delicious. I ascribe this recipe's deliciousness to sufficient-cheese principal: add enough cheese to anything, and it's going to be good (similar to the sufficient-butter and sufficient-cream principals). The pizza is actually quite easy to make and a great way to introduce someone to kale."),
 
@@ -129,9 +130,9 @@ sprouts = Recipe.new(
   name: "Braised Brussels Sprouts",
   category: "Appetizer",
   author_id: guest.id,
-  title_photo: File.open("app/assets/images/coq_au_vin.jpg"),
+  title_photo: File.open("public/images/braised_sprouts.jpg"),
 
-  note: Note.new(description: "Bushwick next level Shoreditch, ethical normcore sartorial Vice Tonx meh keytar twee ethnic stumptown Odd Future gastropub. McSweeney's Neutra letterpress, organic 8-bit small batch Shoreditch. Tote bag vegan messenger bag American Apparel, craft beer synth Etsy viral. DIY YOLO chillwave selfies Marfa butcher. Occupy disrupt selvage ethnic squid sartorial. Mixtape ennui art party, mumblecore Thundercats gluten-free gastropub locavore post-ironic Schlitz gentrify. American Apparel gastropub yr, ennui McSweeney's hashtag farm-to-table polaroid asymmetrical hoodie Vice."),
+  note: Note.new(description: "You probably never thought Brussels Sprouts could be this good. This is a great way of introducing children or other picky eaters to the joys of brussels sprouts. It uses a ton of cream and butter, so it's not exactly healthy, but it's a nice, delicious treat and a great way to occaisionally eat your veggies."),
 
   info: Info.new(cook_time: "2 hours", prep_time: "2 hours")
 )
@@ -162,38 +163,27 @@ asparagus = Recipe.new(
   name: "Grilled Asparagus",
   category: "Appetizer",
   author_id: guest.id,
-  title_photo: File.open("app/assets/images/coq_au_vin.jpg"),
+  title_photo: File.open("public/images/asparagus.jpg"),
 
-  note: Note.new(description: "Blah blah blah"),
+  note: Note.new(description: "This is a nice simple side dish you can make when you're firing up the grill to cook steaks or burgers. Don't be afraid to get the asparagus nice and caramelized!"),
 
-  info: Info.new(cook_time: "2 hours", prep_time: "2 hours")
+  info: Info.new(cook_time: "10 minutes", prep_time: "10 minutes")
 )
 
 asparagus.ingredients.build(
   [
-    { description: "One whole chicken, 5lbs"   },
-    { description: "1.5 cups milk"             },
-    { description: "1 whole onion, chopped"    },
-    { description: "4 small or 2 large carrots"},
-    { description: "4 Tbsps of butter"         },
-    { description: "8oz of Mushrooms"          },
-    { description: "8oz pearl onions"          },
-    { description: "6oz of brandy"             },
-    { description: "1 cup chicken stock"       },
-    { description: "1 cup of wine"             }
+    { description: "1 lb asparagus"   },
+    { description: "olive oil"             },
+    { description: "salt and pepper,to taste"    },
+    { description: "juice of a lemon"}
   ]
 )
 
 asparagus.steps.build(
   [
-    { description: "Dice onions and cut up your garlic. Chop carrots and celery" },
-    { description: "Season your chicken with salt and pepper. Dredge with flour and then brown in oil" },
-    { description: "Remove the chicken from the pot, and add your carrots, celery, onions, and garlic. Cook for about 10 minutes, until the veggies are soft." },
-    { description: "Deglaze with the brandy. Once that's done, add your wine and chicken stock to the pot and heat to a simmer." },
-    { description: "Add your chicken back to the pot. Cook until the chicken is fork tender, or reaches an internal temperature of 165 degrees" },
-    { description: "While chicken is cooking, saute mushrooms and pearl onions in 1 cup of reserved sauce" },
-    { description: "Once chicken is done, remove from pot. Increase heat and boil the sauce until it becomes thick, about the consistency of a vinagrette" },
-    { description: "Add the mushrooms and pearl onions to the sauce. Pour over the chicken and serve" }
+    { description: "Trim the thickest portion of the asparagus with a potato peeler" },
+    { description: "Place asparagus in a container. Cover with oil. Sprinkle with salt and pepper. Splash lemon juice on top." },
+    { description: "Place asparagus onto the grill, allow to cook until soft and brown on all sides. Flip over halfway through cooking." }
   ]
 )
 
@@ -204,7 +194,7 @@ icecream = Recipe.new(
   name: "Truffle Salt Ice Cream",
   category: "Dessert",
   author_id: ty.id,
-  title_photo: File.open("app/assets/images/coq_au_vin.jpg"),
+  title_photo: File.open("public/images/ice_cream.jpg"),
 
   note: Note.new(description: "Truffle salt is expensive (trust me, you'll get sticker shock buying it for the first time), but you use so little of it at a time that a small container can easily last a year and it makes everything DELICIOUS. Even ice cream, which is the idea behind this recipe. Inspired by Umami Burger."),
 
