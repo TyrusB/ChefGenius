@@ -9,7 +9,7 @@ Uses Backbone on the front-end and Rails on the back-end. Features:
 * DOM traversal across both Nodes and Elements
 * Smart new-Recipe form, adds blank inputs as needed.
 * S3/Papercip for image storage and uploading.
-* Devise & CanCan for user Authentication/Authorization, respecitively.
+* Devise & CanCan for user Authentication/Authorization, respectively.
 * Features class inheritance of Backbone views to implement Annotatable and Editable Recipes.
 * Recipe annotations use markdown.
 * Uses Regex to automatically markdown links and images. 
