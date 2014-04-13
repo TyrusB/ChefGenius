@@ -7,7 +7,8 @@ window.ChefGenius.Views.AnnotationShow = Backbone.CompositeView.extend({
 
   events: {
     'submit form':'newComment',
-    'click .delete-comment':"deleteComment"
+    'click .delete-comment':"deleteComment",
+    'click .delete-annotation':'deleteAnnotation'
   },
 
   render: function() {
@@ -71,6 +72,12 @@ window.ChefGenius.Views.AnnotationShow = Backbone.CompositeView.extend({
     var comment = this.model.suggestions().get(id);
 
     comment.destroy();
+  },
+
+  deleteAnnotation: function(event) {
+    this.model.destroy();
+    $('#annotation-show-modal').modal('hide');
+    this.vent.trigger('annotation:deleted', this.model)
   }
 
 })
