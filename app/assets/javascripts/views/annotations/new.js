@@ -25,13 +25,13 @@ window.ChefGenius.Views.AnnotationNew = Backbone.View.extend({
 
     var content = formData.content;
 
-    var content = content.replace(/([^\[\/\(]|^)(http|www).+\..+/g, function(link) {
+    var content = content.replace(/([^\[\/\(]|^)(http|www).+\..+/gi, function(link) {
       link = link.replace(/\s/, "");
       // if link is an image
-      if (/http.+\.(jpeg|jpg|gif|png)/.test(link)) {
+      if (/http.+\.(jpeg|jpg|gif|png)/i.test(link)) {
         return "![" + link + "]("+ link + ")";
       // if not, it's a link, test whether it needs to be prepended with http:// or not
-      } else if (/^www.+/.test(link)) {
+      } else if (/^www.+/i.test(link)) {
         return "[" + link + "](http://" + link + ")";
       } else {
         return "[" + link + "](" + link + ")";
