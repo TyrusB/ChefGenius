@@ -132,7 +132,7 @@ sprouts = Recipe.new(
   author_id: guest.id,
   title_photo: File.open("public/images/braised_sprouts.jpg"),
 
-  note: Note.new(description: "You probably never thought Brussels Sprouts could be this good. This is a great way of introducing children or other picky eaters to the joys of brussels sprouts. It uses a ton of cream and butter, so it's not exactly healthy, but it's a nice, delicious treat and a great way to occaisionally eat your veggies."),
+  note: Note.new(description: "You probably never thought Brussels Sprouts could be this good. This is a great way of introducing children or other picky eaters to the joys of brussels sprouts. It uses a ton of cream and butter, so it's not exactly healthy, but it's a nice, delicious treat and a great way to occasionally eat your veggies."),
 
   info: Info.new(cook_time: "2 hours", prep_time: "2 hours")
 )

@@ -11,6 +11,9 @@
           <%= marked(annotation.escape('content')) %>
         </div>
         <div class='annotation-info text-right'>
+          <% if (+annotation.escape('authorId') === ChefGenius.currentUser.id) { %> 
+            <button class='btn btn-danger delete-annotation'>Delete Annotation</button> 
+          <% } %>
           Annotated By: <%= annotation.escape('authorEmail') %>
         </div>
         <div id='new-suggestion-container'></div>
