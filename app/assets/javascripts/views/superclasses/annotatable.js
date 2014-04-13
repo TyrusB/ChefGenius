@@ -3,6 +3,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
 
   initialize: function(options){
     this.listenTo(this.model.annotations(), "sync", this.render);
+    this.listenTo(this.model.annotations(), 'remove', this.addAnnotationSpans);
   },
 
   events: {
