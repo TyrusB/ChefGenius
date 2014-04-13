@@ -2,7 +2,7 @@ Backbone.AnnotatableView = Backbone.View.extend({
   className: "annotatable can-annotate",
 
   initialize: function(options){
-    this.listenTo(this.model.annotations(), "sync", this.render);
+    this.listenTo(this.model.annotations(), "sync remove", this.render);
   },
 
   events: {
@@ -105,7 +105,6 @@ Backbone.AnnotatableView = Backbone.View.extend({
   },
 
   addAnnotationSpans: function(currentSelection) {
-  
     // currentSelection is optional, used to render pending annotations like persisted ones
     //  it will be removed at the end of the function
     if (currentSelection) {
