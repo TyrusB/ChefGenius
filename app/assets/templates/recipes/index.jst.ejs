@@ -3,11 +3,19 @@
 <% if (recipes.models.length > 0) { %>
 <div class='row recipe-section'>
   <div class='list-section col-xs-8'>
-    <ul class='annotatable recipe-list'>
+    <ul class='recipe-list'>
     <% recipes.each( function(recipe) { %>
-      <li><a href='#/recipes/<%= recipe.id %>'>
-        <%= recipe.escape('name') %>
-      </a> <small>by <%= recipe.escape('authorEmail') %></small></li>
+      <li>
+        <a href='#/recipes/<%= recipe.id %>'>
+          <%= recipe.escape('name') %>
+        </a>
+        <% if (ChefGenius.currentUser.email === recipe.escape('authorEmail') ) { %>
+            <small> by you!</small> <span class='badge badge-warning'>Editable</span>
+        <% } else { %>
+          <small>by <%= recipe.escape('authorEmail') %></small>
+        <% } %>
+        <span class='badge badge-info num-anns'><%= recipe.escape('numAnnotations') %> Annotations </span>
+      </li>
     <% }) %>
     </ul>
   </div>
@@ -24,4 +32,24 @@
   body, html {
     height: 100%;
   }
+
+  .num-anns {
+    float:right;
+  }
+
+  .badge-warning {
+    background-color: #f89406;
+  }
+
+  .badge-warning:hover {
+    background-color: #c67605;
+  }
+
+  .badge-info {
+    background-color: #3a87ad;
+  }
+  .badge-info:hover {
+    background-color: #2d6987;
+  }
+
 </style>

@@ -33,4 +33,32 @@ class Recipe < ActiveRecord::Base
   }
   validates_attachment_content_type :title_photo, :content_type => /image/
 
+  def annotation_count
+    annotation_ids = Annotation.find_by_sql([<<-SQL, { :this_id => self.id }])
+    SELECT annotations.id
+    FROM
+      annotations
+    LEFT OUTER JOIN
+      notes
+    ON
+      annotations.annotatable_id = notes.id AND
+      annotations.annotatable_type = 'Note'
+    LEFT OUTER JOIN
+      steps
+    ON
+      annotations.annotatable_id = steps.id AND
+      annotations.annotatable_type = 'Step'
+    LEFT OUTER JOIN
+      ingredients
+    ON
+      annotations.annotatable_id = ingredients.id AND
+      annotations.annotatable_type = 'Ingredient'
+    WHERE
+      notes.recipe_id = :this_id OR
+      steps.recipe_id = :this_id OR
+      ingredients.recipe_id = :this_id;
+    SQL
+
+    annotation_ids.count
+  end
 end
