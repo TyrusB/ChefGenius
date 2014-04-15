@@ -2,6 +2,7 @@ json.(recipe, :id, :name, :category, :created_at)
 
 json.authorId recipe.author.id
 json.authorEmail recipe.author.email
+json.numAnnotations recipe.annotation_count
 
 if recipe.title_photo
   json.photo recipe.title_photo

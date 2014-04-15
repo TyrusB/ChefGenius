@@ -40,7 +40,7 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     $('.recipe-container').toggleClass('can-edit-page-container');
     $('.editable').toggleClass('editable-closed');
 
-    
+
     this.$('.editable').toggleClass('can-edit');
     this.$('.annotatable').toggleClass('can-annotate');
 
@@ -128,11 +128,11 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   },
 
   testForAnnotationRefresh: function(event) {
-    if (!$(event.target).hasClass("tooltipter-content") && 
+    if (!$(event.target).hasClass("tooltipter-content") &&
         !$(event.target).hasClass("annotate-button") &&
         !$(event.target).hasClass("annotation-pending") ) {
       this.vent.trigger("annotationRefresh");
-    } 
+    }
   }
 
 });
