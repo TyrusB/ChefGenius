@@ -1,6 +1,9 @@
 $logo-color: floralwhite;
 $navbar-color: darkslateblue;
 
+$grid-float-breakpoint:     1230px;
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
+
 /* title */
 .navbar-default .navbar-brand {
     color: $logo-color;
@@ -30,23 +33,24 @@ $navbar-color: darkslateblue;
     color: white;
 }
 
-.dropdown {
+.dropdown {  
   margin-left: 15px;
 }
 
 .signed-in-text {
-  margin-left: 45px;
+  margin-left: 20px;
 }
 
 .navbar {
   background-color: $navbar-color !important
 }
 
-.navbar-right {
-  margin-right: 50px !important;
+.links {
+  position: relative;
+  margin-left: 2%;
   li {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 
