@@ -1,6 +1,7 @@
 guest = User.create!(email: "guest@chef-genius.com", password: "password")
-ty = User.create!(email: "ty@chef-genius.com", password: "password")
-ty2 = User.create!(email: "brooks85.ty@gmail.com", password: "password")
+ty = User.create!(email: "ty@chef-genius.com", password: "zazupassword")
+ty2 = User.create!(email: "zazu@chef-genius.com", password: "typassword")
+ashley = User.create!(email: "ashley@chef-genius.com", password: "ashleypassword")
 
 # Recipe 1
 spag_bol = Recipe.new(
