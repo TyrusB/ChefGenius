@@ -4,7 +4,7 @@ ChefGenius::Application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => "http://www.chef-genius.com" }
