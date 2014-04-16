@@ -24,8 +24,4 @@ module ChefGenius
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.action_mailer.delivery_method = :sendmail
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.raise_delivery_errors = true
-  end
 end
