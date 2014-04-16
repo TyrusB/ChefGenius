@@ -4,7 +4,7 @@
 
   <div class='row recipe-section'>
     <div class='recipe-name'>
-      <h1 class='text-center'><%= recipe.escape('name') %></h1>
+      <h1 class='text-center'><span class='cookie-font'><%= recipe.escape('name') %></span></h1>
     </div>
   </div>
 
@@ -20,14 +20,14 @@
 
   <div class='row recipe-section'>
     <div class='list-section col-xs-10'>
-      <div class='elements-header'>Ingredients List</div>
+      <div class='elements-header'><span class='small-cookie-font'>Ingredients List</span></div>
       <ul id='ingredients-list' class='annotatable recipe-list'></ul>
     </div>
   </div>
 
   <div class='row recipe-section'>
     <div class='list-section'>
-      <div class='elements-header'>Preparation</div>
+      <div class='elements-header'><span class='small-cookie-font'>Preparation</span></div>
       <ol id='steps-list' class='annotatable recipe-list'></ol>
     </div>
   </div>
