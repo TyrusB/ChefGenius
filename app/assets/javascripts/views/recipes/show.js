@@ -38,11 +38,10 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
     var view = this;
 
     $('.recipe-container').toggleClass('can-edit-page-container');
-    $('.editable').toggleClass('editable-closed');
-
 
     this.$('.editable').toggleClass('can-edit');
     this.$('.annotatable').toggleClass('can-annotate');
+    this.$('#edit-recipe').toggleClass('edit-button-active');
 
   },
 
@@ -120,11 +119,13 @@ window.ChefGenius.Views.RecipeShow = Backbone.CompositeView.extend({
   },
 
   deleteRecipe: function() {
-    this.model.destroy({
-      success: function() {
-        ChefGenius.router.navigate("", { trigger: true });
-      }
-    })
+    if (confirm("Are you sure you want to delete this recipe?")) {
+      this.model.destroy({
+        success: function() {
+          ChefGenius.router.navigate("", { trigger: true });
+        }
+      })
+    }
   },
 
   testForAnnotationRefresh: function(event) {
