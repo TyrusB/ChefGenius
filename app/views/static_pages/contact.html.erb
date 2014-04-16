@@ -1,8 +1,43 @@
-<h1>Contact</h1>
+
+<div class='row top-row'>
+  <h3 class='text-center top-text'>
+    Cooking up a web app, looking for a web developer?<br><br>
+    I'm currently available for full-time employment.</h3>
+</div>
+
+<div class='row'>
+  <div class='col col-xs-offset-3 col-xs-6'>
+    <%= form_tag(send_mail_path) do %>
+      <div class="form-group">
+         <%= label_tag 'name', 'Name' %>
+         <%= text_field_tag 'name', nil, class: 'form-control', placeholder: 'Your Name' %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'email', 'Email' %>
+        <%= email_field_tag 'email', nil, class: 'form-control', placeholder: 'Your Email Address' %>
+      </div>
+      <div class="form-group">
+        <%= label_tag 'comments', 'Comments' %>
+        <%= text_area_tag 'comments', nil, class: 'form-control', rows: 4, placeholder: 'Comments...' %>
+      </div>
+      <%= submit_tag nil, class: 'btn btn-default btn-about pull-right' %>
+    <% end %>
+  </div>
 
 <style>
-  html, body {
-    height: 100%;
+  body, html {
+    height: 96.75%;
+  }
+
+
+  .top-row {
+    margin-left: -2.85%;
+    margin-right: -2.85%;
+    height: 300px;
+  }
+
+  .top-text {
+    margin-top: 8%;
   }
 
 </style>
