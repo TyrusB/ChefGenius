@@ -107,15 +107,20 @@ body {
 
 //STATE DEPENDENT STYLES
 
-.editable-closed {
+.can-edit {
   &:hover {
     border: 2px #FFB000 solid;
     border-radius: 5px;
   }
 }
 
-.can-edit-page-contain er {
-  border: 5px dashed red;
+.edit-button-active {
+  background-color: #FFB000;
+}
+
+.note-form {
+  width: 100%;
+  height: 200px;
 }
 
 .annotated {

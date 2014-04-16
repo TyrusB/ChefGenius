@@ -11,7 +11,7 @@ class Ability
       can [:destroy, :update], [ Recipe, Annotation, Suggestion] do |model|
         model.try(:author) == user
       end
-      can [:destroy, :update], [Ingredient, Step] do |model|
+      can [:destroy, :update], [Ingredient, Step, Note] do |model|
         model.try(:recipe).try(:author) == user
       end
 
