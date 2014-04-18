@@ -1,8 +1,8 @@
 $logo-color: floralwhite;
 $navbar-color: darkslateblue;
 
-$grid-float-breakpoint:     1230px;
-$grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
+//$grid-float-breakpoint:     1000px !important;
+//$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !important;
 
 /* title */
 .navbar-default .navbar-brand {
@@ -51,7 +51,7 @@ $grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
 
 .links {
   position: relative;
-  margin-left: 2%;
+  margin-right: 2.5% !important;
   li {
     margin-left: 10px;
     margin-right: 10px;
