@@ -2,12 +2,12 @@
 
 <% if (recipes.models.length > 0) { %>
 <div class='row recipe-section'>
-  <div class='list-section col-xs-8'>
+  <div class='list-section col-xs-10'>
     <ul class='recipe-list'>
     <% recipes.each( function(recipe) { %>
       <li>
         <a href='#/recipes/<%= recipe.id %>'>
-          <%= recipe.escape('name') %>
+          <span class='recipe-index-name'><%= recipe.escape('name') %></span>
         </a>
         <% if (ChefGenius.currentUser.email === recipe.escape('authorEmail') ) { %>
             <small> by you!</small> <span class='badge badge-warning'>Editable</span>
@@ -33,27 +33,5 @@
     height: 100%;
   }
 
-  .num-anns {
-    float:right;
-  }
-
-  .badge-warning {
-    background-color: #f89406;
-  }
-
-  .badge-warning:hover {
-    background-color: #c67605;
-  }
-
-  .badge-info {
-    background-color: #3a87ad;
-  }
-  .badge-info:hover {
-    background-color: #2d6987;
-  }
-
-  .recipe-list {
-    list-style: none;
-  }
 
 </style>
