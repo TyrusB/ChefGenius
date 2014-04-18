@@ -6,9 +6,13 @@ $grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
 
 /* title */
 .navbar-default .navbar-brand {
-    color: $logo-color;
-    margin-left: 10px;
-    font-size: 150%;
+  //  color: $logo-color;
+//    margin-left: 10px;
+//    font-size: 150%;
+    .brand {
+      width: 180px;
+      margin-top: 3%;
+    }
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -33,7 +37,7 @@ $grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
     color: white;
 }
 
-.dropdown {  
+.dropdown {
   margin-left: 15px;
 }
 
