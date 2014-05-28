@@ -1,0 +1,22 @@
+.tutorial-image {
+  width: 350px;
+  height: 288px;
+  display: block;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.modal-body{overflow:visible;}
+
+.carousel-control.left, 
+.carousel-control.right {
+    background-image: none
+}
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+.glyphicon {
+  color: darkslateblue;
+}

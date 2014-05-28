@@ -23,7 +23,7 @@
 <% } %>
 
 <div class="modal fade" id='instructions-modal'>
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -32,38 +32,47 @@
 
       <div class="modal-body">
         <div class='instructions'>
-          <h4>Feature guide:</h4>
-          <ul>
-            <li>Annotating Text: Click and drag on any text on a recipe's note, steps, or ingredient to annotate it.
-              <br>
-              <button type="button" id='annotation-popover' class="btn btn-default example-popover" data-toggle="popover" data-placement='right' data-html='true' data-img=
-              '/images/tutorial_scaled.gif'>
-                Hover to see
-              </button>
-            </li>
-            <li>
-              Styling Annotations: Use markdown to add styling to annotations, and add images and links just by pasting the URL.
-              <br>
-              <button type="button" id='edit-popover' class="btn btn-default example-popover" data-toggle="popover" data-placement='right' data-html='true' data-img=
-              '/images/tutorial_scaled.gif'>
-                Hover to see
-              </button>
-            </li>
-            <li>Editing Recipes: Click the 'Edit' button to toggle editing. You can only edit your own recipes (look for the 'editable' badge).
-              <br>
-              <button type="button" id='edit-popover' class="btn btn-default example-popover" data-toggle="popover" data-placement='right' data-html='true' data-img=
-              '/images/tutorial_scaled.gif'>
-                Hover to see
-              </button>
-            </li>
-            <li>And a few other things:
-              <ul>
-                <li>You can add comments below annotations that others have submitted</li>
-                <li>You can submit new recipes. Click the add button on this page.</li>
-              </ul>
-          </ul>
-          <br>
-          <h4>To get started, click on any recipe's title to check it out, or create your own.</h4>
+          <h4 id='guide-title'>A visual features guide:</h4>
+
+          <div id="carousel-tutorial" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <!-- <ol class="carousel-indicators">
+              <li data-target="#carousel-tutorial" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-tutorial" data-slide-to="1"></li>
+              <li data-target="#carousel-tutorial" data-slide-to="2"></li>
+            </ol>
+ -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="images/annotating_text_tutorial.gif" alt="Click and drag to annotate text.">
+                <div class="carousel-caption">
+                </div>
+              </div>
+              <div class="item">
+                <img src="images/formatting_tutorial.gif" alt="Click and drag to annotate text.">
+                <div class="carousel-caption">
+                </div>
+              </div>
+              <div class="item">
+                <img src="images/editing_tutorial.gif" alt="Click and drag to annotate text.">
+                <div class="carousel-caption">
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-tutorial" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-tutorial" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
+
+          <!-- 
+          <h3>Annotating Text</h3>
+          <img src='images/tutorial_scaled.gif'> -->
         </div>
       </div>
 
@@ -77,37 +86,44 @@
 <h3><a href='#/recipes/new'>Add a new Recipe</a></h3>
 
 <style>
-  .overall-container {
-    height: 80%;
-  }
+.overall-container {
+  height: 80%;
+}
 
-  body, html {
-    height: 100%;
-  }
+body, html {
+  height: 100%;
+}
 
-  .tutorial-image {
-    width: 350px;
-    height: 288px;
-    display: block;
-    margin: auto;
-    vertical-align: middle;
-  }
+.tutorial-image {
+  width: 350px;
+  height: 288px;
+  display: block;
+  margin: auto;
+  vertical-align: middle;
+}
 
-  .popover {
-    z-index: 9999999;
-    min-height: 315px;
-    min-width: 400px;
-    position: fixed;
-  }
-  .popover-title {
-    z-index: 999999999;
-  }
+.modal-body{overflow:visible;}
 
-  .modal-body{overflow:visible;}
+.carousel-control.left, 
+.carousel-control.right {
+    background-image: none
+}
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+.glyphicon {
+  color: darkslateblue;
+}
+
 
 </style>
  
 <script>
+$('#carousel-tutorial').carousel({
+  interval: false
+})
 $('.example-popover').popover({
   html: true,
   trigger: 'hover',
