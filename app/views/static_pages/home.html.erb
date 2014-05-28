@@ -2,7 +2,7 @@
 
 <script>
 $(document).ready(function(){
-  ChefGenius.initialize( '<%= @recipes_json %>', '<%= @user_json %>');
+  ChefGenius.initialize( '<%= @recipes_json %>', '<%= @user_json %>', <%= @first_time_visitor %>);
 });
 </script>
 

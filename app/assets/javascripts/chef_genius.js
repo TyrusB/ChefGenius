@@ -3,8 +3,9 @@ window.ChefGenius = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function(recipes, currentUser) {
+  initialize: function(recipes, currentUser, firstTimeVisitor) {
     var recipes = new ChefGenius.Collections.Recipes(JSON.parse(recipes));
+    ChefGenius.firstTimeVisitor = firstTimeVisitor;
     ChefGenius.router = new ChefGenius.Routers.AppRouter({
       $rootEl: $('#main-content'),
       recipes: recipes
