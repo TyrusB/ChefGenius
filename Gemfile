@@ -17,6 +17,7 @@ gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'newrelic_rpm'
+gem 'font-awesome-sass'
 
 group :doc do
   gem 'sdoc', require: false
