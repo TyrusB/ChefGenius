@@ -1,5 +1,7 @@
 class Api::IngredientsController < ApplicationController
+  
   load_and_authorize_resource
+  
   def update
     @ingredient = Ingredient.find(params[:id])
 
