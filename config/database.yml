@@ -17,13 +17,13 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: ChefGenius_development
+  database: chefgenius_development
   pool: 5
   host: localhost
   # username: appacademy
   # password:
-  username: tydev
-  password: dbpass1
+  username: tybrooks
+  password: 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -49,7 +49,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: ChefGenius_test
+  database: chefgenius_test
   pool: 5
-  username: appacademy
+  username: tybrooks
   password:
