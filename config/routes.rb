@@ -14,12 +14,13 @@ ChefGenius::Application.routes.draw do
     resources :infos
     resources :annotations
     resources :suggestions
+    resources :users, :only => :show
   end
 
   #Static page routes
-  get "about", to: "static_pages#about"
-  get "contact", to: "static_pages#contact"
+  get "about", :to => "static_pages#about"
+  get "contact", :to => "static_pages#contact"
 
   #Contact page Action Mailer
-  post 'send_mail', to: 'contact#send_mail'
+  post 'send_mail', :to => 'contact#send_mail'
 end
