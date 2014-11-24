@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :recipes
-  has_many :suggestions
-  has_many :annotations
+  has_many :recipes, :foreign_key => :author_id
+  has_many :suggestions, :foreign_key => :author_id
+  has_many :annotations, :foreign_key => :author_id
 end
