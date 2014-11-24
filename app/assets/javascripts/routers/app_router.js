@@ -11,7 +11,8 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
     "recipes/new":"recipesNew",
     "recipes/:id":"recipeShow",
     "recipes/:id/edit":"recipesEdit",
-    "recipes/type/:type":"recipesSubIndex"
+    "recipes/type/:type":"recipesSubIndex",
+    "users/:id":"userShow"
   },
 
   recipesIndex: function() {
@@ -42,7 +43,7 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
         });
 
         var recipesOfType = router.recipes.where( { category: description } );
-        var subCollection = new ChefGenius.Collections.Recipes(recipesOfType)
+        var subCollection = new ChefGenius.Collections.Recipes(recipesOfType);
 
         var subIndex = new ChefGenius.Views.RecipesIndex({
           collection: subCollection,
@@ -87,6 +88,21 @@ window.ChefGenius.Routers.AppRouter = Backbone.Router.extend({
       view._swapView(show);
     });
 
+  },
+
+  userShow: function(id) {
+    var view = this,
+        model = new ChefGenius.Models.User({id: id});
+
+    model.fetch({
+       success: function() {
+         var show = new ChefGenius.Views.UserShow({
+             model: model
+         });
+
+         view._swapView(show);
+       }
+    });
   },
 
   _swapView: function(view) {

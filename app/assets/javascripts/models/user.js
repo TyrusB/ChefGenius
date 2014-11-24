@@ -1,10 +1,10 @@
-window.ChefGenius.Models.Note = Backbone.AnnotatableModel.extend({
+window.ChefGenius.Models.User = Backbone.Model.extend({
     urlRoot: "/api/users",
 
     annotations: function() {
         if (!this._annotations) {
             this._annotations = new ChefGenius.Collections.UserAnnotations([],{
-                owner: this
+                user: this
             });
         }
 
@@ -12,23 +12,23 @@ window.ChefGenius.Models.Note = Backbone.AnnotatableModel.extend({
     },
 
     recipes: function() {
-        if (!this.recipes) {
-            this.recipes = new ChefGenius.Collections.UserRecipes([],{
-                owner: this
+        if (!this._recipes) {
+            this._recipes = new ChefGenius.Collections.UserRecipes([],{
+                user: this
             });
         }
 
-        return this.recipes;
+        return this._recipes;
     },
 
     comments: function() {
-        if (!this.comments) {
-            this.comments = new ChefGenius.Collections.UserComments([],{
-                owner: this
+        if (!this._comments) {
+            this._comments = new ChefGenius.Collections.UserComments([],{
+                user: this
             });
         }
 
-        return this._annotations;
+        return this._comments;
     },
 
     parse: function(jsonResp) {
