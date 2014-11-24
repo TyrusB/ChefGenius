@@ -1,12 +1,12 @@
 window.ChefGenius.Collections.UserComments = Backbone.Collection.extend({
-    model: ChefGenius.Models.Comment,
+    model: ChefGenius.Models.Suggestion,
 
     initialize: function(models, options) {
         this.user = options.user;
     },
 
     url: function() {
-        return "api/user/" + this.user.id + "/comments"
+        return "api/user/" + this.user.id + "/suggestions"
     },
 
     comparator: function(comment) {

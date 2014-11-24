@@ -12,8 +12,8 @@
 <section>
    <h2>User Recipes</h2>
     <ul>
-        <% _.each(user.recipes, function(recipe) { %>
-        <li><div><a href='#/recipes/<%= recipe.id %>'><%= recipe.escape('name') %></a></div></li>
+        <% user.recipes().forEach(function(recipe) { %>
+            <li><div><a href='#/recipes/<%= recipe.id %>'><%= recipe.escape("name") %></a></div></li>
         <% });%>
     </ul>
 </section>
@@ -23,15 +23,15 @@
 
     <h3>Recently Annotated Recipes</h3>
     <ul>
-        <% _.each(user.annotations, function(annotation) { %>
-            <li><div><a href='#/recipes/<%= annotation.recipe.id %>'><%= annotation.recipe.name %></a></div></li>
+        <% user.annotations().forEach(function(annotation) { %>
+            <li><div><a href='#/recipes/<%= annotation.escape("recipe_id") %>'><%= annotation.escape("recipe_name") %></a></div></li>
         <% });%>
     </ul>
 
     <h3>Most recent comments</h3>
     <ul>
-        <% _.each(user.suggestions, function(suggestion) { %>
-            <li><a href='#/recipes/<%= suggestion. %>'><%= annotation.recipe.name %></a></li>
+        <% user.suggestions().forEach(function(comment) { %>
+            <li><a href='#/recipes/<%= comment.escape("recipe_id") %>'><%= comment.escape("recipe_name") %></a></li>
         <% });%>
     </ul>
 </section>

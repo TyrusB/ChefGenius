@@ -21,7 +21,7 @@ window.ChefGenius.Models.User = Backbone.Model.extend({
         return this._recipes;
     },
 
-    comments: function() {
+    suggestions: function() {
         if (!this._comments) {
             this._comments = new ChefGenius.Collections.UserComments([],{
                 user: this
@@ -42,10 +42,10 @@ window.ChefGenius.Models.User = Backbone.Model.extend({
 
             delete jsonResp.recipes;
         }
-        if (jsonResp.comments) {
-            this.comments().set(jsonResp.comments);
+        if (jsonResp.suggestions) {
+            this.suggestions().set(jsonResp.suggestions);
 
-            delete jsonResp.comments;
+            delete jsonResp.suggestions;
         }
 
         return jsonResp;
