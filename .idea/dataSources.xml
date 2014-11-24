@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="75287783">
+    <data-source source="LOCAL" name="Rails ChefGenius: development" uuid="67d77a46-8fd9-43ca-b5d1-78ee909d7b86">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/chefgenius_development</jdbc-url>
+      <user-name>tybrooks</user-name>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails ChefGenius: test" uuid="9ee3c6d9-f305-4576-bcbc-fec547262e13">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:chefgenius_test</jdbc-url>
+      <user-name>tybrooks</user-name>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
