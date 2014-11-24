@@ -23,6 +23,7 @@ class Recipe < ActiveRecord::Base
   has_one :note, :dependent => :destroy
   has_one :info, :dependent => :destroy
 
+
   belongs_to :author, :class_name => "User", :foreign_key => :author_id
 
   accepts_nested_attributes_for :ingredients, :steps, :note, :info
